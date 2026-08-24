@@ -53,11 +53,20 @@ Link an issue when one exists. Keep each PR focused on one topic.
 ## Branches
 
 Direct work on `main` is acceptable while the project has one contributor.
-When branches are used, name them with this format:
+When branches are used, choose a short name that makes the purpose clear.
+The following format is recommended, but not required:
 
 ```text
 type/short-description
 ```
 
-Examples: `feat/finite-well`, `fix/normalization`, `docs/setup-guide`.
+Branch names may include an issue number, a topic prefix, or additional path
+segments when useful. Use lowercase words separated by hyphens where practical.
 
+Valid examples:
+
+- `feat/finite-well`
+- `fix/42-normalization`
+- `chapter-02/harmonic-oscillator`
+- `experiment/sparse-eigensolver/performance`
+- `update-readme`
