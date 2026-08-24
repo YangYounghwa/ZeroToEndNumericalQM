@@ -1,0 +1,54 @@
+[project]
+name = "zero-to-end-numerical-qm"
+version = "0.1.0"
+description = "Numerical quantum mechanics with NumPy and PyTorch"
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "numpy>=2.0",
+    "torch>=2.5",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.18",
+    "pytest>=8.0",
+    "ruff>=0.13",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["01_stationary_one_particle"]
+addopts = "-ra -p no:cacheprovider"
+
+[tool.ruff]
+target-version = "py314"
+line-length = 88
+extend-exclude = [".venv", ".uv-cache", "workbench"]
+
+[tool.ruff.lint]
+select = [
+    "E4",
+    "E7",
+    "E9",
+    "F",
+    "I",
+    "UP",
+    "B",
+    "SIM",
+    "NPY",
+    "PT",
+    "RUF",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/boilerplates/*.py" = ["B018"]
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+warn_unreachable = true
+exclude = [
+    "^\\.venv/",
+    "^\\.uv-cache/",
+    "(^|/)workbench/",
+    "(^|/)tests/conftest\\.py$",
+]
