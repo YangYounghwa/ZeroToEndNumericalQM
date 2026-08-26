@@ -8,3 +8,4 @@ This subject studies the time-independent Schrödinger equation for one particle
 2. [Quantum harmonic oscillator](02_harmonic_oscillator/README.md)
 3. [Finite square well](03_finite_square_well/README.md)
 4. [Double-well potential](04_double_well_potential/README.md)
+5. [General one-dimensional potential](05_general_one_dimensional_potential/README.md)

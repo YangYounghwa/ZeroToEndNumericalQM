@@ -221,3 +221,25 @@ Symmetric quartic double-well potential and tunneling splitting.
 
 Extract a reusable one-dimensional stationary solver. The first four chapters
 intentionally repeat the construction so the common interface is now visible.
+
+## Fifth Chapter Plan
+
+### Subject
+
+Reusable stationary solver for general real one-dimensional potentials.
+
+### Learning goals
+
+- Pass the physical potential into a common solver interface.
+- Support nonsymmetric finite domains and potentials.
+- Validate potential arrays before Hamiltonian construction.
+- Check eigenpair residuals as well as orthonormality.
+- Verify the interface with a shifted harmonic oscillator.
+- Use PyTorch batched eigendecomposition for multiple sampled potentials.
+- State the accuracy and scaling limits of dense diagonalization.
+
+### Next step
+
+Solve the radial hydrogen equation. It introduces the reduced radial
+wavefunction, a singular endpoint, and angular-momentum-dependent effective
+potentials.

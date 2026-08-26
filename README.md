@@ -24,6 +24,7 @@ its numerical results are tested against known results or physical invariants.
 - [Chapter 2: Harmonic oscillator](01_stationary_one_particle/02_harmonic_oscillator/README.md)
 - [Chapter 3: Finite square well](01_stationary_one_particle/03_finite_square_well/README.md)
 - [Chapter 4: Double-well potential](01_stationary_one_particle/04_double_well_potential/README.md)
+- [Chapter 5: General one-dimensional potential](01_stationary_one_particle/05_general_one_dimensional_potential/README.md)
 - [PyTorch troubleshooting](PYTORCH_TROUBLESHOOTING.md)
 - [Code-quality tools](CODE_QUALITY.md)
 
@@ -41,8 +42,9 @@ its numerical results are tested against known results or physical invariants.
 
 ## Current milestone
 
-Chapters 1 through 4 use finite-difference Hamiltonians for the infinite square
-well, harmonic oscillator, finite square well, and symmetric double well.
+Chapters 1 through 4 introduce finite-difference Hamiltonians through specific
+physical systems. Chapter 5 extracts their shared structure into a reusable
+solver for general one-dimensional potentials.
 
-The next chapter will turn the repeated code into a reusable solver for general
-one-dimensional potentials.
+The next chapter applies related finite-difference ideas to the radial hydrogen
+equation.
