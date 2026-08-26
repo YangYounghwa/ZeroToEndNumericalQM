@@ -1,5 +1,6 @@
 """Starter template for the NumPy finite-square-well solver."""
 
+from collections.abc import Callable
 from dataclasses import dataclass
 
 import numpy as np
@@ -69,6 +70,43 @@ def probability_inside_well(
     result: FiniteSquareWellResult, half_width: float = 1.0
 ) -> FloatArray:
     # TODO: Integrate density only over |x| < half_width.
+    raise NotImplementedError
+
+
+def _bisect(function: Callable[[float], float], left: float, right: float) -> float:
+    """Find a root of a continuous function in a sign-changing interval."""
+    left_value = function(left)
+    right_value = function(right)
+    if left_value * right_value >= 0:
+        raise ValueError("root is not bracketed")
+
+    for _ in range(100):
+        middle = 0.5 * (left + right)
+        middle_value = function(middle)
+        if left_value * middle_value <= 0:
+            right = middle
+        else:
+            left = middle
+            left_value = middle_value
+
+    return 0.5 * (left + right)
+
+
+def analytical_bound_energies(
+    half_width: float = 1.0,
+    depth: float = 20.0,
+    mass: float = 1.0,
+    hbar: float = 1.0,
+) -> FloatArray:
+    """Find bound energies from the even and odd matching equations."""
+    # TODO: Validate that every parameter is positive.
+    # TODO: Calculate z_0 = a * sqrt(2 * m * V_0) / hbar.
+    # TODO: Define sqrt(z_0**2 - z**2).
+    # TODO: Define the even equation z * tan(z) - tail(z).
+    # TODO: Define the odd equation -z / tan(z) - tail(z).
+    # TODO: Search each equation only between its tangent or cotangent poles.
+    # TODO: Use _bisect for intervals whose endpoint values have opposite signs.
+    # TODO: Convert each z root into E and return the sorted float64 array.
     raise NotImplementedError
 
 

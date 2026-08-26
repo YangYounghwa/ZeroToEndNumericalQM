@@ -1,8 +1,15 @@
 """Starter for finite-square-well grid and domain convergence studies."""
 
+# After copying the starters into workbench, import:
+# from finite_square_well_numpy import (
+#     analytical_bound_energies,
+#     solve_finite_square_well,
+# )
+
 
 def grid_convergence() -> None:
-    # TODO: Compare ground energies with the matching-equation reference.
+    # TODO: Get the exact ground energy from analytical_bound_energies().
+    # TODO: Compare finite-difference ground energies with that reference.
     raise NotImplementedError
 
 
