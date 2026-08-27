@@ -70,6 +70,8 @@ matrix operators, eigenvalue problems, numerical derivatives, and integration.
 4. Double-well potential
 5. General one-dimensional potential
 6. Radial hydrogen equation
+7. General two-dimensional stationary potential
+8. General three-dimensional stationary potential
 
 ### Methods
 
@@ -80,6 +82,9 @@ matrix operators, eigenvalue problems, numerical derivatives, and integration.
 - Dense diagonalization
 - Sparse diagonalization
 - Boundary-condition handling
+- Kronecker-sum operators
+- Multidimensional indexing and reshaping
+- Dense-memory scaling estimates
 
 ### Required checks
 
@@ -93,7 +98,8 @@ matrix operators, eigenvalue problems, numerical derivatives, and integration.
 
 Create a reusable one-dimensional stationary Schrödinger solver. Verify it on
 the infinite square well and harmonic oscillator before adding general
-potentials.
+potentials. Extend the same finite-difference ideas to sparse 2D and 3D
+Cartesian grids while preserving explicit indexing conventions.
 
 ## Phase 2: Time Evolution
 

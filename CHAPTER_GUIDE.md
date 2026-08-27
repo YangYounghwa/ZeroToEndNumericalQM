@@ -260,8 +260,77 @@ Reduced radial hydrogen equation on a finite half-line.
 - Separate radial-spacing error from outer-boundary truncation error.
 - Compare the sparse NumPy/SciPy result with dense and batched PyTorch results.
 
+### Next step
+
+Build a genuine two-dimensional Cartesian solver without using symmetry to
+reduce the number of coordinates.
+
+## Seventh Chapter Plan
+
+### Subject
+
+General two-dimensional stationary potentials on a rectangular grid.
+
+### Learning goals
+
+- Store fields with shape `(Ny, Nx)` and document C-order flattening.
+- Construct a sparse two-term Kronecker-sum kinetic operator.
+- Normalize with the area element and calculate 2D observables.
+- Verify anisotropic oscillator energies and isotropic degeneracy.
+- Compare sparse NumPy with small dense and batched PyTorch calculations.
+
+## Eighth Chapter Plan
+
+### Subject
+
+General three-dimensional stationary potentials on a Cartesian grid.
+
+### Learning goals
+
+- Extend the flattening convention to `(Nz, Ny, Nx)`.
+- Construct a sparse three-term Kronecker-sum Hamiltonian.
+- Normalize with the volume element and verify 3D observables.
+- Verify anisotropic oscillator energies and isotropic triplet degeneracy.
+- Calculate dense-memory requirements before selecting a grid.
+- Restrict dense PyTorch calculations to deliberately small references.
+
 ### Next phase
 
 Begin time evolution with a free Gaussian wave packet. Introduce complex
 wavefunctions, unitary propagation, norm conservation, and time-step
 convergence before adding external potentials.
+
+## Phase 2, First Chapter Plan
+
+### Subject
+
+Free Gaussian wave-packet evolution.
+
+### Learning goals
+
+- Construct a normalized complex Gaussian initial state.
+- Derive its analytical center motion and spreading.
+- Implement sparse Crank-Nicolson propagation with a reused factorization.
+- Use a dense matrix exponential as a small-system reference.
+- Verify norm, energy, reversibility, and second-order time convergence.
+- Propagate batches of initial momenta with PyTorch.
+
+## Phase 2, Second Chapter Plan
+
+### Subject
+
+Coherent Gaussian wave packet in a harmonic potential.
+
+### Learning goals
+
+- Add a position-dependent potential to the time-evolution Hamiltonian.
+- Construct a coherent state with the oscillator ground-state width.
+- Verify sinusoidal center motion and constant packet width.
+- Check periodic return using global-phase-independent fidelity.
+- Separate spatial phase error from time-step error.
+- Batch several coherent initial displacements with PyTorch.
+
+### Next step
+
+Study scattering from a potential barrier. Measure reflected and transmitted
+probabilities only after the outgoing packets are spatially separated.

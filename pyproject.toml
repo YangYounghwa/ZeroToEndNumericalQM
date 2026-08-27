@@ -18,7 +18,7 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["01_stationary_one_particle"]
+testpaths = ["01_stationary_one_particle", "02_time_evolution"]
 addopts = "-ra -p no:cacheprovider"
 
 [tool.ruff]
