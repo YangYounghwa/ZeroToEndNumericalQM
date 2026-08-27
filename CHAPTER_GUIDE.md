@@ -275,8 +275,11 @@ General two-dimensional stationary potentials on a rectangular grid.
 
 - Store fields with shape `(Ny, Nx)` and document C-order flattening.
 - Construct a sparse two-term Kronecker-sum kinetic operator.
+- Accept an arbitrary sampled `V(x, y)` without assuming separability.
+- Solve a coupled-quartic potential with an `x^2 y^2` interaction.
 - Normalize with the area element and calculate 2D observables.
-- Verify anisotropic oscillator energies and isotropic degeneracy.
+- Use separable oscillator energies only as an analytical validation case.
+- Verify a nonseparable problem against a refined numerical reference.
 - Compare sparse NumPy with small dense and batched PyTorch calculations.
 
 ## Eighth Chapter Plan

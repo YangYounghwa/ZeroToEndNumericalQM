@@ -79,6 +79,18 @@ def anisotropic_oscillator_potential(
     )
 
 
+def coupled_quartic_potential(
+    x_mesh: FloatArray,
+    y_mesh: FloatArray,
+    coupling: float = 0.08,
+) -> FloatArray:
+    """Return a confined nonseparable potential with an x^2 y^2 coupling."""
+    if coupling < 0.0 or not np.isfinite(coupling):
+        raise ValueError("coupling must be finite and nonnegative")
+    harmonic = 0.5 * (x_mesh**2 + 1.4**2 * y_mesh**2)
+    return harmonic + coupling * x_mesh**2 * y_mesh**2
+
+
 def build_hamiltonian(
     potential_function: Potential2D,
     num_x: int = 32,
@@ -122,7 +134,7 @@ def build_hamiltonian(
 
 
 def solve_stationary_2d(
-    potential_function: Potential2D = anisotropic_oscillator_potential,
+    potential_function: Potential2D,
     num_x: int = 32,
     num_y: int = 30,
     num_states: int = 6,
@@ -203,16 +215,22 @@ def residual_norms(result: Stationary2DResult) -> FloatArray:
 
 
 def main() -> None:
-    result = solve_stationary_2d()
-    exact = analytical_oscillator_energies(len(result.energies))
-    x_values, y_values = expectation_position(result)
-    print("state   numerical E      exact E      abs error      <x>       <y>")
-    for state, energy in enumerate(result.energies):
+    validation = solve_stationary_2d(anisotropic_oscillator_potential)
+    exact = analytical_oscillator_energies(len(validation.energies))
+    print("Separable analytical validation")
+    print("state   numerical E      exact E      abs error")
+    for state, energy in enumerate(validation.energies):
         print(
             f"{state:>5}  {energy:>13.8f}  {exact[state]:>11.8f}  "
-            f"{abs(energy - exact[state]):>11.3e}  "
-            f"{x_values[state]:>8.2e}  {y_values[state]:>8.2e}"
+            f"{abs(energy - exact[state]):>11.3e}"
         )
+
+    general = solve_stationary_2d(coupled_quartic_potential)
+    residuals = residual_norms(general)
+    print("\nNonseparable coupled-quartic calculation")
+    print("state   numerical E     residual norm")
+    for state, energy in enumerate(general.energies):
+        print(f"{state:>5}  {energy:>13.8f}  {residuals[state]:>14.3e}")
 
 
 if __name__ == "__main__":

@@ -26,13 +26,13 @@ def build_hamiltonian(
     raise NotImplementedError
 
 
-def solve_stationary_2d() -> object:
+def solve_stationary_2d(potential_function: Potential2D) -> object:
     # TODO: Request low eigenpairs, sort, normalize, and reshape them.
     raise NotImplementedError
 
 
 def main() -> None:
-    # TODO: Compare anisotropic-oscillator energies with exact sums.
+    # TODO: Validate a separable case, then solve a nonseparable potential.
     raise NotImplementedError
 
 

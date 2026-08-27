@@ -75,6 +75,18 @@ def anisotropic_oscillator_potential(
     )
 
 
+def coupled_quartic_potential(
+    x_mesh: Tensor,
+    y_mesh: Tensor,
+    coupling: float = 0.08,
+) -> Tensor:
+    """Return a confined nonseparable potential with an x^2 y^2 coupling."""
+    if coupling < 0.0:
+        raise ValueError("coupling must be nonnegative")
+    harmonic = 0.5 * (x_mesh**2 + 1.4**2 * y_mesh**2)
+    return harmonic + coupling * x_mesh**2 * y_mesh**2
+
+
 def build_hamiltonian(
     potential_function: Potential2D,
     num_x: int = 18,
@@ -107,7 +119,7 @@ def build_hamiltonian(
 
 
 def solve_stationary_2d(
-    potential_function: Potential2D = anisotropic_oscillator_potential,
+    potential_function: Potential2D,
     num_x: int = 18,
     num_y: int = 16,
     num_states: int = 6,
@@ -195,14 +207,17 @@ def residual_norms(result: Stationary2DResult) -> Tensor:
 
 def main() -> None:
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    result = solve_stationary_2d(device=device)
+    result = solve_stationary_2d(coupled_quartic_potential, device=device)
     x_values, y_values = expectation_position(result)
+    residuals = residual_norms(result)
     print(f"device: {device}")
-    print("state   energy          <x>          <y>")
+    print("Nonseparable coupled-quartic calculation")
+    print("state   energy          <x>          <y>       residual")
     for state in range(len(result.energies)):
         print(
             f"{state:>5}  {result.energies[state].item():>11.7f}  "
-            f"{x_values[state].item():>11.2e}  {y_values[state].item():>11.2e}"
+            f"{x_values[state].item():>11.2e}  {y_values[state].item():>11.2e}  "
+            f"{residuals[state].item():>9.2e}"
         )
 
 

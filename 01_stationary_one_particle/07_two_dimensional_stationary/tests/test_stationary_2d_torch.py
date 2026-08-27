@@ -5,15 +5,30 @@ import torch
 
 
 def test_torch_shapes_dtype_and_hermiticity() -> None:
-    result = torch_solution.solve_stationary_2d(num_x=10, num_y=9, num_states=3)
+    result = torch_solution.solve_stationary_2d(
+        torch_solution.coupled_quartic_potential,
+        num_x=10,
+        num_y=9,
+        num_states=3,
+    )
     assert result.wavefunctions.shape == (9, 10, 3)
     assert result.hamiltonian.dtype == torch.float64
     assert torch.allclose(result.hamiltonian, result.hamiltonian.mT)
 
 
 def test_numpy_and_torch_two_dimensional_solvers_agree() -> None:
-    numpy_result = numpy_solution.solve_stationary_2d(num_x=10, num_y=9, num_states=4)
-    torch_result = torch_solution.solve_stationary_2d(num_x=10, num_y=9, num_states=4)
+    numpy_result = numpy_solution.solve_stationary_2d(
+        numpy_solution.coupled_quartic_potential,
+        num_x=10,
+        num_y=9,
+        num_states=4,
+    )
+    torch_result = torch_solution.solve_stationary_2d(
+        torch_solution.coupled_quartic_potential,
+        num_x=10,
+        num_y=9,
+        num_states=4,
+    )
     assert np.allclose(numpy_result.energies, torch_result.energies.numpy(), atol=1e-11)
 
 
@@ -47,7 +62,12 @@ def test_torch_batched_potentials_match_individual_solves() -> None:
 
 
 def test_torch_orthonormality_and_residuals() -> None:
-    result = torch_solution.solve_stationary_2d(num_x=10, num_y=9, num_states=4)
+    result = torch_solution.solve_stationary_2d(
+        torch_solution.coupled_quartic_potential,
+        num_x=10,
+        num_y=9,
+        num_states=4,
+    )
     vectors = result.wavefunctions.reshape(-1, 4)
     overlap = result.spacing_x * result.spacing_y * vectors.mT @ vectors
     assert torch.allclose(overlap, torch.eye(4, dtype=torch.float64), atol=1e-12)

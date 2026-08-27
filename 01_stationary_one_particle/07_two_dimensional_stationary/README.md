@@ -1,8 +1,9 @@
 # Chapter 7: Two-Dimensional Stationary Problems
 
-This chapter extends the stationary Schrödinger solver to a rectangular 2D
-grid. Sparse Kronecker sums build the kinetic operator without manually writing
-a large matrix.
+This chapter provides a general stationary Schrödinger solver for arbitrary
+real potentials sampled as `V(x, y)` on a rectangular 2D grid. The main example
+contains an `x^2 y^2` interaction and cannot be separated into independent
+one-dimensional equations.
 
 ## Learning goals
 
@@ -11,7 +12,8 @@ a large matrix.
 - Construct `Iy kron Tx + Ty kron Ix`.
 - Normalize with the area element `dx * dy`.
 - Solve general real `V(x, y)` potentials with a sparse eigensolver.
-- Verify an anisotropic oscillator and isotropic degeneracy.
+- Solve a nonseparable coupled-quartic potential numerically.
+- Use a separable oscillator only to validate against analytical energies.
 - Compare sparse NumPy with dense and batched PyTorch calculations.
 
 ## Reading order
@@ -41,7 +43,8 @@ uv run pytest 01_stationary_one_particle/07_two_dimensional_stationary
 
 - The sparse Hamiltonian is Hermitian.
 - Reshaped eigenstates are orthonormal under `dx * dy` integration.
-- Anisotropic oscillator energies approach their analytical sums.
+- The nonseparable problem converges toward a refined numerical reference.
+- Separable oscillator energies approach their analytical sums.
 - The first isotropic excited pair is degenerate.
 - Residual norms are small and NumPy agrees with PyTorch.
 - Grid refinement reduces the energy error.

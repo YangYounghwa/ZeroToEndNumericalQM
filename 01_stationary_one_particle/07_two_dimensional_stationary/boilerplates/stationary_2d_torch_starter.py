@@ -1,9 +1,13 @@
 """Starter template for a PyTorch 2D stationary solver."""
 
+from collections.abc import Callable
+
 from torch import Tensor
 
+Potential2D = Callable[[Tensor, Tensor], Tensor]
 
-def solve_stationary_2d() -> object:
+
+def solve_stationary_2d(potential_function: Potential2D) -> object:
     # TODO: Build the dense Kronecker sum and reshape selected states.
     raise NotImplementedError
 
@@ -20,7 +24,7 @@ def solve_potential_batch(
 
 
 def main() -> None:
-    # TODO: Select a device and report energies and positions.
+    # TODO: Select a device and solve a nonseparable potential.
     raise NotImplementedError
 
 
