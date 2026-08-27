@@ -25,6 +25,7 @@ its numerical results are tested against known results or physical invariants.
 - [Chapter 3: Finite square well](01_stationary_one_particle/03_finite_square_well/README.md)
 - [Chapter 4: Double-well potential](01_stationary_one_particle/04_double_well_potential/README.md)
 - [Chapter 5: General one-dimensional potential](01_stationary_one_particle/05_general_one_dimensional_potential/README.md)
+- [Chapter 6: Radial hydrogen equation](01_stationary_one_particle/06_radial_hydrogen/README.md)
 - [PyTorch troubleshooting](PYTORCH_TROUBLESHOOTING.md)
 - [Code-quality tools](CODE_QUALITY.md)
 
@@ -42,9 +43,8 @@ its numerical results are tested against known results or physical invariants.
 
 ## Current milestone
 
-Chapters 1 through 4 introduce finite-difference Hamiltonians through specific
-physical systems. Chapter 5 extracts their shared structure into a reusable
-solver for general one-dimensional potentials.
+Phase 1 is complete. Chapters 1 through 5 develop and generalize
+one-dimensional finite-difference Hamiltonians. Chapter 6 applies related ideas
+to the radial hydrogen equation and introduces sparse diagonalization.
 
-The next chapter applies related finite-difference ideas to the radial hydrogen
-equation.
+The next phase begins time evolution with a free Gaussian wave packet.

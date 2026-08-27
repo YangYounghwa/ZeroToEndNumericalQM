@@ -243,3 +243,25 @@ Reusable stationary solver for general real one-dimensional potentials.
 Solve the radial hydrogen equation. It introduces the reduced radial
 wavefunction, a singular endpoint, and angular-momentum-dependent effective
 potentials.
+
+## Sixth Chapter Plan
+
+### Subject
+
+Reduced radial hydrogen equation on a finite half-line.
+
+### Learning goals
+
+- Derive the reduced radial equation using `u(r) = r R(r)`.
+- Exclude the singular origin while enforcing `u(0) = 0`.
+- Include the centrifugal effective potential for fixed angular momentum.
+- Use a sparse tridiagonal Hamiltonian and request only low-energy eigenpairs.
+- Verify hydrogenic energies, radial expectation values, and degeneracies.
+- Separate radial-spacing error from outer-boundary truncation error.
+- Compare the sparse NumPy/SciPy result with dense and batched PyTorch results.
+
+### Next phase
+
+Begin time evolution with a free Gaussian wave packet. Introduce complex
+wavefunctions, unitary propagation, norm conservation, and time-step
+convergence before adding external potentials.
