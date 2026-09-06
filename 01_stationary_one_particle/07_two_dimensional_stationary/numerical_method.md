@@ -360,6 +360,83 @@ spectrum and then selects the first states. Dense diagonalization has roughly
 $O(M^3)$ arithmetic cost and $O(M^2)$ memory cost, so its grid must remain
 small.
 
+### 10.1 Why this solve is not perturbation theory
+
+For the coupled example, the discrete Hamiltonian can be written as
+
+$$
+H_h(\lambda)=H_{0,h}+\lambda W_h,
+$$
+
+where $h$ represents the chosen grid and
+
+$$
+W_h=\operatorname{diag}(x_i^2y_j^2).
+$$
+
+The solver does not first calculate the eigenstates of $H_{0,h}$ and then add
+only a first-order energy correction. It passes the complete matrix
+$H_h(\lambda)$ to `eigsh` or `eigh`:
+
+$$
+H_h(\lambda)c_n=E_{n,h}(\lambda)c_n.
+$$
+
+The returned vector $c_n$ is allowed to change completely as $\lambda$
+changes. In an eigenbasis of $H_{0,h}$, the coupling has off-diagonal matrix
+elements that mix many unperturbed states. Direct diagonalization solves all
+of that finite-matrix mixing simultaneously.
+
+The word “diagonal” in `diag(V_flat)` can cause confusion. The potential is
+diagonal only in the position-grid basis because it multiplies $\psi(x,y)$ at
+each point. It is generally not diagonal in the eigenbasis of the uncoupled
+oscillator, which is why it changes both energies and eigenfunctions.
+
+| Question | First-order perturbation | Direct grid diagonalization |
+| --- | --- | --- |
+| Coupling treatment | Keeps terms through $O(\lambda)$ | Uses the complete finite-grid matrix |
+| Requires weak coupling? | Yes | No perturbative smallness assumption |
+| Uses uncoupled eigenstates? | Yes, as the expansion basis | No analytical states are required |
+| Main limitation | Truncation in powers of $\lambda$ | Grid, domain, and eigensolver errors |
+| Result | Approximation to the continuum energy | Eigenpair of the discretized Hamiltonian |
+
+“Nonperturbative” here has a precise but limited meaning: the numerical method
+does not truncate a power series in $\lambda$. It does not mean that the
+numerical result is free of approximation.
+
+A large $\lambda$ can make the potential and wavefunction vary more sharply.
+The method remains valid, but the existing grid may not: convergence must be
+checked again as the coupling changes.
+
+### 10.2 Comparing the two methods numerically
+
+Let $E_n^{\mathrm{num}}(\lambda)$ be a converged grid result and define
+
+$$
+\Delta E_n^{\mathrm{num}}(\lambda)
+=E_n^{\mathrm{num}}(\lambda)-E_n^{\mathrm{num}}(0).
+$$
+
+First-order theory predicts
+
+$$
+\Delta E_n^{(1)}(\lambda)
+=\lambda\langle n^{(0)}|x^2y^2|n^{(0)}\rangle.
+$$
+
+A useful comparison procedure is:
+
+1. Converge the domain and grid at $\lambda=0$.
+2. Solve the full matrix for several small positive values of $\lambda$.
+3. Compare $\Delta E_n^{\mathrm{num}}(\lambda)$ with the first-order line.
+4. Reduce $\lambda$ and check that the difference decreases approximately as
+   $O(\lambda^2)$.
+5. Increase $\lambda$ to observe where the first-order approximation becomes
+   inaccurate while the direct solver remains well defined.
+
+This comparison tests perturbation theory. It is not part of the algorithm
+used to obtain the numerical eigenstates.
+
 ## 11. Normalization, overlaps, and residuals
 
 Matrix eigensolvers normalize a vector using the Euclidean sum

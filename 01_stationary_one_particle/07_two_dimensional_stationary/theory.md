@@ -223,8 +223,9 @@ The last statement follows because $x^2y^2$ is even in both coordinates.
 
 ## 6. Weak-coupling theory as a partial analytical check
 
-The full coupled spectrum has no simple closed form, but small $\lambda$ can be
-checked with perturbation theory.
+The full coupled spectrum has no simple closed form. Perturbation theory gives
+an analytical approximation when the coupling changes the unperturbed states
+only weakly.
 
 Write
 
@@ -235,7 +236,35 @@ $$
 $$
 
 where $\hat H_0$ is the separable anisotropic oscillator. Its unperturbed
-states are $|n_x,n_y\rangle$. First-order perturbation theory gives
+states are $|n_x,n_y\rangle$.
+
+Writing $\hat H=\hat H_0+\lambda\hat W$ is only a decomposition of the
+Hamiltonian. It does **not** mean that every method used afterward is
+perturbative. The distinction is what is done with $\lambda\hat W$:
+
+- perturbation theory expands the answer in powers of $\lambda$ and truncates
+  the expansion;
+- direct numerical diagonalization places the complete term in the matrix and
+  solves the resulting eigenproblem without truncating powers of $\lambda$.
+
+### 6.1 Energy and state expansions
+
+Perturbation theory assumes expansions of the form
+
+$$
+E_n(\lambda)
+=E_n^{(0)}+\lambda E_n^{(1)}
++\lambda^2E_n^{(2)}+\cdots,
+$$
+
+$$
+|\psi_n(\lambda)\rangle
+=|n^{(0)}\rangle
++\lambda|n^{(1)}\rangle
++\lambda^2|n^{(2)}\rangle+\cdots.
+$$
+
+First-order perturbation theory keeps only the first two energy terms:
 
 $$
 E_{n_xn_y}
@@ -244,6 +273,69 @@ E_{n_xn_y}
 \langle n_x|x^2|n_x\rangle
 \langle n_y|y^2|n_y\rangle.
 $$
+
+For a nondegenerate state, the first correction to the eigenvector is
+
+$$
+|n^{(1)}\rangle
+=\sum_{m\ne n}
+\frac{\langle m^{(0)}|\hat W|n^{(0)}\rangle}
+{E_n^{(0)}-E_m^{(0)}}
+|m^{(0)}\rangle.
+$$
+
+This equation shows the physical meaning of perturbative mixing. The coupling
+adds small components of other unperturbed states. Small energy denominators
+produce strong mixing, so ordinary nondegenerate perturbation theory can fail
+near a degeneracy even when $\lambda$ appears numerically small.
+
+The second-order energy correction is
+
+$$
+E_n^{(2)}
+=\sum_{m\ne n}
+\frac{|\langle m^{(0)}|\hat W|n^{(0)}\rangle|^2}
+{E_n^{(0)}-E_m^{(0)}}.
+$$
+
+Stopping at first order discards the contribution $\lambda^2E_n^{(2)}$ and
+all higher terms.
+
+### 6.2 What “small coupling” means
+
+The numerical value of $\lambda$ alone is not a general measure of smallness,
+because $\lambda$ has units unless dimensionless units have already been
+chosen. A useful state-dependent condition is
+
+$$
+\epsilon_{mn}
+=\frac{|\lambda\langle m^{(0)}|\hat W|n^{(0)}\rangle|}
+{|E_n^{(0)}-E_m^{(0)}|}
+\ll1
+$$
+
+for every state $m$ that couples appreciably to $n$.
+
+For the oscillator, characteristic lengths are
+
+$$
+\ell_x=\sqrt{\frac{\hbar}{m\omega_x}},
+\qquad
+\ell_y=\sqrt{\frac{\hbar}{m\omega_y}}.
+$$
+
+The characteristic coupling energy is therefore of order
+
+$$
+E_{\mathrm{coupling}}
+\sim\lambda\ell_x^2\ell_y^2
+=\lambda\frac{\hbar^2}{m^2\omega_x\omega_y}.
+$$
+
+It should be small compared with relevant oscillator energy gaps. This is a
+scale estimate, not a proof of convergence.
+
+### 6.3 First-order result for the coupled oscillator
 
 For a one-dimensional oscillator,
 
@@ -295,6 +387,39 @@ The operator $x^2$ connects oscillator quantum numbers differing by $0$ or
 $\pm2$. Consequently, $x^2y^2$ mixes product states while preserving both
 parities. This explains why the exact coupled eigenfunction is usually a sum
 of several oscillator product states rather than one product.
+
+### 6.4 Why direct diagonalization contains higher-order mixing
+
+Suppose two unperturbed states are coupled. In their subspace the Hamiltonian
+has the form
+
+$$
+H=
+\begin{pmatrix}
+E_a^{(0)} & \lambda W_{ab}\\
+\lambda W_{ab}^* & E_b^{(0)}
+\end{pmatrix}.
+$$
+
+Direct diagonalization gives
+
+$$
+E_{\pm}
+=\frac{E_a^{(0)}+E_b^{(0)}}{2}
+\pm
+\sqrt{
+\left(\frac{E_a^{(0)}-E_b^{(0)}}{2}\right)^2
++\lambda^2|W_{ab}|^2
+}.
+$$
+
+The square root contains the effect of the coupling without expanding it in a
+finite power series. The grid calculation performs the same type of direct
+diagonalization for many coupled basis states at once.
+
+For this reason, the numerical result is nonperturbative with respect to
+$\lambda$ for the chosen finite grid. It is not exact for the continuous
+problem: it still has grid-spacing, finite-domain, and eigensolver errors.
 
 ## 7. Hellmann–Feynman prediction
 
