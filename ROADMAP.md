@@ -71,7 +71,6 @@ matrix operators, eigenvalue problems, numerical derivatives, and integration.
 5. General one-dimensional potential
 6. Radial hydrogen equation
 7. General two-dimensional stationary potential
-8. General three-dimensional stationary potential
 
 ### Methods
 

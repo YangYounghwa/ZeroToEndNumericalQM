@@ -27,7 +27,6 @@ its numerical results are tested against known results or physical invariants.
 - [Chapter 5: General one-dimensional potential](01_stationary_one_particle/05_general_one_dimensional_potential/README.md)
 - [Chapter 6: Radial hydrogen equation](01_stationary_one_particle/06_radial_hydrogen/README.md)
 - [Chapter 7: Two-dimensional stationary problems](01_stationary_one_particle/07_two_dimensional_stationary/README.md)
-- [Chapter 8: Three-dimensional stationary problems](01_stationary_one_particle/08_three_dimensional_stationary/README.md)
 - [Phase 2: Time evolution](02_time_evolution/README.md)
 - [Phase 2, Chapter 1: Free Gaussian wave packet](02_time_evolution/01_free_gaussian_wave_packet/README.md)
 - [Phase 2, Chapter 2: Harmonic wave packet](02_time_evolution/02_harmonic_wave_packet/README.md)
@@ -48,10 +47,10 @@ its numerical results are tested against known results or physical invariants.
 
 ## Current milestone
 
-Phase 1 now ends with sparse 2D and 3D Cartesian stationary solvers, following
-the radial hydrogen symmetry reduction. Phase 2 Chapters 1 and 2 introduce
-Crank-Nicolson time evolution through free and harmonically confined Gaussian
-packets. Both are checked against analytical dynamics and a small
+Phase 1 now ends with a general sparse 2D Cartesian stationary solver,
+following the radial hydrogen symmetry reduction. Phase 2 Chapters 1 and 2
+introduce Crank-Nicolson time evolution through free and harmonically confined
+Gaussian packets. Both are checked against analytical dynamics and a small
 matrix-exponential reference.
 
 The next chapter studies scattering from a potential barrier.

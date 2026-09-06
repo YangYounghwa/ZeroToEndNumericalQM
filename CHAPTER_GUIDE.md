@@ -282,21 +282,6 @@ General two-dimensional stationary potentials on a rectangular grid.
 - Verify a nonseparable problem against a refined numerical reference.
 - Compare sparse NumPy with small dense and batched PyTorch calculations.
 
-## Eighth Chapter Plan
-
-### Subject
-
-General three-dimensional stationary potentials on a Cartesian grid.
-
-### Learning goals
-
-- Extend the flattening convention to `(Nz, Ny, Nx)`.
-- Construct a sparse three-term Kronecker-sum Hamiltonian.
-- Normalize with the volume element and verify 3D observables.
-- Verify anisotropic oscillator energies and isotropic triplet degeneracy.
-- Calculate dense-memory requirements before selecting a grid.
-- Restrict dense PyTorch calculations to deliberately small references.
-
 ### Next phase
 
 Begin time evolution with a free Gaussian wave packet. Introduce complex

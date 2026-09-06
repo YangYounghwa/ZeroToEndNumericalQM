@@ -11,11 +11,10 @@ This subject studies the time-independent Schrödinger equation for one particle
 5. [General one-dimensional potential](05_general_one_dimensional_potential/README.md)
 6. [Radial hydrogen equation](06_radial_hydrogen/README.md)
 7. [Two-dimensional stationary problems](07_two_dimensional_stationary/README.md)
-8. [Three-dimensional stationary problems](08_three_dimensional_stationary/README.md)
 
 ## Phase completion
 
-The eight chapters cover finite-difference grids, boundary conditions, dense
+The seven chapters cover finite-difference grids, boundary conditions, dense
 and sparse Hamiltonians, normalization, analytical validation, Kronecker sums,
 multidimensional indexing, scaling, and convergence. Continue with
 `02_time_evolution` after all chapter tests pass.

@@ -576,5 +576,7 @@ real scalar potential. It does not cover magnetic vector potentials, complex
 absorbers, periodic boundaries, adaptive meshes, or position-dependent mass.
 
 Unlike radial hydrogen, no symmetry is used to eliminate a coordinate. The
-unknown genuinely occupies a 2D mesh. Chapter 8 extends the same construction
-to a 3D Cartesian mesh, where the scaling cost becomes much more severe.
+unknown genuinely occupies a 2D mesh. A 3D Cartesian discretization would use
+the same construction with a third Kronecker term and a volume weight. It is
+not a separate chapter because that extension adds scaling cost rather than a
+new numerical idea.
