@@ -1,11 +1,9 @@
 # Zero to End Numerical Quantum Mechanics
 
-This project is a structured path for learning:
-
-- quantum mechanics;
-- numerical simulation;
-- NumPy;
-- PyTorch.
+Learn PyTorch through numerical quantum mechanics. NumPy provides comparison
+implementations; SciPy supports sparse eigensolvers and propagation where they
+serve the physics problem. Foundations are explained within each chapter,
+without a separate Phase 0 folder.
 
 The project uses Python 3.14 through `uv`.
 
@@ -37,10 +35,10 @@ its numerical results are tested against known results or physical invariants.
 
 1. Read the required physics and equation derivation in the chapter's
    `theory.md` before writing the implementation.
-2. Build a clear NumPy reference implementation first.
-3. Build the PyTorch version after the NumPy result is verified.
-4. Use PyTorch for a reason: autograd, optimization, GPU execution, or tensor
-   operations.
+2. Implement and validate the PyTorch version first.
+3. Compare with the NumPy reference and, where useful, its SciPy sparse method.
+4. Learn tensor operations and batching early; introduce autograd and
+   optimization through the oscillator extension. GPU execution is optional.
 5. Check convergence and physical invariants. A plausible plot is not enough.
 6. Use Python files and Markdown rather than notebooks.
 7. Use `uv` for Python environments, dependencies, and commands.

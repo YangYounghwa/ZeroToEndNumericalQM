@@ -24,6 +24,10 @@ chapter_name/
 
 Do not use `.ipynb` files.
 
+PyTorch is the main learning target. Introduce foundations in the chapter that
+needs them, not in a separate Phase 0 folder. NumPy provides comparisons, and
+SciPy is a limited numerical reference for sparse problems.
+
 ## `theory.md`
 
 Explain:
@@ -81,8 +85,8 @@ Avoid optimizing code before correctness and convergence have been established.
 
 ## PyTorch Implementation
 
-`problem_name_torch_solution.py` should reproduce the verified NumPy result. It
-must handle:
+`problem_name_torch_solution.py` is the primary learning implementation. Validate
+it against physics and then compare with the NumPy reference. It must handle:
 
 - explicit `dtype`;
 - explicit device selection;
@@ -90,7 +94,7 @@ must handle:
 - conversion to NumPy only at clear boundaries;
 - reproducible random seeds when randomness is used.
 
-PyTorch should add value through at least one of:
+PyTorch exercises develop these skills as the physics needs them:
 
 - automatic differentiation;
 - gradient-based optimization;
@@ -119,11 +123,11 @@ Keep reusable algorithms out of the experiment file.
 
 1. Read the physical explanation and equation derivation in `theory.md`.
 2. Understand the discretization in `numerical_method.md`.
-3. Implement the NumPy version using `coding_hints.md`.
-4. Test NumPy against an analytical or trusted reference result.
-5. Perform a convergence study.
-6. Implement the PyTorch version.
-7. Compare NumPy and PyTorch within a defined tolerance.
+3. Implement the PyTorch version using `coding_hints.md`.
+4. Test it against an analytical or trusted reference result.
+5. Perform separate grid, domain, and time-step studies where applicable.
+6. Read or implement the NumPy comparison; use its SciPy sparse method when useful.
+7. Compare identical physical and numerical parameters within a defined tolerance.
 8. Record errors, limitations, and conclusions.
 9. Start the next chapter only after the completion criteria pass.
 
@@ -158,7 +162,7 @@ One-dimensional infinite square well using finite differences.
 - Normalize discrete wavefunctions.
 - Compare numerical and analytical energies.
 - Measure convergence as the grid is refined.
-- Reproduce the calculation with PyTorch tensors.
+- Learn PyTorch tensors, eigendecomposition, and weighted normalization.
 
 ### Required tests
 
@@ -237,6 +241,7 @@ Reusable stationary solver for general real one-dimensional potentials.
 - Verify the interface with a shifted harmonic oscillator.
 - Use PyTorch batched eigendecomposition for multiple sampled potentials.
 - State the accuracy and scaling limits of dense diagonalization.
+- Compare the dense PyTorch solve with NumPy and SciPy sparse diagonalization.
 
 ### Next step
 
@@ -301,6 +306,8 @@ Free Gaussian wave-packet evolution.
 - Implement sparse Crank-Nicolson propagation with a reused factorization.
 - Use a dense matrix exponential as a small-system reference.
 - Verify norm, energy, reversibility, and second-order time convergence.
+- Compare PyTorch matrix exponentials with SciPy sparse exponential action.
+- Isolate spatial and boundary error from time-step error.
 - Propagate batches of initial momenta with PyTorch.
 
 ## Phase 2, Second Chapter Plan
