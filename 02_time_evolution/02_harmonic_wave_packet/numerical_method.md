@@ -63,3 +63,34 @@ The sparse NumPy path stores `O(N)` Hamiltonian entries and performs one sparse
 factorization followed by triangular solves. The PyTorch reference uses dense
 `O(N^2)` storage but advances several initial-state columns together. Storing
 all times costs `O(num_steps * N)` per state.
+
+## PyTorch references and independent error studies
+
+Use torch.linalg.matrix_exp for a small dense reference and state_l2_error for
+the quadrature-weighted, phase-aligned state error. The NumPy module provides
+sparse_exponential_state using SciPy expm_multiply. It applies exp(-iHt/hbar)
+to a state without forming the dense exponential. This is an exponential-action
+reference; it is not an implementation of a Krylov algorithm in this chapter.
+See [SciPy's documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.expm_multiply.html).
+
+The convergence script performs three separate experiments:
+
+1. Hold the spatial Hamiltonian fixed; reduce the Crank–Nicolson time step and
+   compare with the matrix exponential. Also compare with sparse SciPy CN.
+2. Hold the domain fixed; refine the grid and compare matrix-exponential
+   evolution with the infinite-domain analytical packet. No CN time-step error
+   enters this experiment.
+3. Hold dx fixed; enlarge the domain and compare again with the analytical
+   packet. Report probability in fixed-width edge strips as an extra diagnostic.
+
+The final error can plateau at the remaining grid error. A tiny matrix residual,
+conserved norm, or small final edge density cannot replace these studies:
+earlier boundary reflections may already have changed the interior packet.
+
+Current boundary values are zero (Dirichlet), so packets reflect. Future FFT
+methods impose periodicity; future absorbers remove probability. Their
+conservation and reversibility checks must match those boundary choices.
+
+With length scale L0 and energy scale E0 = hbar^2/(m L0^2), use t0 = hbar/E0.
+This explains the dimensionless time used when m = hbar = 1. The harmonic
+chapter may instead choose oscillator time 1/omega.

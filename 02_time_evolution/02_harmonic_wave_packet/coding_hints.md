@@ -47,3 +47,9 @@ Both states must be discretely normalized.
 - Expecting exact periodic return from a coarse finite-difference spectrum.
 - Using a domain too small for the classical turning points plus packet width.
 - Tightening `dt` when the dominant error is spatial discretization.
+
+## Foundations and PyTorch practice
+
+Reuse complex propagation and batching, adding a potential diagonal. Compare the packet center and width with coherent-state dynamics. A global phase does not change the physical state, so use state_l2_error or fidelity. Test time, grid, and domain error independently.
+
+Implement the PyTorch starter first, then compare with the NumPy reference.

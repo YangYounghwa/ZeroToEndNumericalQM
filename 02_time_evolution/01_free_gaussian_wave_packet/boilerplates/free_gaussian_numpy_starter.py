@@ -55,6 +55,18 @@ def solve_free_packet() -> EvolutionResult:
     raise NotImplementedError
 
 
+def sparse_exponential_state(
+    initial_state: ComplexArray,
+    hamiltonian: csr_matrix,
+    spacing: float,
+    time: float,
+    hbar: float = 1.0,
+) -> ComplexArray:
+    # TODO: Normalize and apply scipy.sparse.linalg.expm_multiply.
+    # Do not convert the Hamiltonian or propagator to a dense array.
+    raise NotImplementedError
+
+
 def main() -> None:
     # TODO: Report norm, energy, center, and width changes.
     raise NotImplementedError

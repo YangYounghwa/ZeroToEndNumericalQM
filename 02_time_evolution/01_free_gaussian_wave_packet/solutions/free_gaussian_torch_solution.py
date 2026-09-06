@@ -1,6 +1,7 @@
 """PyTorch time evolution of a free Gaussian wave packet."""
 
 from dataclasses import dataclass
+from math import isfinite
 
 import torch
 from torch import Tensor
@@ -152,6 +153,63 @@ def solve_free_packet(
         initial, hamiltonian, spacing, time_step, num_steps, hbar
     )
     return EvolutionResult(grid, spacing, times, wavefunctions, hamiltonian)
+
+
+def analytical_wavefunction(
+    grid: Tensor,
+    time: float,
+    center: float = -6.0,
+    width: float = 0.8,
+    wave_number: float = 2.0,
+    mass: float = 1.0,
+    hbar: float = 1.0,
+) -> Tensor:
+    """Sample the infinite-domain free Gaussian using complex PyTorch tensors."""
+    if width <= 0 or mass <= 0 or hbar <= 0:
+        raise ValueError("width, mass, and hbar must be positive")
+    tau = hbar * time / (2.0 * mass * width**2)
+    spreading = torch.tensor(1.0 + 1j * tau, dtype=torch.complex128, device=grid.device)
+    displacement = grid - center - hbar * wave_number * time / mass
+    amplitude = (2.0 * torch.pi * width**2) ** (-0.25) / torch.sqrt(spreading)
+    envelope = torch.exp(-(displacement**2) / (4.0 * width**2 * spreading))
+    phase = torch.exp(
+        1j * wave_number * (grid - center) - 0.5j * hbar * wave_number**2 * time / mass
+    )
+    result: Tensor = amplitude * envelope * phase
+    return result
+
+
+def matrix_exponential_state(
+    initial_state: Tensor,
+    hamiltonian: Tensor,
+    spacing: float,
+    time: float,
+    hbar: float = 1.0,
+) -> Tensor:
+    """Compute a small-system reference entirely with PyTorch."""
+    if not all(isfinite(value) for value in (spacing, time, hbar)):
+        raise ValueError("spacing, time, and hbar must be finite")
+    if spacing <= 0 or hbar <= 0:
+        raise ValueError("spacing and hbar must be positive")
+    if initial_state.ndim != 1:
+        raise ValueError("initial_state must be one-dimensional")
+    if hamiltonian.shape != (initial_state.numel(), initial_state.numel()):
+        raise ValueError("hamiltonian must be square and match initial_state")
+    if initial_state.device != hamiltonian.device:
+        raise ValueError("state and hamiltonian must share a device")
+    state = normalize_wavefunctions(
+        initial_state.to(torch.complex128)[:, None], spacing
+    )[:, 0]
+    propagator: Tensor = torch.linalg.matrix_exp((-1j * time / hbar) * hamiltonian)
+    result: Tensor = propagator @ state
+    return result
+
+
+def state_l2_error(numerical: Tensor, reference: Tensor, spacing: float) -> Tensor:
+    """Return weighted L2 error after removing an irrelevant global phase."""
+    overlap = spacing * torch.vdot(reference, numerical)
+    aligned = numerical * torch.exp(-1j * torch.angle(overlap))
+    return torch.sqrt(spacing * torch.sum(torch.abs(aligned - reference) ** 2))
 
 
 def probability_norms(result: EvolutionResult) -> Tensor:

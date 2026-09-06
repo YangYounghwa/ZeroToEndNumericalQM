@@ -27,6 +27,24 @@ def propagate_crank_nicolson_batch(
     raise NotImplementedError
 
 
+def matrix_exponential_state(
+    initial_state: Tensor,
+    hamiltonian: Tensor,
+    spacing: float,
+    time: float,
+    hbar: float = 1.0,
+) -> Tensor:
+    # TODO: Normalize, then apply torch.linalg.matrix_exp(-1j * time * H / hbar).
+    # Keep this dense reference small and retain the state's device.
+    raise NotImplementedError
+
+
+def state_l2_error(numerical: Tensor, reference: Tensor, spacing: float) -> Tensor:
+    # TODO: Align the global phase using the weighted conjugate overlap.
+    # Return the weighted L2 norm of the difference.
+    raise NotImplementedError
+
+
 def main() -> None:
     # TODO: Select a device and report physical checks.
     raise NotImplementedError

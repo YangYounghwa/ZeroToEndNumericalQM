@@ -20,11 +20,11 @@ Crank-Nicolson method.
 1. [Quantum theory](theory.md)
 2. [Numerical method](numerical_method.md)
 3. [Coding hints](coding_hints.md)
-4. `boilerplates/free_gaussian_numpy_starter.py`
-5. `boilerplates/free_gaussian_torch_starter.py`
+4. `boilerplates/free_gaussian_torch_starter.py`
+5. `boilerplates/free_gaussian_numpy_starter.py`
 6. `boilerplates/free_gaussian_convergence_starter.py`
-7. `solutions/free_gaussian_numpy_solution.py`
-8. `solutions/free_gaussian_torch_solution.py`
+7. `solutions/free_gaussian_torch_solution.py`
+8. `solutions/free_gaussian_numpy_solution.py`
 9. `solutions/free_gaussian_convergence.py`
 
 Editable starter copies are in `workbench/`, which is ignored by Git, Ruff,
@@ -33,8 +33,8 @@ and mypy.
 ## Commands
 
 ```powershell
-uv run python 02_time_evolution/01_free_gaussian_wave_packet/solutions/free_gaussian_numpy_solution.py
 uv run python 02_time_evolution/01_free_gaussian_wave_packet/solutions/free_gaussian_torch_solution.py
+uv run python 02_time_evolution/01_free_gaussian_wave_packet/solutions/free_gaussian_numpy_solution.py
 uv run python 02_time_evolution/01_free_gaussian_wave_packet/solutions/free_gaussian_convergence.py
 uv run pytest 02_time_evolution/01_free_gaussian_wave_packet
 ```
@@ -48,6 +48,8 @@ uv run pytest 02_time_evolution/01_free_gaussian_wave_packet
 - Forward evolution followed by reverse evolution recovers the initial state.
 - Crank-Nicolson approaches the matrix exponential with second-order time error.
 - NumPy and PyTorch results agree on the same grid.
+- PyTorch matrix exponentials agree with the sparse SciPy exponential action.
+- Separate grid and domain studies distinguish spatial error from time error.
 
 ## Next step
 

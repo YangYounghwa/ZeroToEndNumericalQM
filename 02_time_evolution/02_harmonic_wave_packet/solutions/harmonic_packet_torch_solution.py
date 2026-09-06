@@ -1,6 +1,7 @@
 """PyTorch evolution of a coherent packet in a harmonic potential."""
 
 from dataclasses import dataclass
+from math import isfinite
 
 import torch
 from torch import Tensor
@@ -73,6 +74,8 @@ def coherent_state(
 def normalize_wavefunctions(wavefunctions: Tensor, spacing: float) -> Tensor:
     """Normalize states along spatial dimension -2."""
     norms = torch.sqrt(spacing * torch.sum(torch.abs(wavefunctions) ** 2, dim=-2))
+    if bool(torch.any(norms == 0.0)) or not bool(torch.isfinite(norms).all()):
+        raise ValueError("wavefunctions must have finite, nonzero norms")
     return wavefunctions / norms.unsqueeze(-2)
 
 
@@ -86,6 +89,8 @@ def propagate_crank_nicolson_batch(
 ) -> tuple[Tensor, Tensor]:
     """Propagate a column batch with one reused LU factorization."""
     num_points = hamiltonian.shape[0]
+    if hamiltonian.shape != (num_points, num_points):
+        raise ValueError("hamiltonian must be square")
     if initial_states.ndim != 2 or initial_states.shape[0] != num_points:
         raise ValueError("initial_states must have shape (num_points, batch)")
     if num_steps < 1 or time_step == 0.0 or spacing <= 0.0 or hbar <= 0.0:
@@ -120,6 +125,8 @@ def propagate_crank_nicolson(
     hbar: float = 1.0,
 ) -> tuple[Tensor, Tensor]:
     """Propagate one state and remove its temporary batch axis."""
+    if initial_state.ndim != 1:
+        raise ValueError("initial_state must be one-dimensional")
     times, history = propagate_crank_nicolson_batch(
         initial_state[:, None],
         hamiltonian,
@@ -173,6 +180,39 @@ def analytical_center(
         * torch.sin(angular_frequency * times)
         / (mass * angular_frequency)
     )
+
+
+def matrix_exponential_state(
+    initial_state: Tensor,
+    hamiltonian: Tensor,
+    spacing: float,
+    time: float,
+    hbar: float = 1.0,
+) -> Tensor:
+    """Compute a small-system reference entirely with PyTorch."""
+    if not all(isfinite(value) for value in (spacing, time, hbar)):
+        raise ValueError("spacing, time, and hbar must be finite")
+    if spacing <= 0 or hbar <= 0:
+        raise ValueError("spacing and hbar must be positive")
+    if initial_state.ndim != 1:
+        raise ValueError("initial_state must be one-dimensional")
+    if hamiltonian.shape != (initial_state.numel(), initial_state.numel()):
+        raise ValueError("hamiltonian must be square and match initial_state")
+    if initial_state.device != hamiltonian.device:
+        raise ValueError("state and hamiltonian must share a device")
+    state = normalize_wavefunctions(
+        initial_state.to(torch.complex128)[:, None], spacing
+    )[:, 0]
+    propagator: Tensor = torch.linalg.matrix_exp((-1j * time / hbar) * hamiltonian)
+    result: Tensor = propagator @ state
+    return result
+
+
+def state_l2_error(numerical: Tensor, reference: Tensor, spacing: float) -> Tensor:
+    """Return weighted L2 error after removing an irrelevant global phase."""
+    overlap = spacing * torch.vdot(reference, numerical)
+    aligned = numerical * torch.exp(-1j * torch.angle(overlap))
+    return torch.sqrt(spacing * torch.sum(torch.abs(aligned - reference) ** 2))
 
 
 def probability_norms(result: EvolutionResult) -> Tensor:

@@ -6,7 +6,7 @@ import numpy as np
 from numpy.typing import NDArray
 from scipy.linalg import expm
 from scipy.sparse import csc_matrix, csr_matrix, diags, eye
-from scipy.sparse.linalg import splu
+from scipy.sparse.linalg import expm_multiply, splu
 
 FloatArray = NDArray[np.float64]
 ComplexArray = NDArray[np.complex128]
@@ -143,6 +143,28 @@ def solve_free_packet(
         initial, hamiltonian, spacing, time_step, num_steps, hbar
     )
     return EvolutionResult(grid, spacing, times, wavefunctions, hamiltonian)
+
+
+def sparse_exponential_state(
+    initial_state: ComplexArray,
+    hamiltonian: csr_matrix,
+    spacing: float,
+    time: float,
+    hbar: float = 1.0,
+) -> ComplexArray:
+    """Apply exp(-i H t / hbar) without forming a dense propagator."""
+    if not np.isfinite([spacing, time, hbar]).all() or spacing <= 0 or hbar <= 0:
+        raise ValueError("time must be finite; spacing and hbar finite and positive")
+    if hamiltonian.shape != (initial_state.size, initial_state.size):
+        raise ValueError("hamiltonian must be square and match initial_state")
+    if initial_state.ndim != 1:
+        raise ValueError("initial_state must be one-dimensional")
+    state = normalize_wavefunction(initial_state.astype(np.complex128), spacing)
+    generator = (-1j * time / hbar) * hamiltonian
+    return np.asarray(
+        expm_multiply(generator, state, traceA=generator.diagonal().sum()),
+        dtype=np.complex128,
+    )
 
 
 def matrix_exponential_state(

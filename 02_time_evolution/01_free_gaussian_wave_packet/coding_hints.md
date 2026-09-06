@@ -55,3 +55,9 @@ real array.
 - Comparing complex states without aligning their global phases.
 - Allowing the packet to reach an artificial boundary during validation.
 - Treating norm conservation as proof that the chosen time step is accurate.
+
+## Foundations and PyTorch practice
+
+Learn complex128 states, torch.exp for phases, conjugate inner products, torch.linalg.lu_factor, and torch.linalg.lu_solve. Reuse one factorization for all time steps and batch columns. Compare PyTorch matrix_exp with the SciPy sparse exponential action at identical parameters.
+
+Implement the PyTorch starter first, then compare with the NumPy reference.
