@@ -18,11 +18,11 @@ unbounded spatial domain.
 1. [Quantum theory](theory.md)
 2. [Numerical method](numerical_method.md)
 3. [Coding hints](coding_hints.md)
-4. `boilerplates/harmonic_oscillator_numpy_starter.py`
-5. `boilerplates/harmonic_oscillator_torch_starter.py`
+4. `boilerplates/harmonic_oscillator_torch_starter.py`
+5. `boilerplates/harmonic_oscillator_numpy_starter.py`
 6. `boilerplates/harmonic_oscillator_convergence_starter.py`
-7. `solutions/harmonic_oscillator_numpy_solution.py`
-8. `solutions/harmonic_oscillator_torch_solution.py`
+7. `solutions/harmonic_oscillator_torch_solution.py`
+8. `solutions/harmonic_oscillator_numpy_solution.py`
 9. `solutions/harmonic_oscillator_convergence.py`
 
 Copy starter files into `workbench/` before editing them. This folder is
@@ -33,8 +33,8 @@ ignored by Git, Ruff, and mypy.
 From the repository root:
 
 ```powershell
-uv run python 01_stationary_one_particle/02_harmonic_oscillator/solutions/harmonic_oscillator_numpy_solution.py
 uv run python 01_stationary_one_particle/02_harmonic_oscillator/solutions/harmonic_oscillator_torch_solution.py
+uv run python 01_stationary_one_particle/02_harmonic_oscillator/solutions/harmonic_oscillator_numpy_solution.py
 uv run python 01_stationary_one_particle/02_harmonic_oscillator/solutions/harmonic_oscillator_convergence.py
 uv run pytest
 ```
@@ -49,3 +49,12 @@ $$
 
 The corresponding oscillator length is $a=1$. The default computational
 domain is $[-8a,8a]$, where low-energy wavefunctions are already very small.
+
+## Autograd and basis extension
+
+After the grid and domain studies, use
+[the variational starter](boilerplates/harmonic_oscillator_variational_starter.py)
+and [the solution](solutions/harmonic_oscillator_variational.py).
+The theory and numerical-method documents derive the Gaussian energy and the
+oscillator-basis matrix. Optimize a trial width with PyTorch, check its gradient,
+and compare basis-size convergence with finite-difference grid convergence.

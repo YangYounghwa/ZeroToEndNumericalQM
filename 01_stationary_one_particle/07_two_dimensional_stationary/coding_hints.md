@@ -52,3 +52,18 @@ wavefunctions: (Ny, Nx, num_states)
 - Assuming `eigsh` returns sorted eigenvalues.
 - Comparing individual eigenvectors inside a degenerate subspace; the solver
   may return any orthonormal rotation of that subspace.
+
+## Comparing degenerate states in PyTorch
+
+Flatten a complete degenerate multiplet to (Ny*Nx, number_of_states), with
+columns orthonormal under dx*dy. Compute singular values of
+dx*dy * first.mH @ second using subspace_overlaps. Values near one mean the
+subspaces agree even if the solvers rotate or phase-shift individual columns.
+Keep the same grid and integration weight; do not truncate through a multiplet.
+This is also a small introduction to torch.linalg.svdvals.
+
+## Foundations and PyTorch practice
+
+Learn torch.meshgrid(indexing='ij'), torch.kron, reshape, and reductions over two spatial axes. Keep (Ny, Nx) ordering explicit. Use small dense PyTorch grids, then compare with the sparse SciPy implementation for refined calculations; dense storage grows as (Nx*Ny)^2.
+
+Implement the PyTorch starter first, then compare with the NumPy reference.

@@ -188,6 +188,15 @@ def analytical_bound_energies(
     return np.array(sorted(energies), dtype=np.float64)
 
 
+def residual_norms(result: FiniteSquareWellResult) -> FloatArray:
+    """Measure algebraic error in energy units, using the spatial integration weight."""
+    residual = (
+        result.hamiltonian @ result.wavefunctions
+        - result.wavefunctions * result.energies[None, :]
+    )
+    return np.sqrt(result.spacing * np.sum(np.abs(residual) ** 2, axis=0))
+
+
 def main() -> None:
     result = solve_finite_square_well()
     exact = analytical_bound_energies()

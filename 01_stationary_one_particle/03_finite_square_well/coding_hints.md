@@ -33,3 +33,9 @@ Use `float64`. Store eigenvectors as columns with shape
 Check Hermiticity, grid-weighted orthonormality, alternating parity, agreement
 with matching roots, bound-state localization, invalid inputs, float64, and
 NumPy/PyTorch agreement.
+
+## Foundations and PyTorch practice
+
+Use torch.where to sample the well and Boolean masks to select energies below the outside potential. A potential discontinuity introduces edge-alignment error: a larger point count need not improve every energy monotonically. The NumPy matching-equation calculation is an analytical comparison.
+
+Implement the PyTorch starter first, then compare with the NumPy reference.

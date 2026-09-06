@@ -1,7 +1,7 @@
 """Grid and domain convergence studies for the finite square well."""
 
-from finite_square_well_numpy_solution import (
-    analytical_bound_energies,
+from finite_square_well_numpy_solution import analytical_bound_energies
+from finite_square_well_torch_solution import (
     bound_state_mask,
     solve_finite_square_well,
 )

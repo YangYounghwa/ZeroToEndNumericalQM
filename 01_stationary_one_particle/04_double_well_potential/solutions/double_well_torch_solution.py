@@ -143,6 +143,15 @@ def localized_pair(result: DoubleWellResult) -> tuple[Tensor, Tensor]:
     return left, right
 
 
+def residual_norms(result: DoubleWellResult) -> Tensor:
+    """Measure algebraic error in energy units, using the spatial integration weight."""
+    residual = (
+        result.hamiltonian @ result.wavefunctions
+        - result.wavefunctions * result.energies[None, :]
+    )
+    return torch.sqrt(result.spacing * torch.sum(torch.abs(residual) ** 2, dim=0))
+
+
 def main() -> None:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     result = solve_double_well(device=device)

@@ -21,11 +21,11 @@ one-dimensional equations.
 1. [Quantum theory](theory.md)
 2. [Numerical method](numerical_method.md)
 3. [Coding hints](coding_hints.md)
-4. `boilerplates/stationary_2d_numpy_starter.py`
-5. `boilerplates/stationary_2d_torch_starter.py`
+4. `boilerplates/stationary_2d_torch_starter.py`
+5. `boilerplates/stationary_2d_numpy_starter.py`
 6. `boilerplates/stationary_2d_convergence_starter.py`
-7. `solutions/stationary_2d_numpy_solution.py`
-8. `solutions/stationary_2d_torch_solution.py`
+7. `solutions/stationary_2d_torch_solution.py`
+8. `solutions/stationary_2d_numpy_solution.py`
 9. `solutions/stationary_2d_convergence.py`
 
 Editable copies are in `workbench/`, which is ignored by Git, Ruff, and mypy.
@@ -33,8 +33,8 @@ Editable copies are in `workbench/`, which is ignored by Git, Ruff, and mypy.
 ## Commands
 
 ```powershell
-uv run python 01_stationary_one_particle/07_two_dimensional_stationary/solutions/stationary_2d_numpy_solution.py
 uv run python 01_stationary_one_particle/07_two_dimensional_stationary/solutions/stationary_2d_torch_solution.py
+uv run python 01_stationary_one_particle/07_two_dimensional_stationary/solutions/stationary_2d_numpy_solution.py
 uv run python 01_stationary_one_particle/07_two_dimensional_stationary/solutions/stationary_2d_convergence.py
 uv run pytest 01_stationary_one_particle/07_two_dimensional_stationary
 ```

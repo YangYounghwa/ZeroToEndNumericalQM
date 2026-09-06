@@ -134,3 +134,28 @@ $$
 
 The numerical solution should reproduce these values for states that are well
 resolved and negligible near the computational boundaries.
+
+## Oscillator units and an early variational exercise
+
+Choose a = sqrt(hbar/(m omega)), q = x/a, and epsilon = E/(hbar omega).
+The dimensionless harmonic Hamiltonian is
+
+$$H/(\hbar\omega)=\frac12\left(-\frac{d^2}{dq^2}+q^2\right).$$
+
+Normalize phi(q) = sqrt(a) psi(aq). The familiar m = hbar = omega = 1 examples
+are calculations in these oscillator units, not a claim that physical
+constants have no units.
+
+Use the normalized trial state
+phi_alpha(q) = (alpha/pi)^(1/4) exp(-alpha q^2/2), with alpha > 0.
+Its moments are <q^2> = 1/(2 alpha), <p^2> = alpha/2, and
+<q^4> = 3/(4 alpha^2), where p is the dimensionless momentum operator.
+For H = (p^2 + q^2)/2 + lambda q^4, its continuum energy is
+
+$$E(\alpha)=\frac{\alpha+\alpha^{-1}}4+\frac{3\lambda}{4\alpha^2}.$$
+
+For lambda = 0, the derivative vanishes at alpha = 1 and the minimum is 1/2.
+The variational principle says a normalized trial state's energy is at least
+the true ground energy. A restricted trial family can still miss the exact
+ground state when lambda is nonzero. Learn autograd by differentiating this
+energy and optimizing log(alpha); positivity then holds automatically.

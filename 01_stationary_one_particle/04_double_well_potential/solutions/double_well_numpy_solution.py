@@ -145,6 +145,15 @@ def localized_pair(result: DoubleWellResult) -> tuple[FloatArray, FloatArray]:
     return left, right
 
 
+def residual_norms(result: DoubleWellResult) -> FloatArray:
+    """Measure algebraic error in energy units, using the spatial integration weight."""
+    residual = (
+        result.hamiltonian @ result.wavefunctions
+        - result.wavefunctions * result.energies[None, :]
+    )
+    return np.sqrt(result.spacing * np.sum(np.abs(residual) ** 2, axis=0))
+
+
 def main() -> None:
     result = solve_double_well()
     print("state  energy          parity  probability left")

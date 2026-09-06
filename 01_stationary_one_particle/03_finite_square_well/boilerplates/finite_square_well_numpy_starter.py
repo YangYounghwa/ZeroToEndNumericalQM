@@ -110,6 +110,12 @@ def analytical_bound_energies(
     raise NotImplementedError
 
 
+def residual_norms(result: FiniteSquareWellResult) -> FloatArray:
+    # TODO: Return sqrt(dx * sum(abs(H @ psi - psi * E)^2)) for each column.
+    # This is an algebraic error, distinct from grid and domain errors.
+    raise NotImplementedError
+
+
 def main() -> None:
     # TODO: Print energies, bound classification, and inside probabilities.
     raise NotImplementedError

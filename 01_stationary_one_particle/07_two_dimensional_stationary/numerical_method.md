@@ -347,8 +347,9 @@ The NumPy/SciPy algorithm is:
 10. Reshape the eigenvectors to `(Ny, Nx, num_states)`.
 
 `which="SA"` means smallest algebraic eigenvalues. This is appropriate for the
-lowest states of the real symmetric Hamiltonians used here. `eigsh` does not
-guarantee that the returned values are sorted.
+lowest states of the real symmetric Hamiltonians used here. With `which="SA"`
+and eigenvectors returned, SciPy documents algebraic sorting. The code also
+sorts explicitly to keep its interface independent of changes to solver options.
 
 `eigsh` is an iterative Lanczos-type solver. It avoids diagonalizing the full
 dense matrix, but its cost still depends on grid size, the number of requested

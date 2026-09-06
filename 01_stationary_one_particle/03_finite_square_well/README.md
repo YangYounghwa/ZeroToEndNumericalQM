@@ -18,11 +18,11 @@ box also produces positive-energy states that approximate a continuum.
 1. [Quantum theory](theory.md)
 2. [Numerical method](numerical_method.md)
 3. [Coding hints](coding_hints.md)
-4. `boilerplates/finite_square_well_numpy_starter.py`
-5. `boilerplates/finite_square_well_torch_starter.py`
+4. `boilerplates/finite_square_well_torch_starter.py`
+5. `boilerplates/finite_square_well_numpy_starter.py`
 6. `boilerplates/finite_square_well_convergence_starter.py`
-7. `solutions/finite_square_well_numpy_solution.py`
-8. `solutions/finite_square_well_torch_solution.py`
+7. `solutions/finite_square_well_torch_solution.py`
+8. `solutions/finite_square_well_numpy_solution.py`
 9. `solutions/finite_square_well_convergence.py`
 
 Copy starter files into `workbench/` before editing. That folder is ignored by
@@ -31,8 +31,8 @@ Git, Ruff, and mypy.
 ## Commands
 
 ```powershell
-uv run python 01_stationary_one_particle/03_finite_square_well/solutions/finite_square_well_numpy_solution.py
 uv run python 01_stationary_one_particle/03_finite_square_well/solutions/finite_square_well_torch_solution.py
+uv run python 01_stationary_one_particle/03_finite_square_well/solutions/finite_square_well_numpy_solution.py
 uv run python 01_stationary_one_particle/03_finite_square_well/solutions/finite_square_well_convergence.py
 uv run pytest
 ```

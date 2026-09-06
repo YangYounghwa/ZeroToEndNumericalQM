@@ -67,6 +67,12 @@ def localized_pair(result: DoubleWellResult) -> tuple[FloatArray, FloatArray]:
     raise NotImplementedError
 
 
+def residual_norms(result: DoubleWellResult) -> FloatArray:
+    # TODO: Return sqrt(dx * sum(abs(H @ psi - psi * E)^2)) for each column.
+    # This is an algebraic error, distinct from grid and domain errors.
+    raise NotImplementedError
+
+
 def main() -> None:
     # TODO: Print energies, parity, left probability, and splitting.
     raise NotImplementedError

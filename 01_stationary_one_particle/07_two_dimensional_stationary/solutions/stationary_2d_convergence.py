@@ -1,5 +1,7 @@
 """Grid convergence for the two-dimensional stationary solver."""
 
+import stationary_2d_torch_solution as torch_solution
+import torch
 from stationary_2d_numpy_solution import (
     analytical_oscillator_energies,
     anisotropic_oscillator_potential,
@@ -53,9 +55,55 @@ def nonseparable_grid_convergence() -> None:
         print(f"{num_x:>2}  {num_y:>3}  {result.energies[0]:>14.8f}  {error:>23.3e}")
 
 
+def torch_sparse_comparison() -> None:
+    """Learn dense PyTorch on small grids and compare with sparse SciPy."""
+    print("PyTorch versus SciPy for the nonseparable potential")
+    print("Nx   Ny   Torch E0       SciPy delta    dense H MiB")
+    for nx, ny in ((10, 9), (16, 14), (22, 20)):
+        result = torch_solution.solve_stationary_2d(
+            torch_solution.coupled_quartic_potential,
+            num_x=nx,
+            num_y=ny,
+            num_states=3,
+        )
+        sparse = solve_stationary_2d(
+            coupled_quartic_potential, num_x=nx, num_y=ny, num_states=3
+        )
+        delta = torch.max(
+            torch.abs(result.energies - torch.from_numpy(sparse.energies))
+        )
+        print(
+            f"{nx:>2}  {ny:>3}  {result.energies[0].item():>12.8f}  "
+            f"{delta.item():>12.3e}  {8 * (nx * ny) ** 2 / 2**20:>11.3f}"
+        )
+    print("Dense-memory figures cover H only, excluding eigenvectors and workspace.")
+
+
+def domain_convergence() -> None:
+    """Use sparse matrices to enlarge both axes at fixed dx = dy = 0.25."""
+    print("\nSparse 2D domain study at dx = dy = 0.25")
+    print("half width     E0")
+    for half_width in (2.0, 3.0, 4.0, 6.0):
+        points = round(2 * half_width / 0.25) - 1
+        result = solve_stationary_2d(
+            coupled_quartic_potential,
+            num_x=points,
+            num_y=points,
+            num_states=1,
+            x_min=-half_width,
+            x_max=half_width,
+            y_min=-half_width,
+            y_max=half_width,
+        )
+        print(f"{half_width:>10.1f}  {result.energies[0]:>12.8f}")
+    print("Domain convergence can plateau while grid error remains.")
+
+
 def main() -> None:
+    torch_sparse_comparison()
     separable_validation_convergence()
     nonseparable_grid_convergence()
+    domain_convergence()
 
 
 if __name__ == "__main__":

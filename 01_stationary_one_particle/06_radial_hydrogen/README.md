@@ -20,11 +20,11 @@ eigenvalue calculations.
 1. [Quantum theory](theory.md)
 2. [Numerical method](numerical_method.md)
 3. [Coding hints](coding_hints.md)
-4. `boilerplates/radial_hydrogen_numpy_starter.py`
-5. `boilerplates/radial_hydrogen_torch_starter.py`
+4. `boilerplates/radial_hydrogen_torch_starter.py`
+5. `boilerplates/radial_hydrogen_numpy_starter.py`
 6. `boilerplates/radial_hydrogen_convergence_starter.py`
-7. `solutions/radial_hydrogen_numpy_solution.py`
-8. `solutions/radial_hydrogen_torch_solution.py`
+7. `solutions/radial_hydrogen_torch_solution.py`
+8. `solutions/radial_hydrogen_numpy_solution.py`
 9. `solutions/radial_hydrogen_convergence.py`
 
 Editable copies of the starters are provided in `workbench/`. That directory
@@ -35,8 +35,8 @@ is ignored by Git, Ruff, and mypy.
 Run these from the project root:
 
 ```powershell
-uv run python 01_stationary_one_particle/06_radial_hydrogen/solutions/radial_hydrogen_numpy_solution.py
 uv run python 01_stationary_one_particle/06_radial_hydrogen/solutions/radial_hydrogen_torch_solution.py
+uv run python 01_stationary_one_particle/06_radial_hydrogen/solutions/radial_hydrogen_numpy_solution.py
 uv run python 01_stationary_one_particle/06_radial_hydrogen/solutions/radial_hydrogen_convergence.py
 uv run pytest 01_stationary_one_particle/06_radial_hydrogen
 ```

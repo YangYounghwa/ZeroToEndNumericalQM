@@ -34,3 +34,9 @@ as columns.
 Check the potential landmarks, Hermiticity, orthonormality, parity, balanced
 stationary probabilities, localized combinations, splitting behavior,
 invalid inputs, float64, and NumPy/PyTorch agreement.
+
+## Foundations and PyTorch practice
+
+Use torch.flip to examine parity and torch.stack to assemble states. Superpose the lowest even and odd states to form localized packets. Check tunneling splitting against both grid and domain refinement; a small ground-energy change alone can hide an inaccurate splitting.
+
+Implement the PyTorch starter first, then compare with the NumPy reference.

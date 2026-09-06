@@ -1,6 +1,6 @@
 """Starter for harmonic-oscillator grid and domain convergence studies."""
 
-# TODO: Import the analytical energy and solver from your NumPy file.
+# TODO: Import the analytical energy and solver from your PyTorch file.
 
 
 def grid_convergence() -> None:

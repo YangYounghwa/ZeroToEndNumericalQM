@@ -152,3 +152,35 @@ tridiagonal routines for large grids.
 - Directly comparing eigenvector signs fails because each sign is arbitrary.
 - Judging convergence from one grid refinement cannot establish second-order
   behavior.
+
+## Optional extension: variational states and basis truncation
+
+After the grid solver, use the variational starter and solution to optimize
+the Gaussian from theory.md. Start with lambda = 0, then use lambda = 0.1.
+Compare autograd with dE/dlog(alpha) = (alpha - 1/alpha)/4 -
+3 lambda/(2 alpha^2). The optimizer's convergence and the trial family's
+approximation error are different questions.
+
+For a second representation, expand in the first K harmonic-oscillator states.
+The position operator has X[n,n+1] = X[n+1,n] = sqrt((n+1)/2). Build X with
+four extra levels before forming X^4, then retain the leading K by K block:
+
+H_K = diag(n + 1/2) + lambda * (X^4)[:K, :K].
+
+Taking the fourth power after truncating X loses intermediate ladder paths
+at the cutoff and produces the wrong projected continuum operator. Check the
+diagonal against <n|q^4|n> = 3(2n^2 + 2n + 1)/4.
+
+Increase K at fixed lambda. Rayleigh–Ritz energies decrease toward the continuum
+answer for nested bases with the correct matrix elements. Compare with the
+grid solver while separately refining dx and checking its domain. Finite-
+difference grid energies need not be upper bounds to continuum energies.
+
+Run through uv:
+
+```powershell
+uv run python 01_stationary_one_particle/02_harmonic_oscillator/solutions/harmonic_oscillator_variational.py
+```
+
+The NumPy basis calculation is a comparison; PyTorch autograd and optimization
+are the learning target.

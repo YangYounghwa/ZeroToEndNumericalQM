@@ -141,6 +141,15 @@ def expectation_x_power(result: HarmonicOscillatorResult, power: int) -> Tensor:
     return result.spacing * torch.sum(result.grid[:, None] ** power * density, dim=0)
 
 
+def residual_norms(result: HarmonicOscillatorResult) -> Tensor:
+    """Measure algebraic error in energy units, using the spatial integration weight."""
+    residual = (
+        result.hamiltonian @ result.wavefunctions
+        - result.wavefunctions * result.energies[None, :]
+    )
+    return torch.sqrt(result.spacing * torch.sum(torch.abs(residual) ** 2, dim=0))
+
+
 def main() -> None:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     result = solve_harmonic_oscillator(device=device)

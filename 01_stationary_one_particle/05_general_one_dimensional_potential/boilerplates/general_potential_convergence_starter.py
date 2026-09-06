@@ -11,7 +11,14 @@ def potential_reuse_study() -> None:
     raise NotImplementedError
 
 
+def domain_convergence() -> None:
+    # TODO: Increase the domain at fixed spacing, keeping the potential fixed.
+    # Report energy changes separately from grid-refinement error.
+    raise NotImplementedError
+
+
 def main() -> None:
+    domain_convergence()
     grid_convergence()
     potential_reuse_study()
 

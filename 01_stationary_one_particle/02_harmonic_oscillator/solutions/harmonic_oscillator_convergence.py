@@ -1,6 +1,6 @@
 """Grid and domain convergence experiments for the harmonic oscillator."""
 
-from harmonic_oscillator_numpy_solution import (
+from harmonic_oscillator_torch_solution import (
     analytical_energies,
     solve_harmonic_oscillator,
 )

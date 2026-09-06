@@ -23,6 +23,12 @@ def solve_potential_batch(
     raise NotImplementedError
 
 
+def subspace_overlaps(first: Tensor, second: Tensor, area_element: float) -> Tensor:
+    # TODO: For weighted-orthonormal (grid_points, states) columns,
+    # return singular values of area_element * first.mH @ second.
+    raise NotImplementedError
+
+
 def main() -> None:
     # TODO: Select a device and solve a nonseparable potential.
     raise NotImplementedError

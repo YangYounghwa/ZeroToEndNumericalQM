@@ -5,6 +5,8 @@ from dataclasses import dataclass
 
 import numpy as np
 from numpy.typing import NDArray
+from scipy.sparse import csr_matrix, diags
+from scipy.sparse.linalg import eigsh
 
 FloatArray = NDArray[np.float64]
 PotentialFunction = Callable[[FloatArray], FloatArray]
@@ -19,7 +21,7 @@ class StationaryResult:
     potential: FloatArray
     energies: FloatArray
     wavefunctions: FloatArray
-    hamiltonian: FloatArray
+    hamiltonian: FloatArray | csr_matrix
 
 
 def _validate_inputs(
@@ -138,6 +140,49 @@ def solve_stationary(
         potential,
         energies[:num_states],
         selected,
+        hamiltonian,
+    )
+
+
+def solve_stationary_sparse(
+    potential_function: PotentialFunction,
+    num_points: int = 300,
+    num_states: int = 6,
+    x_min: float = -8.0,
+    x_max: float = 8.0,
+    mass: float = 1.0,
+    hbar: float = 1.0,
+    tolerance: float = 1e-10,
+) -> StationaryResult:
+    """Compare with SciPy's lowest-algebraic sparse eigensolver, without densifying."""
+    _validate_inputs(num_points, num_states, x_min, x_max, mass, hbar)
+    if num_states >= num_points:
+        raise ValueError("sparse diagonalization requires num_states < num_points")
+    if not np.isfinite(tolerance) or tolerance <= 0.0:
+        raise ValueError("tolerance must be finite and positive")
+    grid, spacing = make_grid(num_points, x_min, x_max)
+    potential = evaluate_potential(grid, potential_function)
+    scale = hbar**2 / (2.0 * mass * spacing**2)
+    main = 2.0 * scale + potential
+    off = np.full(num_points - 1, -scale, dtype=np.float64)
+    # scipy-stubs cannot express differently sized tridiagonal arrays.
+    hamiltonian = diags(  # type: ignore[call-overload]
+        [off, main, off], offsets=[-1, 0, 1], format="csr", dtype=np.float64
+    )
+    energies, vectors = eigsh(
+        hamiltonian,
+        k=num_states,
+        which="SA",
+        tol=tolerance,
+        v0=np.random.default_rng(0).standard_normal(num_points),
+    )
+    order = np.argsort(energies)
+    return StationaryResult(
+        grid,
+        spacing,
+        potential,
+        np.asarray(energies[order], dtype=np.float64),
+        normalize_wavefunctions(vectors[:, order], spacing),
         hamiltonian,
     )
 

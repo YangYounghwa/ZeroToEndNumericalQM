@@ -88,6 +88,12 @@ def expectation_x_power(result: HarmonicOscillatorResult, power: int) -> Tensor:
     raise NotImplementedError
 
 
+def residual_norms(result: HarmonicOscillatorResult) -> Tensor:
+    # TODO: Return sqrt(dx * sum(abs(H @ psi - psi * E)^2)) for each column.
+    # This is an algebraic error, distinct from grid and domain errors.
+    raise NotImplementedError
+
+
 def main() -> None:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"selected device: {device}")

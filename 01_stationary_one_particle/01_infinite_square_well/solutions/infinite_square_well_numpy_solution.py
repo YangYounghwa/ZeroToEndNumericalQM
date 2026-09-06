@@ -110,6 +110,15 @@ def analytical_energies(
     return quantum_numbers**2 * np.pi**2 * hbar**2 / (2.0 * mass * length**2)
 
 
+def residual_norms(result: InfiniteWellResult) -> FloatArray:
+    """Measure the weighted eigenpair residual in energy units."""
+    residual = (
+        result.hamiltonian @ result.wavefunctions
+        - result.wavefunctions * result.energies[None, :]
+    )
+    return np.sqrt(result.spacing * np.sum(np.abs(residual) ** 2, axis=0))
+
+
 def main() -> None:
     result = solve_infinite_well()
     exact = analytical_energies(len(result.energies))

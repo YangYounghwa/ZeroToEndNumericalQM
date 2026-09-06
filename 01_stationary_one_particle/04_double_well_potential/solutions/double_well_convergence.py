@@ -1,6 +1,6 @@
 """Convergence and barrier studies for the symmetric double well."""
 
-from double_well_numpy_solution import solve_double_well, tunneling_splitting
+from double_well_torch_solution import solve_double_well, tunneling_splitting
 
 
 def grid_convergence() -> None:
@@ -31,8 +31,23 @@ def barrier_study() -> None:
         )
 
 
+def domain_convergence() -> None:
+    """Enlarge the box at fixed dx to check the low-energy tunneling pair."""
+    print("\nPyTorch domain convergence at dx = 0.04")
+    print("x_max      ground energy      splitting")
+    for x_max in (1.6, 2.0, 3.0, 4.0, 6.0):
+        result = solve_double_well(
+            num_points=round(2 * x_max / 0.04) - 1, num_states=2, x_max=x_max
+        )
+        print(
+            f"{x_max:>5.1f}  {result.energies[0].item():>16.10f}  "
+            f"{tunneling_splitting(result).item():>12.5e}"
+        )
+
+
 def main() -> None:
     grid_convergence()
+    domain_convergence()
     barrier_study()
 
 

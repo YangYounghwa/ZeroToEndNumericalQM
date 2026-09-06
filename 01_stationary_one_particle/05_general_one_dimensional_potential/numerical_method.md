@@ -136,9 +136,18 @@ discretization error. Total error also includes:
 Dense Hermitian diagonalization uses $O(N^3)$ time and the stored Hamiltonian
 uses $O(N^2)$ memory. A batch of size $B$ uses approximately $O(BN^2)$ memory.
 For large grids when only a few low-energy states are needed, a sparse matrix
-and iterative eigensolver are more appropriate. That optimization is not added
-here because the project does not yet depend on a sparse linear-algebra
-library.
+and iterative eigensolver are more appropriate. The NumPy comparison module
+also provides `solve_stationary_sparse`: construct only three diagonals with
+SciPy and request `eigsh(..., which="SA")`. This selects the smallest algebraic
+energies, including negative bound states. `which="SM"` instead targets
+energies nearest zero and can miss the ground state.
+
+The sparse method requires fewer states than grid points and never falls back
+to a dense solve. Matrix storage is O(N), while iterative work also depends on
+the requested states, spectrum, and tolerance. An iterative failure should be
+reported, not silently treated as a converged answer. Keep the PyTorch dense
+and batched implementations as the learning target. See the official
+[SciPy eigsh documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.eigsh.html).
 
 The required convergence procedure is:
 

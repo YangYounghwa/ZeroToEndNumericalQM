@@ -119,6 +119,15 @@ def probability_inside_well(
     return result.spacing * torch.sum(density, dim=0)
 
 
+def residual_norms(result: FiniteSquareWellResult) -> Tensor:
+    """Measure algebraic error in energy units, using the spatial integration weight."""
+    residual = (
+        result.hamiltonian @ result.wavefunctions
+        - result.wavefunctions * result.energies[None, :]
+    )
+    return torch.sqrt(result.spacing * torch.sum(torch.abs(residual) ** 2, dim=0))
+
+
 def main() -> None:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     result = solve_finite_square_well(device=device)

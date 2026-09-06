@@ -2,7 +2,7 @@
 
 Try the starter files before reading the solutions.
 
-## Suggested NumPy functions
+## Suggested PyTorch functions
 
 ```text
 make_grid(...) -> grid, spacing
@@ -18,7 +18,7 @@ residual_norms(result) -> residuals
 Represent a potential as a function receiving the whole grid:
 
 ```python
-def quartic_potential(grid: FloatArray) -> FloatArray:
+def quartic_potential(grid: torch.Tensor) -> torch.Tensor:
     return 0.25 * grid**4
 ```
 
@@ -68,8 +68,23 @@ return grid, potential, eigenpairs, and H
 - Do not call `.numpy()` inside the PyTorch solver. Convert only in tests or at
   a clear reporting boundary.
 
+## Sparse comparison after the PyTorch solve
+
+The NumPy module includes `solve_stationary_sparse`. Construct only the main
+and two neighboring diagonals with SciPy; do not build a dense matrix and then
+convert it. Use `eigsh` with `which="SA"` for the lowest algebraic energies and
+request fewer states than grid points. Compare energies and weighted residuals
+with PyTorch at identical parameters. A solver tolerance is separate from the
+grid and domain errors.
+
 ## Tests
 
 Check input validation, Hermiticity, `float64`, orthonormality, residuals, the
 shifted harmonic spectrum, translated position expectation values, constant
 energy shifts, NumPy/PyTorch agreement, and batched/individual agreement.
+
+## Foundations and PyTorch practice
+
+Broadcast sampled potentials to (B, N), use torch.diag_embed to form (B, N, N) matrices, and call batched torch.linalg.eigh. Normalize along the spatial dimension, dim=-2. Compare against dense NumPy and sparse SciPy on the same grid.
+
+Implement the PyTorch starter first, then compare with the NumPy reference.

@@ -1,6 +1,6 @@
 """Convergence studies for the reduced radial hydrogen equation."""
 
-from radial_hydrogen_numpy_solution import (
+from radial_hydrogen_torch_solution import (
     analytical_energies,
     solve_radial_hydrogen,
 )

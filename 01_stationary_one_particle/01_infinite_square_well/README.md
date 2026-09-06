@@ -17,11 +17,11 @@ finite-difference Hamiltonian.
 1. [Quantum theory](theory.md)
 2. [Numerical method](numerical_method.md)
 3. [Coding hints](coding_hints.md)
-4. `boilerplates/infinite_square_well_numpy_starter.py`
-5. `boilerplates/infinite_square_well_torch_starter.py`
+4. `boilerplates/infinite_square_well_torch_starter.py`
+5. `boilerplates/infinite_square_well_numpy_starter.py`
 6. `boilerplates/infinite_square_well_convergence_starter.py`
-7. `solutions/infinite_square_well_numpy_solution.py`
-8. `solutions/infinite_square_well_torch_solution.py`
+7. `solutions/infinite_square_well_torch_solution.py`
+8. `solutions/infinite_square_well_numpy_solution.py`
 9. `solutions/infinite_square_well_convergence.py`
 
 Copy starter files into a local `workbench/` folder before editing them. The
@@ -36,8 +36,8 @@ From the repository root:
 uv sync
 uv run python torch_smoke_test.py
 uv run pytest
-uv run python 01_stationary_one_particle/01_infinite_square_well/solutions/infinite_square_well_numpy_solution.py
 uv run python 01_stationary_one_particle/01_infinite_square_well/solutions/infinite_square_well_torch_solution.py
+uv run python 01_stationary_one_particle/01_infinite_square_well/solutions/infinite_square_well_numpy_solution.py
 uv run python 01_stationary_one_particle/01_infinite_square_well/solutions/infinite_square_well_convergence.py
 ```
 

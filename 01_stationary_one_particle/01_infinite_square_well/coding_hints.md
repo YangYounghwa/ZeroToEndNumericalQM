@@ -58,3 +58,9 @@ psi = psi / norm
 - Check discrete normalization and orthogonality.
 - Check that finer grids reduce the ground-state energy error.
 - Check NumPy and PyTorch energy agreement.
+
+## Foundations and PyTorch practice
+
+Learn torch.arange, torch.diag, @, torch.linalg.eigh, and reductions on float64 tensors. States have shape (N, S); sum over dim=0 to integrate each state. Use residual_norms to distinguish an accurate matrix eigenpair from an accurate continuum approximation.
+
+Implement the PyTorch starter first, then compare with the NumPy reference.

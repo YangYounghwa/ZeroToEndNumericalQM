@@ -97,6 +97,12 @@ def expectation_x_power(
     raise NotImplementedError
 
 
+def residual_norms(result: HarmonicOscillatorResult) -> FloatArray:
+    # TODO: Return sqrt(dx * sum(abs(H @ psi - psi * E)^2)) for each column.
+    # This is an algebraic error, distinct from grid and domain errors.
+    raise NotImplementedError
+
+
 def main() -> None:
     """Compare numerical and analytical energies."""
     # TODO: Solve the problem and print a compact comparison table.

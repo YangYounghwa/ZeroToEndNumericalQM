@@ -205,6 +205,20 @@ def residual_norms(result: Stationary2DResult) -> Tensor:
     return torch.sqrt(weight * torch.sum(torch.abs(residuals) ** 2, dim=0))
 
 
+def subspace_overlaps(first: Tensor, second: Tensor, area_element: float) -> Tensor:
+    """Return principal overlap singular values for weighted-orthonormal columns.
+
+    Flatten each complete degenerate multiplet to (grid_points, states) first.
+    Values near one mean the subspaces agree, regardless of basis rotations.
+    """
+    if first.ndim != 2 or first.shape != second.shape or first.shape[1] < 1:
+        raise ValueError("subspaces must share shape (grid_points, states)")
+    if area_element <= 0:
+        raise ValueError("area_element must be positive")
+    values: Tensor = torch.linalg.svdvals(area_element * first.mH @ second)
+    return values
+
+
 def main() -> None:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     result = solve_stationary_2d(coupled_quartic_potential, device=device)

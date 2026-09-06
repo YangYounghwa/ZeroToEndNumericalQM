@@ -11,7 +11,14 @@ def nonseparable_grid_convergence() -> None:
     raise NotImplementedError
 
 
+def domain_convergence() -> None:
+    # TODO: Increase the domain at fixed spacing, keeping the potential fixed.
+    # Report energy changes separately from grid-refinement error.
+    raise NotImplementedError
+
+
 def main() -> None:
+    domain_convergence()
     separable_validation_convergence()
     nonseparable_grid_convergence()
 

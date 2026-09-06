@@ -61,3 +61,9 @@ Report the boundary probability density as a diagnostic for truncation error.
 - Starting the analytical quantum number at one.
 - Assuming a larger domain is always more accurate without also controlling
   the grid spacing.
+
+## Foundations and PyTorch practice
+
+Use elementwise powers for the potential, torch.diag for its matrix, and broadcast grid[:, None] against state densities. Change domain size at fixed spacing. After the grid solver, learn requires_grad, torch.autograd.grad, and torch.optim.Adam with the variational extension.
+
+Implement the PyTorch starter first, then compare with the NumPy reference.

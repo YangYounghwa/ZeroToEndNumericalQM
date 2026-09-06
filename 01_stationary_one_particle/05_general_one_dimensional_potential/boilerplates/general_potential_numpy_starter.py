@@ -5,6 +5,7 @@ from dataclasses import dataclass
 
 import numpy as np
 from numpy.typing import NDArray
+from scipy.sparse import csr_matrix
 
 FloatArray = NDArray[np.float64]
 PotentialFunction = Callable[[FloatArray], FloatArray]
@@ -17,7 +18,7 @@ class StationaryResult:
     potential: FloatArray
     energies: FloatArray
     wavefunctions: FloatArray
-    hamiltonian: FloatArray
+    hamiltonian: FloatArray | csr_matrix
 
 
 def make_grid(
@@ -67,6 +68,21 @@ def expectation_position(result: StationaryResult) -> FloatArray:
 
 def residual_norms(result: StationaryResult) -> FloatArray:
     # TODO: Calculate the discrete norm of H psi - E psi for each state.
+    raise NotImplementedError
+
+
+def solve_stationary_sparse(
+    potential_function: PotentialFunction,
+    num_points: int = 300,
+    num_states: int = 6,
+    x_min: float = -8.0,
+    x_max: float = 8.0,
+    mass: float = 1.0,
+    hbar: float = 1.0,
+    tolerance: float = 1e-10,
+) -> StationaryResult:
+    # TODO: Validate, build only three sparse diagonals, and use eigsh(which="SA").
+    # Require num_states < num_points; normalize with dx and report residuals.
     raise NotImplementedError
 
 

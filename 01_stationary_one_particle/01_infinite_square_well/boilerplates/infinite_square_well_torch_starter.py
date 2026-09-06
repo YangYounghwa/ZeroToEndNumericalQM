@@ -78,6 +78,12 @@ def analytical_energies(
     raise NotImplementedError
 
 
+def residual_norms(result: InfiniteWellResult) -> Tensor:
+    # TODO: Return sqrt(dx * sum(abs(H @ psi - psi * E)^2)) for each column.
+    # This is an algebraic error, distinct from grid and domain errors.
+    raise NotImplementedError
+
+
 def main() -> None:
     # Start on CPU. Use CUDA only after the smoke test confirms it is available.
     device = "cuda" if torch.cuda.is_available() else "cpu"

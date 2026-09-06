@@ -48,6 +48,12 @@ def solve_double_well(
     raise NotImplementedError
 
 
+def residual_norms(result: DoubleWellResult) -> Tensor:
+    # TODO: Return sqrt(dx * sum(abs(H @ psi - psi * E)^2)) for each column.
+    # This is an algebraic error, distinct from grid and domain errors.
+    raise NotImplementedError
+
+
 def main() -> None:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"selected device: {device}")

@@ -69,6 +69,12 @@ grid = spacing * [1, 2, ..., N]
 - Normalizing with `r**2 * |u|**2`; that factor belongs with `R`, not `u`.
 - Using state index zero directly as the principal quantum number. For a fixed
   `ell`, the first state has `n = ell + 1`.
-- Assuming sparse eigenpairs arrive sorted.
+- Relying on an implicit sort order when changing sparse-solver options.
 - Comparing only the ground state when testing `r_max`; excited states expose
   domain truncation more clearly.
+
+## Foundations and PyTorch practice
+
+Start with dense torch.diag and torch.linalg.eigh, then broadcast angular-momentum sectors into a batch. The stored amplitude is u(r)=r R(r); normalize with dr, without an additional r^2. Compare against the existing SciPy sparse reference when increasing the radial grid.
+
+Implement the PyTorch starter first, then compare with the NumPy reference.

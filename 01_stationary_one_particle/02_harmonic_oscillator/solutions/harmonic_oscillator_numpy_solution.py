@@ -139,6 +139,15 @@ def expectation_x_power(
     return result.spacing * np.sum(result.grid[:, None] ** power * density, axis=0)
 
 
+def residual_norms(result: HarmonicOscillatorResult) -> FloatArray:
+    """Measure algebraic error in energy units, using the spatial integration weight."""
+    residual = (
+        result.hamiltonian @ result.wavefunctions
+        - result.wavefunctions * result.energies[None, :]
+    )
+    return np.sqrt(result.spacing * np.sum(np.abs(residual) ** 2, axis=0))
+
+
 def main() -> None:
     result = solve_harmonic_oscillator()
     exact = analytical_energies(len(result.energies))

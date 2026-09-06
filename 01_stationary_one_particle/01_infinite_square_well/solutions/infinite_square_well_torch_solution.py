@@ -120,6 +120,15 @@ def analytical_energies(
     return quantum_numbers**2 * pi**2 * hbar**2 / (2.0 * mass * length**2)
 
 
+def residual_norms(result: InfiniteWellResult) -> Tensor:
+    """Measure the weighted eigenpair residual in energy units."""
+    residual = (
+        result.hamiltonian @ result.wavefunctions
+        - result.wavefunctions * result.energies[None, :]
+    )
+    return torch.sqrt(result.spacing * torch.sum(torch.abs(residual) ** 2, dim=0))
+
+
 def main() -> None:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     result = solve_infinite_well(device=device)
