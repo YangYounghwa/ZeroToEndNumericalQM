@@ -2,14 +2,20 @@
 
 ## Goal
 
-Learn quantum mechanics and numerical methods while developing practical skill
-with NumPy and PyTorch.
+Learn PyTorch through numerical quantum mechanics. Use NumPy implementations
+for comparison and SciPy only where sparse numerical methods are useful.
 
 The subjects should not be learned as independent tracks. Each physics problem
-introduces the mathematics, numerical method, NumPy tools, and PyTorch tools
-needed to solve it.
+introduces the mathematics, numerical method, and PyTorch tools needed to solve
+it. Implement and validate the PyTorch calculation first, then compare it with
+the NumPy reference. Do not treat SciPy as a separate course or require a third
+implementation of every problem.
 
-## Phase 0: Foundations
+## Foundations Introduced Within Chapters
+
+There is no Phase 0 folder or prerequisite course. Each chapter should explain
+the foundations it needs in its theory, numerical-method, and coding-hints
+documents. Use this list as a coverage checklist, not a gate before Phase 1.
 
 ### Mathematics
 
@@ -42,6 +48,8 @@ needed to solve it.
 - Dense and sparse matrices
 - Convergence studies
 - Stability and conservation laws
+- Nondimensionalization and units
+- Separate domain, grid, time-step, and iterative-solver errors
 
 ### Python tools
 
@@ -52,13 +60,26 @@ needed to solve it.
 - Basic plotting
 - PyTorch tensors, dtypes, and devices
 - PyTorch autograd and optimizers
+- SciPy sparse matrix construction, low-energy eigensolvers, and reused LU
+  factorizations when introduced by a problem
 - Tests and reproducible experiments
 - `uv` environments and commands
 
-### Completion condition
+### Introduction points
 
-Implement and test small exercises involving complex vectors, normalization,
-matrix operators, eigenvalue problems, numerical derivatives, and integration.
+- Infinite well: tensor shapes, matrix operators, eigenvalues, integration,
+  normalization, and discretization error.
+- Harmonic oscillator: units, nondimensionalization, finite-domain error, and
+  a simple variational trial state.
+- General 1D potential: batching, sparse-versus-dense comparison, and residuals.
+- Radial hydrogen: reduced radial wavefunctions, the origin boundary condition,
+  the centrifugal term, and the radial integration measure.
+- 2D potentials: reshaping, Kronecker sums, and memory scaling.
+- Time evolution: complex tensors, probability conservation, linear solves,
+  matrix exponentials, and Fourier transforms when FFT propagation is used.
+- Coupled spins: tensor products, density matrices, and partial traces.
+- Variational optimization: autograd and optimizers; introduce small examples
+  earlier when they help explain the current physics.
 
 ## Phase 1: One-Particle Stationary Problems
 
@@ -84,6 +105,8 @@ matrix operators, eigenvalue problems, numerical derivatives, and integration.
 - Kronecker-sum operators
 - Multidimensional indexing and reshaping
 - Dense-memory scaling estimates
+- A small harmonic-oscillator basis expansion as a comparison with grid methods
+- A Gaussian variational estimate before the later optimization phase
 
 ### Required checks
 
@@ -92,13 +115,21 @@ matrix operators, eigenvalue problems, numerical derivatives, and integration.
 - Eigenstates are orthogonal
 - Numerical energies agree with analytical results when available
 - Error decreases as grid resolution increases
+- Domain-size convergence is checked separately at fixed or controlled spacing
+- Eigenpair residuals are small; normalization uses the integration weight
+- Degenerate states are compared through subspace overlaps, allowing basis
+  rotations and arbitrary eigenvector signs/phases
+- Numerical units and the meaning of each grid boundary are documented
 
 ### Milestone
 
 Create a reusable one-dimensional stationary Schrödinger solver. Verify it on
 the infinite square well and harmonic oscillator before adding general
-potentials. Extend the same finite-difference ideas to sparse 2D and 3D
-Cartesian grids while preserving explicit indexing conventions.
+potentials. Add a SciPy sparse comparison to the reusable 1D solver and extend
+the finite-difference ideas to sparse 2D Cartesian grids with explicit indexing
+conventions. Use small dense and batched PyTorch problems to learn the tensor
+operations. Radial hydrogen and 2D are extensions after the 1D core; 3D is optional
+future work, not a completion requirement.
 
 ## Phase 2: Time Evolution
 
@@ -117,13 +148,25 @@ Cartesian grids while preserving explicit indexing conventions.
 - Split-operator Fourier propagation
 - Krylov-subspace propagation
 - Fast Fourier transforms
+- Reuse linear-system factorizations; do not form an explicit inverse
+- Sparse matrix-exponential action as a larger-system reference
 
 ### Required checks
 
-- Norm is conserved
+- Norm is conserved for closed, Hermitian evolution
 - Energy is conserved for a time-independent Hamiltonian
 - Error decreases with the time step
 - Forward and reverse evolution recover the initial state within tolerance
+- Compare state fidelity or phase-aligned state error and physical observables
+  with analytical dynamics or a reference on the same spatial grid
+- Study spatial resolution and domain size separately from time-step error
+- Document boundary reflections; FFT propagation has periodic boundaries
+- With absorbing boundaries, track removed probability instead of requiring
+  norm conservation or exact reversibility
+
+Norm conservation and reversibility alone do not establish accurate dynamics.
+For scattering, measure reflection and transmission after packet separation and
+account for probability remaining near the barrier or removed by absorbers.
 
 ## Phase 3: Spin and Few-Body Systems
 
@@ -146,6 +189,10 @@ Cartesian grids while preserving explicit indexing conventions.
 - Lanczos eigensolver
 - Correlation functions
 - Entanglement entropy
+- Identical particles, exchange symmetry, and occupation-number/Fock states
+- Creation and annihilation operators and their (anti)commutation relations
+- Fermionic signs before constructing a Hubbard Hamiltonian
+- Bosonic occupation cutoffs and cutoff convergence
 
 ### Milestone
 
@@ -178,8 +225,10 @@ variational, tensor-network, and Monte Carlo methods.
 
 ## Phase 5: Variational Methods
 
-This phase should come before tensor networks and quantum Monte Carlo because it
-introduces the variational principle used by both.
+Build on the simple variational exercise introduced with stationary problems.
+This phase develops optimization before DMRG and variational Monte Carlo. Other
+Monte Carlo methods also need ideas such as imaginary-time projection; they are
+not all variational minimization algorithms.
 
 ### Topics
 
@@ -192,11 +241,14 @@ introduces the variational principle used by both.
 
 ### NumPy and PyTorch roles
 
-The NumPy implementation provides a transparent reference. The PyTorch
-implementation should use autograd and optimizers rather than copying the NumPy
-algorithm line for line.
+The PyTorch implementation is the learning target and should use autograd and
+optimizers. The NumPy implementation provides a transparent comparison. Check
+gradients against an analytical derivative or finite differences on small cases.
 
 ## Phase 6: Tensor Networks
+
+This is an optional specialization after exact diagonalization and variational
+methods. It does not need to precede quantum Monte Carlo.
 
 ### Recommended order
 
@@ -218,6 +270,9 @@ algorithm line for line.
 
 ## Phase 7: Quantum Monte Carlo
 
+This is another specialization after small-system benchmarks and variational
+methods. Tensor networks are not a prerequisite.
+
 These methods should be separate chapters because they solve different problems
 and have different sources of error.
 
@@ -226,8 +281,9 @@ and have different sources of error.
 1. Random sampling and statistical error
 2. Metropolis-Hastings sampling
 3. Variational Monte Carlo
-4. Diffusion Monte Carlo
-5. Auxiliary-field quantum Monte Carlo
+4. Imaginary-time projection
+5. Diffusion Monte Carlo (optional advanced branch)
+6. Auxiliary-field quantum Monte Carlo (optional advanced branch)
 
 ### Required topics
 
@@ -237,11 +293,17 @@ and have different sources of error.
 - Importance sampling
 - Bias and variance
 - Fermion sign and phase problems
+- Local-energy estimators and stochastic reconfiguration for variational states
+- Time-step, population, and constraint biases for the methods that use them
 
 Auxiliary-field quantum Monte Carlo is an advanced endpoint, not a simple
 extension of variational Monte Carlo.
 
 ## Phase 8: Modern Methods
+
+Choose topics according to the PyTorch skill and physics question being studied.
+Neural wavefunctions can follow variational Monte Carlo directly; DMC and AFQMC
+are not prerequisites.
 
 ### Topics
 
@@ -258,7 +320,6 @@ state of the art changes over time.
 ## Suggested Directory Order
 
 ```text
-00_foundations/
 01_stationary_one_particle/
 02_time_evolution/
 03_spin_and_few_body/
@@ -270,6 +331,10 @@ state of the art changes over time.
 ```
 
 ## Scope Rule
+
+The first learning endpoint is a verified 1D stationary solver, wave-packet
+evolution, coupled spins, a small spin-chain exact-diagonalization calculation,
+and a variational calculation. Advanced branches are not required to reach it.
 
 Do not implement all phases at once. Finish one chapter, including its tests and
 convergence study, before starting the next chapter.
