@@ -11,6 +11,7 @@ Use the NumPy/SciPy implementation for comparison on identical grids and times.
 
 1. [Free Gaussian wave packet](01_free_gaussian_wave_packet/README.md)
 2. [Wave packet in a harmonic potential](02_harmonic_wave_packet/README.md)
+3. [Scattering from a potential barrier](03_barrier_scattering/README.md)
 
 ## Current methods
 
@@ -22,6 +23,8 @@ Use the NumPy/SciPy implementation for comparison on identical grids and times.
 - Native PyTorch matrix-exponential references and phase-aligned state errors
 - SciPy sparse exponential action, without forming a dense propagator
 - Separate PyTorch time-step, spatial-grid, and fixed-spacing domain studies
+- Probability-current and left/near/right budgets during barrier scattering
+- Packet-averaged continuum transmission and post-collision measurement windows
 
 The present solvers use finite boxes with zero Dirichlet boundaries. These
 boundaries reflect packets and preserve norm; they do not absorb outgoing
@@ -29,5 +32,6 @@ probability. FFT periodic boundaries and absorbers belong to later methods.
 
 ## Next chapter
 
-Scattering from a potential barrier will introduce reflected and transmitted
-probabilities and require careful separation of the outgoing packets.
+Tunnelling with controlled incident energy spread and split-operator Fourier
+propagation. The FFT method will require checking periodic boundaries and
+comparing its results with the existing finite-difference method.

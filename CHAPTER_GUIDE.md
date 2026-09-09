@@ -329,3 +329,26 @@ Coherent Gaussian wave packet in a harmonic potential.
 
 Study scattering from a potential barrier. Measure reflected and transmitted
 probabilities only after the outgoing packets are spatially separated.
+
+## Phase 2, Third Chapter Plan
+
+### Subject
+
+Gaussian-packet scattering from a finite rectangular barrier.
+
+### Learning goals
+
+- Reuse Crank–Nicolson with a real potential and complex packet columns.
+- Derive probability current and the exact discrete midpoint continuity check.
+- Partition probability into left, near-barrier, and right regions.
+- Derive stationary transmission and average it over the incident spectrum.
+- Distinguish central, mean, and distributed incident energy.
+- Validate limits with independent wavefunction matching.
+- Separate grid, time-step, observation-time, and domain effects.
+- Use midpoint-aligned barrier edges in controlled grid studies.
+- Compare PyTorch batches and single solves with sparse NumPy/SciPy results.
+
+### Next step
+
+Study tunnelling with controlled spectral weight above the barrier, then
+introduce split-operator Fourier propagation and its periodic boundaries.

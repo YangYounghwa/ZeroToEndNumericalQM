@@ -28,6 +28,7 @@ its numerical results are tested against known results or physical invariants.
 - [Phase 2: Time evolution](02_time_evolution/README.md)
 - [Phase 2, Chapter 1: Free Gaussian wave packet](02_time_evolution/01_free_gaussian_wave_packet/README.md)
 - [Phase 2, Chapter 2: Harmonic wave packet](02_time_evolution/02_harmonic_wave_packet/README.md)
+- [Phase 2, Chapter 3: Barrier scattering](02_time_evolution/03_barrier_scattering/README.md)
 - [PyTorch troubleshooting](PYTORCH_TROUBLESHOOTING.md)
 - [Code-quality tools](CODE_QUALITY.md)
 
@@ -51,4 +52,10 @@ introduce Crank-Nicolson time evolution through free and harmonically confined
 Gaussian packets. Both are checked against analytical dynamics and a small
 matrix-exponential reference.
 
-The next chapter studies scattering from a potential barrier.
+Phase 2 Chapter 3 adds rectangular-barrier scattering, probability-current and
+region-budget checks, momentum-averaged transmission, and grid/domain/time
+studies. Its [validation report](02_time_evolution/03_barrier_scattering/VALIDATION.md)
+shows why a conserved norm or stable transmission alone is insufficient.
+
+The next chapter will study tunnelling with controlled incident energy spread
+and introduce split-operator Fourier propagation.
