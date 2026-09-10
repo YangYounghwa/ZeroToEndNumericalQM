@@ -31,6 +31,9 @@ its numerical results are tested against known results or physical invariants.
 - [Phase 2, Chapter 3: Barrier scattering](02_time_evolution/03_barrier_scattering/README.md)
 - [Phase 2, Chapter 4: Quantum tunnelling](02_time_evolution/04_quantum_tunnelling/README.md)
 - [Phase 2, Chapter 5: Two-dimensional wave packets](02_time_evolution/05_two_dimensional_wave_packet/README.md)
+- [Phase 3: Spin and few-body systems](03_spin_and_few_body/README.md)
+- [Phase 3, Chapter 1: Spin in a magnetic field](03_spin_and_few_body/01_spin_in_magnetic_field/README.md)
+- [Phase 3, Chapter 2: Two coupled spins](03_spin_and_few_body/02_two_coupled_spins/README.md)
 - [PyTorch troubleshooting](PYTORCH_TROUBLESHOOTING.md)
 - [Code-quality tools](CODE_QUALITY.md)
 
@@ -70,4 +73,14 @@ center motion, covariance, and energy. Its
 [validation report](02_time_evolution/05_two_dimensional_wave_packet/VALIDATION.md)
 separates time, grid, and domain error.
 
-The next chapter begins Phase 3 with spin-1/2 in a magnetic field.
+Phase 3 Chapter 1 introduces spin-1/2 in a static magnetic field, Pauli
+matrices, Bloch vectors, and measurement probabilities. Its
+[validation report](03_spin_and_few_body/01_spin_in_magnetic_field/VALIDATION.md)
+compares exact precession with matrix exponentials and measures CN phase error.
+
+Phase 3 Chapter 2 builds tensor-product states and exchange-coupled spin
+dynamics. Its [validation report](03_spin_and_few_body/02_two_coupled_spins/VALIDATION.md)
+checks singlet/triplet energies, transfer under unequal fields, correlations,
+and conservation laws appropriate to each field pattern.
+
+The next chapter studies Bell states, density matrices, and partial traces.

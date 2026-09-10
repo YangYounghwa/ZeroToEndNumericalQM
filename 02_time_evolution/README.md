@@ -38,5 +38,6 @@ the box. Both preserve norm; neither absorbs outgoing probability.
 
 ## Next phase
 
-Phase 3 starts with spin-1/2 in a magnetic field, introducing two-component
-states, Pauli matrices, and spin precession before coupled spins.
+Continue to [spin-1/2 in a magnetic field](../03_spin_and_few_body/01_spin_in_magnetic_field/README.md),
+introducing two-component states, Pauli matrices, and spin precession before
+coupled spins.

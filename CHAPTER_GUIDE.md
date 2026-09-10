@@ -394,3 +394,46 @@ Two-dimensional free and coupled harmonic wave packets with FFT propagation.
 
 Begin spin and few-body systems with a spin-1/2 in a magnetic field. Introduce
 Pauli matrices and two-component state vectors before composite Hilbert spaces.
+
+## Phase 3, First Chapter Plan
+
+### Subject
+
+Spin-1/2 in a static uniform magnetic field.
+
+### Learning goals
+
+- Use complex spinors and ordinary discrete inner products without grid weights.
+- Derive the Pauli algebra, spin operators, and H=-gamma*S.B with signed gamma.
+- Compute Bloch vectors and arbitrary-axis measurement probabilities.
+- Derive constant-field spinor evolution and signed Rodrigues precession.
+- Compare batched PyTorch matrix exponentials with NumPy eigendecomposition.
+- Distinguish global spinor phase, relative phase, and measurement probabilities.
+- Study second-order CN time error and accumulated precession error.
+
+### Next chapter
+
+Two coupled spins: tensor products, local operators, exchange interaction, and
+correlations. Distinguish a composite state from a batch of independent spins.
+
+## Phase 3, Second Chapter Plan
+
+### Subject
+
+Two spin-1/2 sites with isotropic exchange and local static magnetic fields.
+
+### Learning goals
+
+- Fix a four-state product basis and construct local Kronecker-product operators.
+- Distinguish a joint quantum state from an experiment batch.
+- Derive the exchange matrix, singlet/triplet spectrum, and exact swap dynamics.
+- Check the noninteracting limit against separate single-spin propagators.
+- Compute local means, joint probabilities, and connected correlations.
+- Use coefficient-matrix factorization to identify nonproduct pure states.
+- Derive the unequal-longitudinal-field block and suppressed transfer amplitude.
+- Test appropriate spin conservation laws and second-order CN time error.
+
+### Next chapter
+
+Bell states, density matrices, partial traces, and entanglement entropy,
+including the distinction between entanglement and classical correlations.
