@@ -373,3 +373,24 @@ Controlled quantum tunnelling through a smooth Gaussian barrier using FFTs.
 
 Extend propagation to two spatial axes with `torch.fft.fft2` and a nonseparable
 potential, checking free Gaussian and coupled quadratic analytical dynamics.
+
+## Phase 2, Fifth Chapter Plan
+
+### Subject
+
+Two-dimensional free and coupled harmonic wave packets with FFT propagation.
+
+### Learning goals
+
+- Extend the Schrödinger equation and inner product to two spatial dimensions.
+- Use rectangular `(Ny,Nx)` grids and explicit spatial FFT axes for batches.
+- Verify anisotropic free Gaussian motion, spreading, and separable products.
+- Derive normal modes and coherent-state covariance for a potential with xy coupling.
+- Compare exact center, covariance, energy, and full-state dynamics.
+- Validate a generic nonseparable potential against a tiny spectral exponential.
+- Separate time, spatial-grid, and fixed-spacing domain errors.
+
+### Next phase
+
+Begin spin and few-body systems with a spin-1/2 in a magnetic field. Introduce
+Pauli matrices and two-component state vectors before composite Hilbert spaces.

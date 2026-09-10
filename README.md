@@ -30,6 +30,7 @@ its numerical results are tested against known results or physical invariants.
 - [Phase 2, Chapter 2: Harmonic wave packet](02_time_evolution/02_harmonic_wave_packet/README.md)
 - [Phase 2, Chapter 3: Barrier scattering](02_time_evolution/03_barrier_scattering/README.md)
 - [Phase 2, Chapter 4: Quantum tunnelling](02_time_evolution/04_quantum_tunnelling/README.md)
+- [Phase 2, Chapter 5: Two-dimensional wave packets](02_time_evolution/05_two_dimensional_wave_packet/README.md)
 - [PyTorch troubleshooting](PYTORCH_TROUBLESHOOTING.md)
 - [Code-quality tools](CODE_QUALITY.md)
 
@@ -63,4 +64,10 @@ energy tails, and periodic-domain checks. Its
 [validation report](02_time_evolution/04_quantum_tunnelling/VALIDATION.md) compares
 spectral propagation with sparse finite differences and measures energy error.
 
-The next chapter extends wave-packet propagation to two dimensions.
+Phase 2 Chapter 5 extends FFT propagation to two dimensions. Free Gaussian and
+coupled-oscillator analytical solutions check tensor axes, area normalization,
+center motion, covariance, and energy. Its
+[validation report](02_time_evolution/05_two_dimensional_wave_packet/VALIDATION.md)
+separates time, grid, and domain error.
+
+The next chapter begins Phase 3 with spin-1/2 in a magnetic field.
