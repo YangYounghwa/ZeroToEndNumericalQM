@@ -29,6 +29,7 @@ its numerical results are tested against known results or physical invariants.
 - [Phase 2, Chapter 1: Free Gaussian wave packet](02_time_evolution/01_free_gaussian_wave_packet/README.md)
 - [Phase 2, Chapter 2: Harmonic wave packet](02_time_evolution/02_harmonic_wave_packet/README.md)
 - [Phase 2, Chapter 3: Barrier scattering](02_time_evolution/03_barrier_scattering/README.md)
+- [Phase 2, Chapter 4: Quantum tunnelling](02_time_evolution/04_quantum_tunnelling/README.md)
 - [PyTorch troubleshooting](PYTORCH_TROUBLESHOOTING.md)
 - [Code-quality tools](CODE_QUALITY.md)
 
@@ -57,5 +58,9 @@ region-budget checks, momentum-averaged transmission, and grid/domain/time
 studies. Its [validation report](02_time_evolution/03_barrier_scattering/VALIDATION.md)
 shows why a conserved norm or stable transmission alone is insufficient.
 
-The next chapter will study tunnelling with controlled incident energy spread
-and introduce split-operator Fourier propagation.
+Phase 2 Chapter 4 adds FFT split-operator propagation, controlled incident
+energy tails, and periodic-domain checks. Its
+[validation report](02_time_evolution/04_quantum_tunnelling/VALIDATION.md) compares
+spectral propagation with sparse finite differences and measures energy error.
+
+The next chapter extends wave-packet propagation to two dimensions.

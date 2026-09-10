@@ -352,3 +352,24 @@ Gaussian-packet scattering from a finite rectangular barrier.
 
 Study tunnelling with controlled spectral weight above the barrier, then
 introduce split-operator Fourier propagation and its periodic boundaries.
+
+## Phase 2, Fourth Chapter Plan
+
+### Subject
+
+Controlled quantum tunnelling through a smooth Gaussian barrier using FFTs.
+
+### Learning goals
+
+- Derive Gaussian momentum spread and quantify above-barrier incident weight.
+- Construct a periodic endpoint-excluded grid and ordered Fourier wave numbers.
+- Implement symmetric splitting with `torch.fft` and batched state columns.
+- Derive Parseval normalization and calculate spectral energy and high-k mass.
+- Compare against a same-grid spectral exponential and periodic sparse CN.
+- Separate time, grid, domain, observation-window, and packet-width effects.
+- Explain why exact norm conservation can coexist with inaccurate transmission.
+
+### Next step
+
+Extend propagation to two spatial axes with `torch.fft.fft2` and a nonseparable
+potential, checking free Gaussian and coupled quadratic analytical dynamics.

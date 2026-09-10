@@ -12,6 +12,7 @@ Use the NumPy/SciPy implementation for comparison on identical grids and times.
 1. [Free Gaussian wave packet](01_free_gaussian_wave_packet/README.md)
 2. [Wave packet in a harmonic potential](02_harmonic_wave_packet/README.md)
 3. [Scattering from a potential barrier](03_barrier_scattering/README.md)
+4. [Quantum tunnelling and FFT propagation](04_quantum_tunnelling/README.md)
 
 ## Current methods
 
@@ -25,13 +26,14 @@ Use the NumPy/SciPy implementation for comparison on identical grids and times.
 - Separate PyTorch time-step, spatial-grid, and fixed-spacing domain studies
 - Probability-current and left/near/right budgets during barrier scattering
 - Packet-averaged continuum transmission and post-collision measurement windows
+- Split-operator FFT propagation with controlled incident energy tails
+- Periodic boundary, high-frequency, and spectral energy diagnostics
 
-The present solvers use finite boxes with zero Dirichlet boundaries. These
-boundaries reflect packets and preserve norm; they do not absorb outgoing
-probability. FFT periodic boundaries and absorbers belong to later methods.
+Chapters 1–3 use finite boxes with zero Dirichlet boundaries, which reflect
+packets. Chapter 4 introduces periodic FFT boundaries, where packets wrap around
+the box. Both preserve norm; neither absorbs outgoing probability.
 
 ## Next chapter
 
-Tunnelling with controlled incident energy spread and split-operator Fourier
-propagation. The FFT method will require checking periodic boundaries and
-comparing its results with the existing finite-difference method.
+Two-dimensional wave-packet propagation with `torch.fft.fft2`, area-weighted
+normalization, and a nonseparable potential.
