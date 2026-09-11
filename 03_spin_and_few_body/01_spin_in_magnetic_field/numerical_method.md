@@ -35,10 +35,10 @@ at a fixed time. Negative times are valid and reverse the evolution.
 
 The NumPy comparison uses Hermitian eigendecomposition:
 
-\[
+$$
 H=V\operatorname{diag}(E)V^\dagger,\qquad
 U(t)=V\operatorname{diag}(e^{-iEt/\hbar})V^\dagger.
-\]
+$$
 
 Use the conjugate transpose, not the plain transpose. Eigenvector phases and
 the basis inside a degenerate eigenspace are arbitrary. Compare propagators,
@@ -70,10 +70,10 @@ between the two spin amplitudes; that error changes spin observables.
 
 Reuse the earlier trapezoidal approximation to Schrödinger's equation:
 
-\[
+$$
 \left(I+\frac{i\,dt}{2\hbar}H\right)\psi_{n+1}
 =\left(I-\frac{i\,dt}{2\hbar}H\right)\psi_n.
-\]
+$$
 
 The PyTorch implementation factors the left matrices once with batched
 `torch.linalg.lu_factor`, then reuses `lu_solve`. NumPy solves once for the
@@ -87,10 +87,10 @@ Nevertheless, its phase is approximate. For energies `+/-hbar*omega/2`, its
 eigenphases are `-/+2*atan(omega*dt/4)` per step. The Bloch vector rotates with
 effective speed
 
-\[
+$$
 \omega_{CN}=\frac4{dt}\arctan\left(\frac{\omega dt}{4}\right)
 =\omega-\frac{\omega^3dt^2}{48}+O(dt^4).
-\]
+$$
 
 At fixed final time, halving `dt` reduces the error by about four. The phase
 lag grows with duration and field strength, even when norm and energy appear

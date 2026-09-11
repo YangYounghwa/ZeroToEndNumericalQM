@@ -2,8 +2,8 @@
 
 ## 1. Grid and tensor ordering
 
-Use \(x_i=-L_x+i\,dx\), \(y_j=-L_y+j\,dy\), with
-\(dx=2L_x/N_x\), \(dy=2L_y/N_y\). Exclude the duplicate upper endpoint on both
+Use $x_i=-L_x+i\,dx$, $y_j=-L_y+j\,dy$, with
+$dx=2L_x/N_x$, $dy=2L_y/N_y$. Exclude the duplicate upper endpoint on both
 periodic axes. Store a field as `(Ny,Nx)`, so `field[j,i]` means `(y_j,x_i)`.
 
 Broadcast `x[None,:]` with `y[:,None]`. An explicit mesh is optional; if using
@@ -19,9 +19,9 @@ would change the calculation. See the
 
 Replace the spatial integral by
 
-\[
+$$
 \langle\psi|\phi\rangle_h=dx\,dy\sum_{j,i}\psi_{ji}^*\phi_{ji}.
-\]
+$$
 
 Normalize each batch member by its own area-weighted norm. With an orthonormal
 FFT on both axes, Parseval's identity preserves this same inner product.
@@ -35,18 +35,18 @@ ky = 2 * torch.pi * torch.fft.fftfreq(Ny, d=dy, dtype=torch.float64)
 kinetic = hbar**2 * (ky[:, None] ** 2 + kx[None, :] ** 2) / (2 * mass)
 ```
 
-For a Fourier mode \(e^{i(k_xx+k_yy)}\), differentiating twice gives kinetic
-energy \(\hbar^2(k_x^2+k_y^2)/(2m)\). This is the reason for adding the squared
+For a Fourier mode $e^{i(k_xx+k_yy)}$, differentiating twice gives kinetic
+energy $\hbar^2(k_x^2+k_y^2)/(2m)$. This is the reason for adding the squared
 wave numbers, rather than multiplying them.
 
 ## 3. Symmetric splitting
 
 The same derivation as the previous chapter applies:
 
-\[
+$$
 U(dt)\approx e^{-iVdt/(2\hbar)}F_2^{-1}
 e^{-i\epsilon dt/\hbar}F_2e^{-iVdt/(2\hbar)}.
-\]
+$$
 
 Precompute phase fields `(Ny,Nx,1)` and apply them to all packet columns.
 Use `fft2` and `ifft2` with `norm="ortho"` and `dim=(0,1)` during propagation.
@@ -65,14 +65,14 @@ errors remain. No per-step renormalization is used.
 
 Energy combines position and momentum representations:
 
-\[
+$$
 \langle H\rangle_h=dx\,dy
 \left[\sum_{q,p}\epsilon_{qp}|\widehat\psi_{qp}|^2
 +\sum_{j,i}V_{ji}|\psi_{ji}|^2\right].
-\]
+$$
 
-Measure the center \(\boldsymbol\mu=\langle\mathbf r\rangle\) and covariance
-\(\Sigma_{ab}=\langle(r_a-\mu_a)(r_b-\mu_b)\rangle\). In particular, the xy
+Measure the center $\boldsymbol\mu=\langle\mathbf r\rangle$ and covariance
+$\Sigma_{ab}=\langle(r_a-\mu_a)(r_b-\mu_b)\rangle$. In particular, the xy
 entry distinguishes a tilted coupled packet from a separable product.
 The statistics function divides by the measured norm; norm is checked
 independently so this does not hide loss in the evolution.

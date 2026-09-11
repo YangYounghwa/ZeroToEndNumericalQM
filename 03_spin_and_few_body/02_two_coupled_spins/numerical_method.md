@@ -52,10 +52,10 @@ reconstructed propagator. Eigenvector phases also disappear from the latter.
 
 If `J=0`, local terms commute and the propagator factors exactly:
 
-\[
+$$
 e^{-it(H_1\otimes I+I\otimes H_2)/\hbar}
 =e^{-itH_1/\hbar}\otimes e^{-itH_2/\hbar}.
-\]
+$$
 
 This provides an independent check of site order, fields, and tensor products.
 It does not hold for a nonzero exchange interaction in general.
@@ -81,9 +81,9 @@ four-by-four density matrix or to an incoherent mixture of amplitudes.
 
 The CN update is the same linear solve as before, now with 4-by-4 matrices:
 
-\[
+$$
 (I+iHdt/(2\hbar))\psi_{n+1}=(I-iHdt/(2\hbar))\psi_n.
-\]
+$$
 
 PyTorch reuses batched LU factors. NumPy solves once for each tiny step matrix.
 Neither forms an explicit inverse. Normalize once before evolution and save

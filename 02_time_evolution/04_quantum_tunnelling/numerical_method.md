@@ -2,7 +2,7 @@
 
 ## 1. Periodic grid and Fourier modes
 
-Use \(x_j=-L+j\,dx\), \(dx=2L/N\), for `j=0,...,N-1`. Exclude `+L` because it
+Use $x_j=-L+j\,dx$, $dx=2L/N$, for `j=0,...,N-1`. Exclude `+L` because it
 duplicates `-L` on a periodic grid. This differs from Chapter 3's interior-only
 grid with zero Dirichlet walls.
 
@@ -19,10 +19,10 @@ See the [PyTorch fftfreq documentation](https://docs.pytorch.org/docs/stable/gen
 
 With `norm="ortho"`, the discrete Fourier matrix `F` is unitary:
 
-\[
+$$
 \widehat\psi=F\psi,\qquad
 dx\sum_j|\psi_j|^2=dx\sum_q|\widehat\psi_q|^2.
-\]
+$$
 
 Therefore `dx*abs(fft(psi, norm="ortho"))**2` gives probabilities per discrete
 Fourier mode. It is not a continuous density per unit `k`; divide by `dk=pi/L`
@@ -31,25 +31,25 @@ probabilities. See [PyTorch FFT normalization](https://docs.pytorch.org/docs/sta
 
 ## 2. Derive the update
 
-For a fixed Hamiltonian, exact evolution is \(U(dt)=e^{-i(T+V)dt/\hbar}\).
+For a fixed Hamiltonian, exact evolution is $U(dt)=e^{-i(T+V)dt/\hbar}$.
 Since `T` and `V` generally do not commute, applying their full steps separately
 introduces a leading error of order `dt^2` per step.
 
-Let \(A=-iV/\hbar\) and \(B=-iT/\hbar\). Expanding the symmetric product gives
+Let $A=-iV/\hbar$ and $B=-iT/\hbar$. Expanding the symmetric product gives
 
-\[
+$$
 e^{A dt/2}e^{B dt}e^{A dt/2}
 =I+(A+B)dt+\tfrac12(A^2+AB+BA+B^2)dt^2+O(dt^3).
-\]
+$$
 
-This matches \(e^{(A+B)dt}\) through second order. With
-\(\epsilon_q=\hbar^2k_q^2/(2m)\), one step is
+This matches $e^{(A+B)dt}$ through second order. With
+$\epsilon_q=\hbar^2k_q^2/(2m)$, one step is
 
-\[
+$$
 \psi^{n+1}=
 e^{-iVdt/(2\hbar)}F^{-1}
 \left[e^{-i\epsilon dt/\hbar}F\left(e^{-iVdt/(2\hbar)}\psi^n\right)\right].
-\]
+$$
 
 Precompute the two phase vectors once. For state columns `(N,B)`, use FFT
 `dim=0` and phase vectors shaped `(N,1)`. The batch dimension is never transformed.
@@ -70,10 +70,10 @@ instability restriction, but large time steps still give inaccurate dynamics.
 The split update generally does not commute with the full spectral Hamiltonian.
 Energy can drift even when norm and reversibility are excellent. Compute
 
-\[
+$$
 \langle H\rangle=dx\sum_q\epsilon_q|\widehat\psi_q|^2
 +dx\sum_j V_j|\psi_j|^2
-\]
+$$
 
 and verify that its error decreases with `dt`. Free modes and constant potentials
 are exact special cases: the operators commute.
@@ -87,7 +87,7 @@ a complete accuracy proof.
 ## 4. References that isolate different errors
 
 For a small grid, explicitly build
-\(H_{FFT}=F^{-1}\operatorname{diag}(\epsilon)F+\operatorname{diag}(V)\).
+$H_{FFT}=F^{-1}\operatorname{diag}(\epsilon)F+\operatorname{diag}(V)$.
 Compare splitting with `torch.linalg.matrix_exp(-1j*t*H/hbar)` on this same grid.
 Only this reference isolates time-splitting error.
 
@@ -99,11 +99,11 @@ using CSC storage for sparse LU, then reuses that factorization.
 
 The finite-difference free dispersion is
 
-\[
+$$
 \epsilon_{FD}(k)=\frac{2\hbar^2}{m\,dx^2}\sin^2(k\,dx/2),
-\]
+$$
 
-whereas FFT uses \(\epsilon_{FFT}=\hbar^2 k^2/(2m)\). They agree as `dx` tends to
+whereas FFT uses $\epsilon_{FFT}=\hbar^2 k^2/(2m)$. They agree as `dx` tends to
 zero for fixed resolved `k`. Do not demand identical results on a coarse grid or
 compare a Dirichlet matrix exponential with a periodic FFT state as a time-only
 test. The periodic corner links are the explicit change from earlier CN code.
