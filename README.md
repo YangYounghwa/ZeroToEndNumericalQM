@@ -34,6 +34,7 @@ its numerical results are tested against known results or physical invariants.
 - [Phase 3: Spin and few-body systems](03_spin_and_few_body/README.md)
 - [Phase 3, Chapter 1: Spin in a magnetic field](03_spin_and_few_body/01_spin_in_magnetic_field/README.md)
 - [Phase 3, Chapter 2: Two coupled spins](03_spin_and_few_body/02_two_coupled_spins/README.md)
+- [Phase 3, Chapter 3: Bell states](03_spin_and_few_body/03_bell_states/README.md)
 - [PyTorch troubleshooting](PYTORCH_TROUBLESHOOTING.md)
 - [Code-quality tools](CODE_QUALITY.md)
 
@@ -83,4 +84,9 @@ dynamics. Its [validation report](03_spin_and_few_body/02_two_coupled_spins/VALI
 checks singlet/triplet energies, transfer under unequal fields, correlations,
 and conservation laws appropriate to each field pattern.
 
-The next chapter studies Bell states, density matrices, and partial traces.
+Phase 3 Chapter 3 introduces density matrices, partial traces, and pure-state
+entanglement entropy. Its [validation report](03_spin_and_few_body/03_bell_states/VALIDATION.md)
+compares Bell states with classical mixtures, follows entanglement through an
+exchange swap, and checks the treatment of tiny eigenvalues.
+
+The next chapter studies two particles on a lattice and particle statistics.

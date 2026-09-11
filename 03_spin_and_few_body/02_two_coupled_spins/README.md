@@ -55,6 +55,6 @@ this error in exchange timing.
 
 ## Next chapter
 
-Bell states, density matrices, partial traces, and entanglement entropy. Learn
+[Bell states](../03_bell_states/README.md), density matrices, partial traces, and entanglement entropy. Learn
 how a joint pure state can have mixed local states, and why a classical mixture
 can share some correlations with an entangled state.

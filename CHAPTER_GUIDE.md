@@ -437,3 +437,26 @@ Two spin-1/2 sites with isotropic exchange and local static magnetic fields.
 
 Bell states, density matrices, partial traces, and entanglement entropy,
 including the distinction between entanglement and classical correlations.
+
+## Phase 3, Third Chapter Plan
+
+### Subject
+
+Bell states, reduced density matrices, and pure-state entanglement entropy.
+
+### Learning goals
+
+- Form normalized pure-state projectors and probability-weighted mixtures.
+- Derive partial traces from local measurement expectations and fix subsystem axes.
+- Use batched PyTorch contractions with independent NumPy index-loop checks.
+- Validate Hermiticity, trace, positivity, purity, and both reduced matrices.
+- Distinguish Bell coherence from a separable mixture with identical marginals.
+- Compute entropy in bits, handling zero eigenvalues without dropping tiny positive ones.
+- Restrict reduced entropy as an entanglement measure to pure joint states.
+- Check Schmidt-angle formulas, local-unitary invariance, and exact exchange entropy.
+- Separate physical parameter studies from numerical discretization convergence.
+
+### Next chapter
+
+Two particles on a lattice: site bases, exchange symmetry, occupation numbers,
+and particle statistics before the small Hubbard system.
