@@ -36,6 +36,12 @@ $$
 This is a coherent state. It is a superposition of stationary oscillator
 states, but its probability density retains a Gaussian form.
 
+The specific width matters. Displacing the ground state changes its mean
+position, and multiplying by a linear phase changes its mean momentum, while
+preserving the ground state's fluctuations. An arbitrary Gaussian is not
+necessarily coherent. If its width differs from this value, the oscillator
+can periodically squeeze and expand it even with exact evolution.
+
 ## 3. Center motion
 
 Ehrenfest's theorem gives
@@ -61,6 +67,13 @@ $$
 T=\frac{2\pi}{\omega}.
 $$
 
+For a general potential, Ehrenfest's force is $-\langle V'(x)\rangle$, which
+need not equal $-V'(\langle x\rangle)$. The harmonic force is linear, so those
+expressions agree exactly. Differentiating the first expectation equation and
+inserting the second gives the classical oscillator equation for the center.
+This center trajectory holds for any oscillator state, even one whose shape
+changes; it does not by itself prove that the state is coherent.
+
 ## 4. No spreading
 
 A free Gaussian spreads because its momentum components move with different
@@ -75,6 +88,13 @@ The packet changes position and phase but not shape. A visibly breathing width
 indicates spatial error, time-step error, boundary interference, or an initial
 Gaussian whose width is not the coherent-state width.
 
+One way to understand the fixed width is to evolve the centered position
+operator: it is a combination of the initial position times $\cos(\omega t)$
+and initial momentum times $\sin(\omega t)/(m\omega)$. In the coherent state,
+their initial covariance is zero and their variances satisfy
+$(\Delta p)^2=m^2\omega^2(\Delta x)^2$. The resulting position variance is
+therefore proportional to $\cos^2(\omega t)+\sin^2(\omega t)=1$.
+
 ## 5. Conserved quantities and return
 
 The Hamiltonian is time independent and Hermitian, so norm and energy are
@@ -86,6 +106,20 @@ F=|\langle\psi(0)|\psi(T)\rangle|^2.
 $$
 
 An ideal return has `F = 1`.
+
+The energy separates into the ground-state energy and the classical energy
+of the displaced center:
+
+$$
+\langle H\rangle=\frac{\hbar\omega}{2}
++\frac{p_0^2}{2m}+\frac12m\omega^2x_0^2.
+$$
+
+The first term remains even for a stationary center because position and
+momentum still fluctuate. After one period, each eigenstate phase is
+$e^{-i2\pi(n+1/2)}=-1$. Thus the full state vector changes sign while its
+density and all measurement probabilities return. Fidelity correctly ignores
+that common phase.
 
 ## 6. Finite-domain limitations
 

@@ -28,6 +28,18 @@ $$
 In particular, diagonal entries are probabilities for measurements in the
 chosen basis. Off-diagonal entries encode coherence in that basis.
 
+For one spin, compare the pure state $(|0\rangle+|1\rangle)/\sqrt2$ with an
+equal random mixture of $|0\rangle$ and $|1\rangle$. Their density matrices are
+
+$$
+\rho_{+x}=\frac12\begin{pmatrix}1&1\\1&1\end{pmatrix},
+\qquad \rho_{\mathrm{mix}}=\frac12\begin{pmatrix}1&0\\0&1\end{pmatrix}.
+$$
+
+Both give equal z probabilities, but only the first gives a certain positive
+x outcome. The off-diagonal terms carry that difference. Coherence depends
+on the basis chosen; purity is unchanged by a change of basis.
+
 ## 2. Statistical mixtures
 
 If preparation chooses normalized ket $|\psi_k\rangle$ with classical
@@ -77,6 +89,13 @@ would return a scalar. Selecting a diagonal block instead would correspond to
 one measurement outcome before normalization; it would omit the sum over the
 ignored subsystem. A partial trace describes the local system without
 conditioning on a remote measurement result.
+
+For $|\Phi^+\rangle$, A's probability of zero is the sum of the joint
+probabilities for `00` and `01`, giving one half. Its reduced off-diagonal
+entry sums $\rho_{00,10}+\rho_{01,11}$, both zero. The Bell coherence
+$\rho_{00,11}$ does not enter that sum because the B indices differ. This
+explicit example explains how a pure joint state can give a mixed local state
+without any noise being added to the joint system.
 
 For a pure state, reshape its coefficients into $C_{ab}$. Substituting the
 outer product gives
@@ -166,6 +185,13 @@ a Bell state's joint entropy is zero. Therefore local entropy by itself is
 not an entanglement measure for an arbitrary mixed joint state. The code's
 `entanglement_entropy` accepts pure state vectors; `entropy` accepts general
 density matrices and does not claim to diagnose entanglement.
+
+Entropy uses eigenvalues because these are the probabilities in a basis that
+diagonalizes the density matrix. A pure state's spectrum is one followed by
+zeros, even when measurements in another basis are random. Its zero entropy
+therefore does not mean every measurement is predictable. For a Bell pair,
+the joint state is pure but the local spectrum is $(1/2,1/2)$: access to one
+spin alone is insufficient to describe the full preparation as a pure state.
 
 The family
 

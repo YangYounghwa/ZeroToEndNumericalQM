@@ -33,6 +33,19 @@ exponentials rather than identically zero. Matching the wavefunction and its
 derivative across a finite barrier permits a nonzero outgoing amplitude.
 Classical motion at the same energy would turn around.
 
+For a locally constant forbidden-region potential, define
+$\kappa=\sqrt{2m(V-E)}/\hbar$. The two local solutions are $e^{\kappa x}$ and
+$e^{-\kappa x}$. Within a finite barrier, both terms may be required to match
+the waves on its two sides; discarding one automatically is not justified.
+The scale $1/\kappa$ describes how quickly an evanescent amplitude changes.
+A taller or wider forbidden region generally suppresses transmission more.
+
+The particle does not borrow energy to cross. Each stationary scattering
+component keeps its energy, and a time-independent Hamiltonian conserves the
+packet's total mean energy. The classical relation between a definite position
+and a definite momentum cannot be applied to an evanescent wave as if it were
+a particle trajectory inside the barrier.
+
 For the Gaussian barrier and `0<E<V0`, the turning points satisfy
 
 $$
@@ -94,6 +107,13 @@ The default `sigma=3` gives $\Delta k=1/6$, $E_0=1.125$, mean energy 1.138889,
 and above-barrier weight about $5.02\times10^{-6}$. Transmission is about 0.016,
 far larger than that tail. Subject to the numerical checks, it is predominantly
 sub-barrier tunnelling. A finite Gaussian never has a strictly bounded spectrum.
+
+This comparison supplies a useful argument: even if every above-barrier
+component transmitted perfectly, its total contribution could not exceed the
+small above-barrier weight. Transmission much larger than that bound must
+include sub-barrier components, provided the incident-state and convergence
+assumptions hold. Looking only at the mean energy would not establish this,
+because a mean below the peak can coexist with a substantial high-energy tail.
 
 Increasing `sigma` narrows the momentum spread but widens the packet. Move the
 initial center farther away and enlarge the box when needed. A width sweep

@@ -26,6 +26,13 @@ and collecting derivatives yields $\partial_t|\psi|^2+\nabla\cdot\mathbf j=0$,
 where $\mathbf j=(\hbar/m)\operatorname{Im}(\psi^*\nabla\psi)$.
 The periodic computational box conserves probability but allows wraparound.
 
+The sampled state has two spatial indices, but still describes one particle.
+Its joint position density tells us about x and y together. Integrating over y
+gives the x marginal density; integrating over x gives the y marginal. On the
+grid these integrations become weighted sums, so normalization uses `dx*dy`,
+while the x marginal uses only `dy`. This distinction prevents a density per
+area from being mistaken for a density per length.
+
 As before, use length unit $\ell$, time unit $m\ell^2/\hbar$, and energy
 unit $\hbar^2/(m\ell^2)$ to obtain `m=hbar=1`. Momentum arguments in this
 chapter mean physical/dimensionless `p`, not wave number `k`: $p=\hbar k$.
@@ -87,6 +94,13 @@ and integration measure, so the Hamiltonian becomes two independent oscillators
 with frequencies $\nu_1,\nu_2$. These are the normal modes. Nonseparability
 in the original coordinates does not mean the problem lacks an exact solution.
 
+The columns of Q give the directions of the independent normal modes, and
+the eigenvalues of K give their squared frequencies. Rotating coordinates
+removes the cross term rather than approximating it. When one eigenvalue
+approaches zero, confinement along that mode becomes weak and its ground-state
+width grows. Positive definiteness is therefore a physical requirement for
+the normalizable oscillator ground state used below.
+
 ## 4. Ground-state covariance and a displaced packet
 
 Define $\Omega=Q\operatorname{diag}(\nu_1,\nu_2)Q^T$, the positive square root
@@ -116,6 +130,12 @@ $$
 Its off-diagonal element generally differs from zero: the density ellipse is
 tilted in x/y. Independent x/y Gaussian widths would not be this coupled
 ground state.
+
+Covariance measures how fluctuations occur together, after subtracting the
+center. A nonzero xy entry means that knowledge of x changes the conditional
+distribution of y. It can occur even when both mean coordinates are zero.
+Here these are correlations between coordinates of one particle; they should
+not be interpreted as evidence for entanglement between two particles.
 
 Displace its center and multiply by a momentum phase:
 

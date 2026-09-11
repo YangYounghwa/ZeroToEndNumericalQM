@@ -33,6 +33,12 @@ $$
 For example, `theta=pi/2, phi=0` is `+x`, and `theta=pi/2, phi=pi/2` is `+y`.
 Both give equal probabilities when measured along z, but have different phases.
 
+For a concrete phase comparison, the states $(1,1)^T/\sqrt2$ and
+$(1,-1)^T/\sqrt2$ both give fifty-fifty z outcomes. They are nevertheless
+different states: an x measurement gives a definite positive result for the
+first and a definite negative result for the second. Squared amplitudes in
+one basis therefore do not contain all the information in a spinor.
+
 ## 2. Spin operators and Pauli algebra
 
 In this basis, $S_a=(\hbar/2)\sigma_a$, where
@@ -85,6 +91,13 @@ Its two energies are $E_\pm=\pm\hbar\omega/2$. An energy eigenstate gains
 only a phase during time evolution, while a superposition can change its
 measurement probabilities.
 
+For a field along z, the Hamiltonian is diagonal in the chosen basis. The two
+amplitudes keep their magnitudes but acquire different phases, so z-outcome
+probabilities stay fixed while x- and y-outcome probabilities can oscillate.
+The phase difference changes at the energy splitting divided by $\hbar$.
+This is how precession arises from the same energy-dependent phases used for
+wave packets in Phase 2.
+
 ## 4. Derive the exact constant-field propagator
 
 For constant `H`, Schrödinger's equation has solution
@@ -136,6 +149,12 @@ $$
 These are probabilities of outcomes `+hbar/2` and `-hbar/2`, not the values
 of the outcomes themselves. The code computes probabilities without sampling
 random outcomes or evolving a post-measurement state.
+
+An expectation value summarizes many repetitions of the same preparation.
+For example, zero mean z spin means equal probabilities of the two allowed
+outcomes; it does not mean that a measurement can return zero. The Bloch vector
+collects these three expectation values, making phase information visible
+through measurements along different axes.
 
 ## 6. Derive precession and check its direction
 

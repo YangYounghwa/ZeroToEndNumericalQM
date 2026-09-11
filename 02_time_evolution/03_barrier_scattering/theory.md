@@ -56,6 +56,13 @@ For a plane wave A exp(ikx), j = hbar*k*|A|^2/m. This explains why scattering
 coefficients are ratios of currents. In this chapter the potential is zero on
 both sides, so incoming and transmitted wave numbers are equal.
 
+Density and current answer different questions: density measures how much
+probability is present, while current measures its flow. The incoming and
+reflected waves overlap on the left and can form interference fringes. Those
+fringes are not additional particles or a failure of probability conservation.
+Current keeps track of the opposite propagation directions even in this
+overlap region.
+
 For a closed system with time-independent Hermitian H,
 d< H >/dt = 0 and the total norm is constant. Tunnelling through a static barrier
 does not require an energy increase or temporary energy borrowing.
@@ -77,7 +84,13 @@ $$
 $$
 
 The interior form also has a regular q=0 limit: phi_B = C + Dx.
-Continuity of phi and phi' at the two finite potential steps gives
+Both phi and phi' are continuous at the two finite potential steps. A jump
+in the derivative would create a delta function in the second derivative,
+with no matching term in the finite potential; a jump in the wavefunction is
+also incompatible with this equation. These conditions apply to amplitudes and
+derivatives, not just to densities, because their phases determine interference.
+
+Applying them at the left and right edges gives
 
 $$1+r=C,\qquad ik(1-r)=D,$$
 
@@ -117,6 +130,13 @@ $$T(V_0)=\left[1+\frac{m V_0 a^2}{2\hbar^2}\right]^{-1}.$$
 
 For positive height and width, T tends to zero as E tends to zero. Removing the
 barrier (zero height or width) gives T=1. These limits are valuable tests.
+
+Above the barrier, the two interfaces each reflect part of the wave. Their
+reflected amplitudes can cancel when the phase accumulated inside has the
+resonant value $qa=n\pi$. That is why complete transmission can occur even
+though the potential is nonzero. Below the barrier, the interior wave number
+is imaginary and the trigonometric oscillations become exponential behavior;
+the same matching calculation describes both regimes.
 
 ## 4. A Gaussian packet is not a single energy
 

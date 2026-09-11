@@ -31,6 +31,12 @@ four-amplitude state need not have this product form.
 An array containing two independent spinors is a batch, not a joint state.
 Keeping only two spinors cannot represent all correlations of the coupled pair.
 
+For example, in $(|+-\rangle+|-+\rangle)/\sqrt2$, each individual z outcome
+is random, but the pair always has opposite signs. Assigning both sites their
+own equal-superposition spinor would also produce `|++>` and `|-->` outcomes,
+so it would describe a different preparation. The four joint amplitudes retain
+information that separate local probabilities lose.
+
 ## 2. Local operators
 
 An operator acting on the first site must leave the second untouched:
@@ -82,6 +88,12 @@ $$
 The off-diagonal elements couple `|+->` and `|-+>`. They cannot be obtained
 from two independent single-spin evolutions.
 
+The diagonal entries supply phases to the basis states; the off-diagonal
+entries transfer amplitude between them. In particular, the exchange term
+flips the two opposite signs together and preserves their total z spin.
+The parallel states are already exchange eigenstates. An initial opposite-spin
+product is not an eigenstate, which is why it can develop nontrivial dynamics.
+
 ## 4. Derive singlet and triplet energies
 
 Let $\mathbf S_{tot}=\mathbf S_1+\mathbf S_2$. Expanding its square yields
@@ -129,6 +141,13 @@ $2\pi\hbar/|J|$; the spinor may differ by a global phase.
 At half the transfer time for `J>0`, ignoring global phase, the state is
 $(|+-\rangle-i|-+\rangle)/\sqrt2$. Both local spin averages vanish, but
 the spins are perfectly anticorrelated when measured along z.
+
+The transfer is interference between the singlet and triplet contributions.
+Their energy difference is J, so their relative phase advances at rate
+$J/\hbar$. Recombining them in the product basis produces the cosine and sine
+amplitudes above. This explains why the transfer time is determined by an
+energy difference, and why a common shift of both energies cannot change the
+transfer probability.
 
 ## 6. Local expectations, correlations, and product states
 
