@@ -36,6 +36,9 @@ NumPy/PyTorch agreement.
 
 ## Foundations and PyTorch practice
 
-Use torch.where to sample the well and Boolean masks to select energies below the outside potential. A potential discontinuity introduces edge-alignment error: a larger point count need not improve every energy monotonically. The NumPy matching-equation calculation is an analytical comparison.
+Use `torch.where` to sample the well. Use Boolean masks to select energies
+below the outside potential. A potential jump introduces edge-alignment error.
+Adding grid points may not improve every energy monotonically. Compare with
+the analytical matching equations in the NumPy version.
 
-Implement the PyTorch starter first, then compare with the NumPy reference.
+Implement the PyTorch starter first. Then compare with NumPy.

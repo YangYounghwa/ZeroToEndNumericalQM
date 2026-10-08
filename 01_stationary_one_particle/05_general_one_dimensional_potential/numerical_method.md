@@ -62,9 +62,8 @@ reject:
 - `NaN` or infinite values;
 - invalid domain, mass, or state counts.
 
-This validation keeps failures close to the interface. Otherwise, a malformed
-potential may produce a broadcasting error or meaningless eigenvalues much
-later in the calculation.
+Check these inputs before solving. Invalid potentials can cause broadcasting
+errors or meaningless eigenvalues.
 
 ## Diagonalization and normalization
 

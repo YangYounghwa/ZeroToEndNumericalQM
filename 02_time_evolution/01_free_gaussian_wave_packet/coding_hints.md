@@ -58,6 +58,9 @@ real array.
 
 ## Foundations and PyTorch practice
 
-Learn complex128 states, torch.exp for phases, conjugate inner products, torch.linalg.lu_factor, and torch.linalg.lu_solve. Reuse one factorization for all time steps and batch columns. Compare PyTorch matrix_exp with the SciPy sparse exponential action at identical parameters.
+Learn `complex128` states, `torch.exp` for phases, and conjugate inner products.
+Use `torch.linalg.lu_factor` and `torch.linalg.lu_solve`. Reuse one factorization
+for all time steps and batch columns. Compare PyTorch `matrix_exp` with SciPy
+sparse exponential action at identical parameters.
 
-Implement the PyTorch starter first, then compare with the NumPy reference.
+Implement the PyTorch starter first. Then compare with NumPy.

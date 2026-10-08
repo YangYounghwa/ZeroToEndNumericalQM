@@ -66,10 +66,8 @@ $$
 x=x_{\min},\ x=x_{\max},\ y=y_{\min},\ y=y_{\max}.
 $$
 
-Omitting the boundary points does not mean that the boundary conditions are
-ignored. For example, the stencil at the first interior $x$ point contains a
-left-neighbor term multiplied by the known boundary value zero. Therefore no
-matrix column is needed for that neighbor.
+The boundary values enter the stencil as known zeros. At the first interior
+$x$ point, the left-neighbor term is zero. No matrix column is needed for it.
 
 ## 3. The five-point finite-difference equation
 

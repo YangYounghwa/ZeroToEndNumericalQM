@@ -66,14 +66,14 @@ all times costs `O(num_steps * N)` per state.
 
 ## PyTorch references and independent error studies
 
-Use torch.linalg.matrix_exp for a small dense reference and state_l2_error for
-the quadrature-weighted, phase-aligned state error. The NumPy module provides
-sparse_exponential_state using SciPy expm_multiply. It applies exp(-iHt/hbar)
+Use `torch.linalg.matrix_exp` for a small dense reference. Use `state_l2_error`
+for the quadrature-weighted, phase-aligned error. The NumPy function
+`sparse_exponential_state` uses SciPy `expm_multiply`. It applies exp(-iHt/hbar)
 to a state without forming the dense exponential. This is an exponential-action
 reference; it is not an implementation of a Krylov algorithm in this chapter.
 See [SciPy's documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.expm_multiply.html).
 
-The convergence script performs three separate experiments:
+The convergence script runs three separate experiments:
 
 1. Hold the spatial Hamiltonian fixed; reduce the Crank–Nicolson time step and
    compare with the matrix exponential. Also compare with sparse SciPy CN.

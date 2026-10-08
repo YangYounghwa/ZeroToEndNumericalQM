@@ -4,7 +4,7 @@ This subject studies the time-independent Schrödinger equation for one particle
 
 Learn each calculation in PyTorch first, then use NumPy for comparison. The
 SciPy sparse reference begins in Chapter 5 and is reused in Chapters 6 and 7.
-Foundations are introduced inside the chapter documents.
+Each chapter explains the foundations it needs.
 
 | Chapter | Foundations and PyTorch skills introduced |
 | --- | --- |

@@ -1,8 +1,7 @@
 # Chapter 5: General One-Dimensional Potential
 
-This chapter extracts the repeated finite-difference work from Chapters 1–4
-into a reusable stationary Schrödinger solver. The physical potential is now a
-function supplied by the caller rather than a formula built into the solver.
+Reuse the finite-difference method from Chapters 1–4 in one stationary solver.
+Pass the potential as a function so the solver can handle different systems.
 
 ## Learning goals
 

@@ -68,7 +68,7 @@ Pair correlations have two physical axes, first-site component then second-site
 component; they are not a two-by-two matrix of sites.
 
 Calculate probabilities and expectations on normalized inputs. The observables
-do not renormalize histories: their normalization behavior helps reveal drift.
+do not renormalize histories, so norm drift stays visible.
 Check `sum(abs(state)**2)` separately. Physical spin correlations are
 `(hbar/2)**2` times the reported dimensionless Pauli correlations.
 

@@ -47,8 +47,7 @@ $$
 The solved vector contains only $\psi_1,\ldots,\psi_N$. The known endpoint
 values are excluded. As in Chapter 1, the first and last matrix rows result
 from substituting the zero boundary values into the finite-difference formula.
-Thus the boundary condition lives jointly in the choice of unknown vector and
-the Hamiltonian's endpoint rows.
+Both the unknown vector and the endpoint rows enforce the boundary conditions.
 
 ## Kinetic energy
 

@@ -34,8 +34,7 @@ Apply Ruff's safe automatic fixes with:
 uv run ruff check --fix .
 ```
 
-Read each remaining message before changing the code. A remaining warning often
-requires a design decision rather than a mechanical edit.
+Read each remaining warning. Some fixes need a design decision.
 
 ## Run the type checker
 
@@ -43,8 +42,7 @@ requires a design decision rather than a mechanical edit.
 uv run mypy .
 ```
 
-Mypy is configured in strict mode. Function parameters and return values should
-have explicit types.
+Mypy uses strict mode. Add explicit types to function parameters and returns.
 
 ## Run every check
 

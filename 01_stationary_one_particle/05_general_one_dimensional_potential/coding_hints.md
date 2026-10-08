@@ -85,6 +85,9 @@ energy shifts, NumPy/PyTorch agreement, and batched/individual agreement.
 
 ## Foundations and PyTorch practice
 
-Broadcast sampled potentials to (B, N), use torch.diag_embed to form (B, N, N) matrices, and call batched torch.linalg.eigh. Normalize along the spatial dimension, dim=-2. Compare against dense NumPy and sparse SciPy on the same grid.
+Broadcast sampled potentials to `(B, N)`. Use `torch.diag_embed` to form
+`(B, N, N)` matrices. Call batched `torch.linalg.eigh`. Normalize along the
+spatial dimension, `dim=-2`. Compare with dense NumPy and sparse SciPy on
+the same grid.
 
-Implement the PyTorch starter first, then compare with the NumPy reference.
+Implement the PyTorch starter first. Then compare with NumPy.

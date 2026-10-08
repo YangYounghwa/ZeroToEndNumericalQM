@@ -1,8 +1,7 @@
 # Chapter 1: Free Gaussian Wave Packet
 
-This chapter begins time-dependent quantum mechanics. A localized complex
-wave packet moves freely, spreads, and is propagated numerically with the
-Crank-Nicolson method.
+Use Crank-Nicolson to evolve a free complex Gaussian wave packet. Compare its
+motion and spreading with the analytical solution.
 
 ## Learning goals
 

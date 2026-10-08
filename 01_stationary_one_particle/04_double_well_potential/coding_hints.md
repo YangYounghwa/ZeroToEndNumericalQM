@@ -37,6 +37,9 @@ invalid inputs, float64, and NumPy/PyTorch agreement.
 
 ## Foundations and PyTorch practice
 
-Use torch.flip to examine parity and torch.stack to assemble states. Superpose the lowest even and odd states to form localized packets. Check tunneling splitting against both grid and domain refinement; a small ground-energy change alone can hide an inaccurate splitting.
+Use `torch.flip` to check parity. Use `torch.stack` to assemble states.
+Superpose the lowest even and odd states to form localized packets. Check the
+tunneling splitting under grid and domain refinement. A small ground-energy
+change alone can hide an inaccurate splitting.
 
-Implement the PyTorch starter first, then compare with the NumPy reference.
+Implement the PyTorch starter first. Then compare with NumPy.

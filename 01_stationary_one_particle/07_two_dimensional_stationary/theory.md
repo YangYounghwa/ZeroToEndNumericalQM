@@ -183,8 +183,7 @@ $$
 \omega_{x,\mathrm{eff}}^2(y)=\omega_x^2+2\lambda y^2.
 $$
 
-This makes the physical meaning of coupling explicit: displacement in one
-direction changes confinement in the other direction.
+Displacement along one axis changes confinement along the other.
 
 Because $V\to+\infty$ in every direction, the spectrum is discrete. The
 positive coupling suppresses probability in the diagonal corner regions
@@ -552,7 +551,7 @@ coordinate correlations.
 
 ## 11. Validation without an exact spectrum
 
-The nonseparable problem must be supported by several independent checks:
+Check the nonseparable problem in several independent ways:
 
 1. The Hamiltonian is Hermitian.
 2. Eigenvectors are normalized and mutually orthogonal.
@@ -576,7 +575,7 @@ real scalar potential. It does not cover magnetic vector potentials, complex
 absorbers, periodic boundaries, adaptive meshes, or position-dependent mass.
 
 Unlike radial hydrogen, no symmetry is used to eliminate a coordinate. The
-unknown genuinely occupies a 2D mesh. A 3D Cartesian discretization would use
+unknown occupies a 2D mesh. A 3D Cartesian discretization would use
 the same construction with a third Kronecker term and a volume weight. It is
 not a separate chapter because that extension adds scaling cost rather than a
 new numerical idea.

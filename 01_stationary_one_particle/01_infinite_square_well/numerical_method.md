@@ -31,8 +31,8 @@ $$
 \end{bmatrix}^{\mathsf T}.
 $$
 
-The boundary values are not stored in this vector. This choice is part of the
-numerical boundary-condition treatment, not merely a memory optimization.
+The vector omits the known boundary values. This is how the discretization
+enforces the boundary conditions.
 
 ## Second derivative
 
@@ -86,8 +86,7 @@ $$
 \end{bmatrix}.
 $$
 
-There is no column for $\psi_0$ because it is a known boundary value equal to
-zero.
+No column is needed for the known value $\psi_0=0$.
 
 Similarly, the last interior point, $i=N$, initially contains
 
@@ -110,7 +109,7 @@ $$
 \end{bmatrix}.
 $$
 
-Therefore, the zero boundary conditions are encoded jointly by:
+The zero boundary conditions enter through two choices:
 
 1. excluding $\psi_0$ and $\psi_{N+1}$ from the unknown vector; and
 2. constructing the first and last matrix rows after substituting their known

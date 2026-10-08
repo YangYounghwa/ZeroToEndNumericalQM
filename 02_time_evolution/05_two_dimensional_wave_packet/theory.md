@@ -26,12 +26,10 @@ and collecting derivatives yields $\partial_t|\psi|^2+\nabla\cdot\mathbf j=0$,
 where $\mathbf j=(\hbar/m)\operatorname{Im}(\psi^*\nabla\psi)$.
 The periodic computational box conserves probability but allows wraparound.
 
-The sampled state has two spatial indices, but still describes one particle.
-Its joint position density tells us about x and y together. Integrating over y
-gives the x marginal density; integrating over x gives the y marginal. On the
-grid these integrations become weighted sums, so normalization uses `dx*dy`,
-while the x marginal uses only `dy`. This distinction prevents a density per
-area from being mistaken for a density per length.
+The two spatial indices describe one particle's position. Integrating the
+joint density over y gives the x marginal. Integrating over x gives the y
+marginal. On the grid, normalization uses `dx*dy`; the x marginal uses `dy`.
+The joint density is probability per area. A marginal is probability per length.
 
 As before, use length unit $\ell$, time unit $m\ell^2/\hbar$, and energy
 unit $\hbar^2/(m\ell^2)$ to obtain `m=hbar=1`. Momentum arguments in this
@@ -176,6 +174,6 @@ E=\frac\hbar2(\nu_1+\nu_2)+\frac{\mathbf p_0^T\mathbf p_0}{2m}
 +\frac m2\mathbf r_0^TK\mathbf r_0.
 $$
 
-This provides checks of full states, centers, correlations, and energy, rather
-than only whether an animation looks plausible. The generic numerical
-propagator also accepts sampled potentials that cannot be diagonalized this way.
+Use these formulas to check states, centers, correlations, and energy.
+The numerical propagator also accepts sampled potentials that this rotation
+cannot separate.

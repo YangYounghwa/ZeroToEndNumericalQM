@@ -75,6 +75,9 @@ grid = spacing * [1, 2, ..., N]
 
 ## Foundations and PyTorch practice
 
-Start with dense torch.diag and torch.linalg.eigh, then broadcast angular-momentum sectors into a batch. The stored amplitude is u(r)=r R(r); normalize with dr, without an additional r^2. Compare against the existing SciPy sparse reference when increasing the radial grid.
+Start with dense `torch.diag` and `torch.linalg.eigh`. Then broadcast
+angular-momentum sectors into a batch. The stored amplitude is `u(r)=r R(r)`.
+Normalize with `dr`, without an extra `r^2`. Compare with the SciPy sparse
+reference as you refine the radial grid.
 
-Implement the PyTorch starter first, then compare with the NumPy reference.
+Implement the PyTorch starter first. Then compare with NumPy.

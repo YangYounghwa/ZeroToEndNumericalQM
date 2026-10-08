@@ -5,11 +5,9 @@
 Learn PyTorch through numerical quantum mechanics. Use NumPy implementations
 for comparison and SciPy only where sparse numerical methods are useful.
 
-The subjects should not be learned as independent tracks. Each physics problem
-introduces the mathematics, numerical method, and PyTorch tools needed to solve
-it. Implement and validate the PyTorch calculation first, then compare it with
-the NumPy reference. Do not treat SciPy as a separate course or require a third
-implementation of every problem.
+Each physics problem introduces the mathematics, numerical method, and PyTorch
+tools it needs. Implement and check PyTorch first. Then compare with NumPy.
+Use SciPy when needed; a third implementation of every problem is not required.
 
 ## Foundations Introduced Within Chapters
 
@@ -273,8 +271,8 @@ methods. It does not need to precede quantum Monte Carlo.
 This is another specialization after small-system benchmarks and variational
 methods. Tensor networks are not a prerequisite.
 
-These methods should be separate chapters because they solve different problems
-and have different sources of error.
+Give each method a separate chapter. They solve different problems and have
+different sources of error.
 
 ### Recommended order
 
@@ -314,8 +312,7 @@ are not prerequisites.
 - GPU tensor contractions
 - Differentiable quantum dynamics
 
-This directory should be called `modern_methods` rather than `sota`, because the
-state of the art changes over time.
+Name the directory `modern_methods`. The state of the art changes over time.
 
 ## Suggested Directory Order
 

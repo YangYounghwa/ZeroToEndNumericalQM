@@ -18,8 +18,7 @@ V(x) =
 \end{cases}
 $$
 
-The particle cannot exist outside the well. Therefore, its wavefunction must
-satisfy the boundary conditions
+The particle stays inside the well. Its wavefunction obeys
 
 $$
 \psi(0)=0, \qquad \psi(L)=0.
@@ -97,7 +96,7 @@ conditions are allowed.
 
 ## Wavefunction normalization
 
-The probability of finding the particle somewhere inside the well must be one:
+The total probability inside the well is one:
 
 $$
 \int_0^L |\psi_n(x)|^2\,dx=1.

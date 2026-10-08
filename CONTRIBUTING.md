@@ -36,11 +36,7 @@ docs: explain convergence criteria
 
 ## Pull requests
 
-Use the same format for the PR title:
-
-```text
-type: short summary
-```
+Use the commit-message format for the PR title.
 
 The PR description must state:
 
@@ -52,9 +48,8 @@ Link an issue when one exists. Keep each PR focused on one topic.
 
 ## Branches
 
-Direct work on `main` is acceptable while the project has one contributor.
-When branches are used, choose a short name that makes the purpose clear.
-The following format is recommended, but not required:
+With one contributor, you can work directly on `main`. For branches, choose
+a short, clear name. Suggested format:
 
 ```text
 type/short-description

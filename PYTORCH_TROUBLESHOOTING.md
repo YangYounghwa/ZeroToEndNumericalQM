@@ -8,7 +8,7 @@ From the repository root:
 uv run python torch_smoke_test.py
 ```
 
-A successful CPU result is sufficient for the early chapters. CUDA is optional.
+The early chapters only need a working CPU build. CUDA is optional.
 
 ## `No module named 'torch'`
 
@@ -67,8 +67,7 @@ dtype rather than relying on the PyTorch default:
 x = torch.arange(10, dtype=torch.float64)
 ```
 
-All tensors participating in a matrix operation should normally use compatible
-dtypes.
+Use compatible dtypes for tensors in the same matrix operation.
 
 ## DLL or import failure on Windows
 

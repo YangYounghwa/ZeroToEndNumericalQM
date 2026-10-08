@@ -133,12 +133,13 @@ $$
 +\tfrac12|11\rangle\langle11|.
 $$
 
-The mixture has the same diagonal and the same local states, but no cross
-terms. It represents a shared classical random bit. A state is separable when
-it can be written as a probability mixture of product density matrices;
-otherwise it is entangled. Being different from $\rho_A\otimes\rho_B$ alone
-only establishes correlations. For a *pure* joint state, failure to factor as
-a product ket does establish entanglement.
+The mixture has the same diagonal and local states, but no cross terms.
+It represents a shared classical random bit.
+
+A state is separable if it is a probability mixture of product density
+matrices. Otherwise, it is entangled. A state can differ from
+$\rho_A\otimes\rho_B$ because of classical correlations alone. For a *pure*
+joint state, failure to factor as a product ket proves entanglement.
 
 These definitions and the Bell-state reduced matrices are also developed in
 [IBM Quantum's discussion of composite and reduced states](https://quantum.cloud.ibm.com/learning/en/courses/general-formulation-of-quantum-information/density-matrices/multiple-systems).

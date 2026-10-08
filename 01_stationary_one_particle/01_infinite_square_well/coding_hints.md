@@ -61,6 +61,9 @@ psi = psi / norm
 
 ## Foundations and PyTorch practice
 
-Learn torch.arange, torch.diag, @, torch.linalg.eigh, and reductions on float64 tensors. States have shape (N, S); sum over dim=0 to integrate each state. Use residual_norms to distinguish an accurate matrix eigenpair from an accurate continuum approximation.
+Learn `torch.arange`, `torch.diag`, `@`, `torch.linalg.eigh`, and reductions
+on `float64` tensors. States have shape `(N, S)`. Sum over `dim=0` to integrate
+each state. Use `residual_norms` to check matrix eigenpairs. Check continuum
+accuracy separately through convergence studies.
 
-Implement the PyTorch starter first, then compare with the NumPy reference.
+Implement the PyTorch starter first. Then compare with NumPy.

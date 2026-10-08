@@ -2,7 +2,7 @@
 
 ## Standard Chapter Layout
 
-Each subject should have its own organized folder.
+Give each subject its own folder.
 
 ```text
 chapter_name/
@@ -40,10 +40,9 @@ Explain:
 - known analytical results;
 - expected physical behavior.
 
-Include the required quantum-mechanics equation derivation directly in this
-file. The learner is not required to reproduce the full derivation by hand.
-Keep it detailed enough to explain every term used by the implementation, but
-omit unrelated formalism that does not help solve or validate the problem.
+Derive the required quantum equations in this file. Explain every term used
+in the code. Omit formalism that does not help solve or check the problem.
+The learner does not need to repeat the full derivation by hand.
 
 ## `numerical_method.md`
 
@@ -81,7 +80,7 @@ prioritize:
 - small, testable functions;
 - minimal hidden state.
 
-Avoid optimizing code before correctness and convergence have been established.
+Check correctness and convergence before optimizing code.
 
 ## PyTorch Implementation
 
@@ -102,9 +101,8 @@ PyTorch exercises develop these skills as the physics needs them:
 - batched calculations;
 - large tensor contractions.
 
-For a small dense eigenvalue problem, PyTorch may not be faster than NumPy. The
-purpose of the early PyTorch chapters is API learning and result comparison, not
-performance claims.
+PyTorch may not be faster than NumPy for small dense eigenvalue problems.
+Use the early chapters to learn the API and compare results.
 
 ## Experiment File
 
@@ -145,7 +143,7 @@ A chapter is complete when:
 - results are compared with analytical or exact reference data when available;
 - limitations are documented.
 
-A graph that looks physically reasonable is not sufficient evidence.
+A plausible graph alone does not prove accuracy.
 
 ## First Chapter Plan
 
@@ -267,8 +265,7 @@ Reduced radial hydrogen equation on a finite half-line.
 
 ### Next step
 
-Build a genuine two-dimensional Cartesian solver without using symmetry to
-reduce the number of coordinates.
+Build a two-dimensional Cartesian solver that retains both coordinates.
 
 ## Seventh Chapter Plan
 

@@ -4,9 +4,9 @@ Historical review, written before the PyTorch-first goal was clarified.
 The updated [roadmap](ROADMAP.md) and [change report](UPDATE_REPORT.md) describe
 the current direction and implemented changes.
 
-The roadmap is a good overall structure. Its strongest feature is requiring analytical benchmarks, tests, and convergence studies alongside physics problems. I would keep that approach and most of the chapter order.
+Keep the roadmap's analytical benchmarks, tests, convergence studies, and most of its chapter order.
 
-My main concern is scope: the later chapters form a substantial computational many-body physics program. They should be optional specializations after a clear introductory endpoint. The recommendations below are curriculum judgments; linked sources support the technical points.
+The main concern is scope. The later chapters cover a large many-body physics program. Make them optional after a clear introductory endpoint. These recommendations concern course design; linked sources support the technical points.
 
 ## Changes I would prioritize
 
@@ -72,5 +72,3 @@ Complete these projects before treating advanced methods as required:
 6. A variational calculation benchmarked against an exact result.
 
 Keep radial hydrogen and 2D as extensions; make 3D optional. The roadmap currently promises a 3D extension in Phase 1's milestone even though its listed systems stop at 2D. Radial hydrogen also needs an explicit explanation of the reduced radial wavefunction, origin boundary condition, centrifugal term, and normalization measure.
-
-These changes would preserve the roadmap's strengths while making the first learning target manageable and its numerical results easier to trust.

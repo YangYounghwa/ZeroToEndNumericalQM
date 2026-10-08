@@ -35,24 +35,24 @@ singlet/triplet basis matrix. The product-basis index remains `a*dB+b`.
    Compute observables with `Tr(rho @ O)`, preserving batch axes.
 5. Compare results to analytical states before using random mixtures.
 
-The functions reject unnormalized states and weights rather than silently
-changing the physical input. `partial_trace` validates a density matrix, so it
-is an educational state routine, not a general partial-trace API for arbitrary
-unnormalized operators. Repeated validation is inexpensive for these tiny
-matrices; larger systems would need a different performance strategy.
+The functions reject unnormalized states and weights. `partial_trace` accepts
+valid density matrices, not arbitrary unnormalized operators. Repeated checks
+are cheap for these small matrices. Larger systems may need fewer repeated checks.
 
 A dense D-dimensional density matrix stores D squared complex numbers,
 compared with D for a pure ket. Constructing a projector costs O(D squared);
 dense Hermitian diagonalization costs O(D cubed). For D=dA*dB, the trace
 contractions sum O(dA squared*dB) or O(dA*dB squared) entries, although the
 full joint matrix is still stored. Batch memory scales with the number of
-experiments. This is inexpensive for two spins but motivates more economical
-representations for many-body states later.
+experiments.
+
+These costs are small for two spins. Many-body states need representations
+that use less memory.
 
 ## Zero eigenvalues and roundoff
 
-The default absolute validation tolerance is `1e-12`. Eigenvalues below its
-negative are rejected. Small negative eigenvalues within tolerance are clipped
+The default absolute validation tolerance is `1e-12`. Reject eigenvalues
+below `-1e-12`. Small negative eigenvalues within tolerance are clipped
 to zero only when computing entropy. No matrix is projected onto a physical
 state, symmetrized, or renormalized. `eigvalsh` assumes Hermiticity, which is why
 the explicit Hermiticity check comes first.
@@ -66,10 +66,11 @@ eigenvalues, even those below the validation tolerance. At `p=1e-14`, the term
 An almost pure rotated matrix may produce a tiny entropy error of either sign
 because its computed eigenvalues and trace are imperfect. Use absolute error
 near zero, not relative error. The tolerance is an input acceptance bound,
-not a guarantee that every entropy error is below the same value. The examples
-use double precision from construction; casting inaccurate single-precision
-input later cannot restore lost digits. Autograd through entropy at zero
-eigenvalues is outside this chapter's scope.
+not a guarantee that every entropy error is below the same value.
+
+Construct inputs in double precision. Converting single-precision input later
+cannot restore lost digits. Autograd through entropy at zero eigenvalues is
+outside this chapter's scope.
 
 ## Verification and study design
 

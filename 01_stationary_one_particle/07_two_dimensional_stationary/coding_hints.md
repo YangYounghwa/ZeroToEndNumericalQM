@@ -64,6 +64,9 @@ This is also a small introduction to torch.linalg.svdvals.
 
 ## Foundations and PyTorch practice
 
-Learn torch.meshgrid(indexing='ij'), torch.kron, reshape, and reductions over two spatial axes. Keep (Ny, Nx) ordering explicit. Use small dense PyTorch grids, then compare with the sparse SciPy implementation for refined calculations; dense storage grows as (Nx*Ny)^2.
+Learn `torch.meshgrid(indexing='ij')`, `torch.kron`, `reshape`, and reductions
+over two spatial axes. Keep `(Ny, Nx)` ordering explicit. Start with small
+dense PyTorch grids. Compare with sparse SciPy for finer grids, because dense
+storage grows as `(Nx*Ny)^2`.
 
-Implement the PyTorch starter first, then compare with the NumPy reference.
+Implement the PyTorch starter first. Then compare with NumPy.

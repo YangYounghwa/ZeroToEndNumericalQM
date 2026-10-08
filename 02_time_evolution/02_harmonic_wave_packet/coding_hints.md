@@ -50,6 +50,9 @@ Both states must be discretely normalized.
 
 ## Foundations and PyTorch practice
 
-Reuse complex propagation and batching, adding a potential diagonal. Compare the packet center and width with coherent-state dynamics. A global phase does not change the physical state, so use state_l2_error or fidelity. Test time, grid, and domain error independently.
+Add a potential diagonal to the existing complex propagator. Keep batching.
+Compare the packet center and width with coherent-state dynamics. Use
+`state_l2_error` or fidelity to account for global phase. Test time, grid,
+and domain error separately.
 
-Implement the PyTorch starter first, then compare with the NumPy reference.
+Implement the PyTorch starter first. Then compare with NumPy.

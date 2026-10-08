@@ -28,7 +28,7 @@ expectation_x_power(result, power) -> values
 3. Compute `0.5 * mass * omega**2 * grid**2`.
 4. Add that array to the main diagonal with `np.diag` or `torch.diag`.
 
-The potential should not be added to every matrix element.
+Add the potential only to the diagonal.
 
 ## Checks while solving
 
@@ -64,6 +64,9 @@ Report the boundary probability density as a diagnostic for truncation error.
 
 ## Foundations and PyTorch practice
 
-Use elementwise powers for the potential, torch.diag for its matrix, and broadcast grid[:, None] against state densities. Change domain size at fixed spacing. After the grid solver, learn requires_grad, torch.autograd.grad, and torch.optim.Adam with the variational extension.
+Use elementwise powers for the potential. Build its matrix with `torch.diag`.
+Broadcast `grid[:, None]` against state densities. Change domain size at fixed
+spacing. Then use the variational extension to learn `requires_grad`,
+`torch.autograd.grad`, and `torch.optim.Adam`.
 
-Implement the PyTorch starter first, then compare with the NumPy reference.
+Implement the PyTorch starter first. Then compare with NumPy.
