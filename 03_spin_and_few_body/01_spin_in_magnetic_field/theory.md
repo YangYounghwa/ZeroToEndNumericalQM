@@ -30,6 +30,56 @@ $$
 \qquad 0\leq\theta\leq\pi.
 $$
 
+**Why does only the sine have a phase factor?** Both coefficients can have
+phases. Start with the general normalized spinor:
+
+$$
+|\psi\rangle=
+\begin{pmatrix}
+e^{i\alpha}\cos(\theta/2)\\
+e^{i\beta}\sin(\theta/2)
+\end{pmatrix}.
+$$
+
+Factor out the first coefficient's phase:
+
+$$
+|\psi\rangle=e^{i\alpha}
+\begin{pmatrix}
+\cos(\theta/2)\\
+e^{i(\beta-\alpha)}\sin(\theta/2)
+\end{pmatrix}.
+$$
+
+The factor $e^{i\alpha}$ is a **global phase**: it multiplies the entire
+state. The difference $\phi=\beta-\alpha$ is the **relative phase** between
+the two components. For any normalized measurement state $|u\rangle$, a
+global phase cancels from the probability:
+
+$$
+\left|\langle u|e^{i\alpha}\psi\rangle\right|^2
+=\left|e^{i\alpha}\langle u|\psi\rangle\right|^2
+=\left|\langle u|\psi\rangle\right|^2.
+$$
+
+We therefore omit the global phase when labeling the physical spin state.
+The phase on the sine already accounts for the difference between both
+original phases; no pure spin states are missing. To represent every
+normalized vector, including its global phase, retain the factor
+$e^{i\alpha}$ outside the spinor.
+
+For example,
+
+$$
+\frac{1}{\sqrt{2}}\begin{pmatrix}i\\-1\end{pmatrix}
+=i\,\frac{1}{\sqrt{2}}\begin{pmatrix}1\\i\end{pmatrix}.
+$$
+
+These vectors describe the same physical spin state. Putting the same phase
+on both components only adds a global phase; allowing independent phases
+reduces to the relative-phase form above. At $\theta=0$ or $\theta=\pi$,
+one coefficient vanishes, so $\phi$ does not distinguish physical states.
+
 For example, `theta=pi/2, phi=0` is `+x`, and `theta=pi/2, phi=pi/2` is `+y`.
 Both give equal probabilities when measured along z, but have different phases.
 
