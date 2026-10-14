@@ -457,3 +457,26 @@ Bell states, reduced density matrices, and pure-state entanglement entropy.
 
 Two particles on a lattice: site bases, exchange symmetry, occupation numbers,
 and particle statistics before the small Hubbard system.
+
+## Phase 3, Fourth Chapter Plan
+
+### Subject
+
+Two noninteracting particles on a finite open lattice.
+
+### Learning goals
+
+- Build labeled, symmetric boson, and antisymmetric fermion bases.
+- Derive basis dimensions and normalized same-site boson states.
+- Project the product Hamiltonian with PyTorch Kronecker products.
+- Derive occupation-number hopping factors and fermion operator signs.
+- Compare projection with an independent NumPy occupation-basis construction.
+- Verify exact pair-sum spectra and two-site pair probabilities.
+- Distinguish mean site counts from pair correlations.
+- Keep batches separate from particle-coordinate axes.
+- Separate physical finite-size scaling from numerical error.
+
+### Next chapter
+
+A small Hubbard system adds interactions. Introduce internal spin orbitals
+before allowing opposite-spin fermions on one site.

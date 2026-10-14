@@ -148,7 +148,7 @@ Frequencies differing by an integer multiple of `1/d` give identical samples. Th
 
 ```python
 magnitude = X.abs()
-phase = torch.angle(X)   # radians; meaningful where magnitude is nonzero
+phase = torch.angle(X)  # radians; meaningful where magnitude is nonzero
 real_part = X.real
 imaginary_part = X.imag
 ```
@@ -165,7 +165,7 @@ amplitude = R.abs() / x.numel()
 if x.numel() % 2 == 0:
     amplitude[1:-1] *= 2  # leave zero and Nyquist unchanged
 else:
-    amplitude[1:] *= 2   # odd lengths have no Nyquist bin
+    amplitude[1:] *= 2  # odd lengths have no Nyquist bin
 ```
 
 This amplitude interpretation assumes the default FFT normalization and no window. Off-bin tones spread across bins. `abs(X)**2` is squared spectral magnitude, not automatically a calibrated power spectral density.
@@ -230,7 +230,7 @@ A general quantum wavefunction is complex, so use the full `fft`/`ifft` pair.
 ## 11. Axes, batches, and transform lengths
 
 ```python
-signals = torch.randn(16, 128)       # 16 separate signals
+signals = torch.randn(16, 128)  # 16 separate signals
 spectra = torch.fft.fft(signals, dim=-1)
 # shape: [16, 128]; batch axis is untouched
 
@@ -361,8 +361,10 @@ For quantum simulations, a packet reaching a periodic boundary reappears at the 
 Float32 data normally produces complex64 spectra; float64 produces complex128. Keep frequency grids on the same device as the data:
 
 ```python
-k = 2 * torch.pi * torch.fft.fftfreq(
-    psi.shape[-1], d=dx, device=psi.device, dtype=psi.real.dtype
+k = (
+    2
+    * torch.pi
+    * torch.fft.fftfreq(psi.shape[-1], d=dx, device=psi.device, dtype=psi.real.dtype)
 )
 ```
 

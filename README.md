@@ -34,6 +34,7 @@ physical invariants before marking it complete.
 - [Phase 3, Chapter 1: Spin in a magnetic field](03_spin_and_few_body/01_spin_in_magnetic_field/README.md)
 - [Phase 3, Chapter 2: Two coupled spins](03_spin_and_few_body/02_two_coupled_spins/README.md)
 - [Phase 3, Chapter 3: Bell states](03_spin_and_few_body/03_bell_states/README.md)
+- [Phase 3, Chapter 4: Two particles on a lattice](03_spin_and_few_body/04_two_particles_on_lattice/README.md)
 - [PyTorch troubleshooting](PYTORCH_TROUBLESHOOTING.md)
 - [Code-quality tools](CODE_QUALITY.md)
 
@@ -88,4 +89,11 @@ entanglement entropy. Its [validation report](03_spin_and_few_body/03_bell_state
 compares Bell states with classical mixtures, follows entanglement through an
 exchange swap, and checks the treatment of tiny eigenvalues.
 
-The next chapter studies two particles on a lattice and particle statistics.
+Phase 3 Chapter 4 compares distinguishable particles, bosons, and spin-polarized
+fermions on an open lattice. Its
+[validation report](03_spin_and_few_body/04_two_particles_on_lattice/VALIDATION.md)
+checks basis projection against occupation-number hopping, exact pair-sum
+spectra, and two-site pair correlations. It separates finite-size physics
+from numerical error.
+
+The next chapter adds interactions in a small Hubbard system.

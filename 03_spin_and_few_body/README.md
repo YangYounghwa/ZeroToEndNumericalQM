@@ -9,6 +9,7 @@ required linear algebra and quantum concepts within each chapter.
 1. [Spin-1/2 in a magnetic field](01_spin_in_magnetic_field/README.md)
 2. [Two coupled spins](02_two_coupled_spins/README.md)
 3. [Bell states](03_bell_states/README.md)
+4. [Two particles on a lattice](04_two_particles_on_lattice/README.md)
 
 The first chapter introduces the spinor, Pauli algebra, signed Larmor
 precession, measurement projectors, and the Bloch vector. It compares batched
@@ -24,11 +25,15 @@ Bell states and a separable classical mixture demonstrate why mixed local
 states alone do not establish entanglement. Analytical entropy formulas and
 independent NumPy index loops check the batched PyTorch contractions.
 
+The fourth chapter introduces site bases, exchange symmetry, and occupation
+numbers for two noninteracting particles. PyTorch symmetry projection and
+NumPy occupation-number hopping agree with exact spectra and two-site dynamics.
+The fermion model has one fixed spin state and one orbital per site.
+
 ## Planned progression
 
-Two particles on a lattice come next, introducing exchange symmetry and
-occupation bases. A small Hubbard system then develops particle statistics
-and interactions further.
+A small Hubbard system comes next. Add interactions and introduce spin
+orbitals before allowing opposite-spin fermions to share a spatial site.
 
 A batch of independent simulations is not a composite quantum state. Keep
 that distinction explicit when moving from two amplitudes for one spin to

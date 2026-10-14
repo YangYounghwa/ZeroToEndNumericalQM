@@ -63,8 +63,9 @@ and the analytical binary entropy. Normalization alone cannot check these.
 
 ## Next chapter
 
-Two particles on a lattice: spatial site bases, exchange symmetry, occupation
-numbers, and particle statistics before a small Hubbard system.
+[Two particles on a lattice](../04_two_particles_on_lattice/README.md): site
+bases, exchange symmetry, occupation numbers, and particle statistics before
+a small Hubbard system.
 
 [Previous: Two coupled spins](../02_two_coupled_spins/README.md) ·
 [Phase overview](../README.md) · [Implementation plan](PLAN.md)
