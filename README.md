@@ -36,6 +36,8 @@ physical invariants before marking it complete.
 - [Phase 3, Chapter 3: Bell states](03_spin_and_few_body/03_bell_states/README.md)
 - [Phase 3, Chapter 4: Two particles on a lattice](03_spin_and_few_body/04_two_particles_on_lattice/README.md)
 - [Phase 3, Chapter 5: Small Hubbard system](03_spin_and_few_body/05_small_hubbard_system/README.md)
+- [Phase 4: Many-body exact diagonalization](04_exact_diagonalization/README.md)
+- [Phase 4, Chapter 1: Transverse-field Ising chain](04_exact_diagonalization/01_transverse_field_ising/README.md)
 - [PyTorch troubleshooting](PYTORCH_TROUBLESHOOTING.md)
 - [Code-quality tools](CODE_QUALITY.md)
 
@@ -102,4 +104,9 @@ Phase 3 Chapter 5 adds a spinful Fermi-Hubbard dimer. Its
 checks fermion signs, exact spectra, double occupancy, and biased dynamics.
 It separates the large-U exchange approximation from numerical error.
 
-The next chapter is the Phase 4 transverse-field Ising chain.
+Phase 4 Chapter 1 adds the open transverse-field Ising chain. Its
+[validation report](04_exact_diagonalization/01_transverse_field_ising/VALIDATION.md)
+checks bit bases, parity sectors, sparse residuals, and exact critical-chain
+energies. It separates finite-size physics from numerical error.
+
+The next chapter is the Heisenberg spin chain.

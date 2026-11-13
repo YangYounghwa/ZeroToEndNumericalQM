@@ -500,3 +500,24 @@ Spinful Fermi-Hubbard dimer in the one-up, one-down sector.
 
 Begin Phase 4 with the transverse-field Ising chain. Use bit-string bases and
 small-system exact diagonalization before adding larger Hubbard models.
+
+## Phase 4, First Chapter Plan
+
+### Subject
+
+Open transverse-field Ising chain with Pauli normalization.
+
+### Learning goals
+
+- Fix the bit order and build the Hamiltonian with PyTorch bit flips.
+- Compare with independent sparse Kronecker-product construction.
+- Derive global spin-flip parity and exact sector projection.
+- Check zero-field, independent-spin, and two-site limits.
+- Validate critical open-chain energies and gaps against exact formulas.
+- Measure magnetization and correlations in states with definite parity.
+- Separate physical finite-size effects from sparse solver residuals.
+
+### Next chapter
+
+Add the Heisenberg spin chain with fixed-magnetization sectors. Construct
+those sectors directly before diagonalization.
