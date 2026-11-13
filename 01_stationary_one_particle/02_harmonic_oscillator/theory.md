@@ -107,14 +107,68 @@ $$
 The Hamiltonian is real, so these stationary eigenfunctions can be chosen
 real. General superpositions and time-dependent states are usually complex.
 
-## Physical checks
+## Spatial parity and the Hamiltonian
 
-The potential is even, so each eigenstate has definite parity:
+Spatial parity reflects position about the origin. Use $\Pi$ for this operator:
+
+$$
+(\Pi\psi)(x)=\psi(-x),\qquad \Pi^2=I.
+$$
+
+Reflection preserves the inner product, so $\Pi$ is unitary. Since
+$\Pi^{-1}=\Pi$, it is also Hermitian. If $\Pi\psi=p\psi$, applying parity
+twice gives $p^2=1$. Its eigenvalues are therefore $+1$ and $-1$:
+
+$$
+\psi(-x)=+\psi(x)\quad\text{(even)},\qquad
+\psi(-x)=-\psi(x)\quad\text{(odd)}.
+$$
+
+For $H=-\hbar^2\partial_x^2/(2m)+V(x)$, compare the two orders of operation:
+
+$$
+(H\Pi\psi)(x)=-\frac{\hbar^2}{2m}\psi''(-x)+V(x)\psi(-x),
+$$
+
+$$
+(\Pi H\psi)(x)=-\frac{\hbar^2}{2m}\psi''(-x)+V(-x)\psi(-x).
+$$
+
+The second derivative is unchanged by reflection. For an even potential and
+reflection-invariant boundary conditions, the expressions agree:
+
+$$
+[H,\Pi]\equiv H\Pi-\Pi H=0.
+$$
+
+This does not mean parity is an extra energy term. It means reflecting a
+state before applying H gives the same result as reflecting afterward.
+If $H\psi=E\psi$, then $H(\Pi\psi)=E(\Pi\psi)$. The oscillator levels are
+nondegenerate, so $\Pi\psi$ must be proportional to $\psi$. Each energy
+eigenstate therefore has definite parity. With degeneracy, one can choose a
+joint eigenbasis, but an arbitrary eigenvector need not have definite parity.
+
+The oscillator eigenstates obey
 
 $$
 \psi_n(-x)=(-1)^n\psi_n(x).
 $$
 
+The ground state is even; the first excited state is odd. A superposition
+such as $(\psi_0+\psi_1)/\sqrt2$ has no definite parity. The symmetric
+Hamiltonian allows both parities and their superpositions.
+
+This differs from the [center reflection of the infinite well](../01_infinite_square_well/theory.md),
+which sends $x$ to $L-x$ in that chapter's coordinates. It also differs from
+particle exchange: parity reflects space; exchange swaps two particle labels.
+An even one-particle wavefunction is not a boson, and an odd one is not a
+fermion. The [two-particle lattice lesson](../../03_spin_and_few_body/04_two_particles_on_lattice/theory.md)
+explains the exchange rule for identical particles.
+
+## Physical checks
+
+For a parity eigenstate, $|\psi(x)|^2$ is even. Thus
+$x|\psi(x)|^2$ is odd, and its integral over the symmetric domain vanishes.
 Useful exact expectation values are
 
 $$

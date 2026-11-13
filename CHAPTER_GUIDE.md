@@ -480,3 +480,23 @@ Two noninteracting particles on a finite open lattice.
 
 A small Hubbard system adds interactions. Introduce internal spin orbitals
 before allowing opposite-spin fermions on one site.
+
+## Phase 3, Fifth Chapter Plan
+
+### Subject
+
+Spinful Fermi-Hubbard dimer in the one-up, one-down sector.
+
+### Learning goals
+
+- Derive fermion signs from a fixed spin-orbital order.
+- Form full Fock operators before projecting number-conserving products.
+- Compare PyTorch projection with an independent explicit NumPy matrix.
+- Derive the symmetric spectrum, double occupancy, and singlet dynamics.
+- Check biased dynamics, batches, and conservation laws.
+- Separate large-U exchange approximation error from numerical roundoff.
+
+### Next chapter
+
+Begin Phase 4 with the transverse-field Ising chain. Use bit-string bases and
+small-system exact diagonalization before adding larger Hubbard models.

@@ -10,6 +10,7 @@ required linear algebra and quantum concepts within each chapter.
 2. [Two coupled spins](02_two_coupled_spins/README.md)
 3. [Bell states](03_bell_states/README.md)
 4. [Two particles on a lattice](04_two_particles_on_lattice/README.md)
+5. [Small Hubbard system](05_small_hubbard_system/README.md)
 
 The first chapter introduces the spinor, Pauli algebra, signed Larmor
 precession, measurement projectors, and the Bloch vector. It compares batched
@@ -32,8 +33,12 @@ The fermion model has one fixed spin state and one orbital per site.
 
 ## Planned progression
 
-A small Hubbard system comes next. Add interactions and introduce spin
-orbitals before allowing opposite-spin fermions to share a spatial site.
+The fifth chapter adds spin orbitals and on-site interactions in a Hubbard
+dimer. It checks the exact spectrum, double occupancy, and the large-U
+exchange approximation. Phase 3 is complete within this small-system scope.
+
+Next, start Phase 4 with a transverse-field Ising chain. Larger Hubbard
+chains and bosonic occupation cutoffs remain Phase 4 topics.
 
 A batch of independent simulations is not a composite quantum state. Keep
 that distinction explicit when moving from two amplitudes for one spin to

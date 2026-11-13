@@ -60,14 +60,64 @@ axis; it does not add particles.
 
 ## 3. Exchange symmetry
 
-The exchange operator swaps particle coordinates:
+### 3.1 Exchange is not spatial parity
+
+The [oscillator chapter](../../01_stationary_one_particle/02_harmonic_oscillator/theory.md)
+introduced spatial parity $\Pi$, with $(\Pi\psi)(x)=\psi(-x)$.
+Here use $P_{12}$ for **particle exchange**. These operators answer different
+questions:
+
+| Operator | Action on a two-particle wavefunction | Meaning |
+| --- | --- | --- |
+| Spatial parity $\Pi$ | $\Psi(x_1,x_2)\mapsto\Psi(-x_1,-x_2)$ | Reflect both positions |
+| Exchange $P_{12}$ | $\Psi(x_1,x_2)\mapsto\Psi(x_2,x_1)$ | Swap particle coordinates |
+
+On the lattice, spatial reflection sends $|i,j\rangle$ to
+$|L-1-i,L-1-j\rangle$. Exchange instead sends it to $|j,i\rangle$.
+They can agree on a particular state without being the same operator.
+Both square to the identity and have eigenvalues $\pm1$. This shared algebra
+does not make their physical meanings identical. We use different symbols
+to keep the distinction clear.
+
+The [coupled-spin chapter](../02_two_coupled_spins/theory.md) also introduced
+spin swap. For particles with spin, full particle exchange swaps both their
+positions and their spin coordinates.
+
+### 3.2 Why exchange eigenvalues are plus or minus one
+
+In the labeled site basis,
 
 $$
-P|i,j\rangle=|j,i\rangle,\qquad P^2=I,\qquad P^\dagger=P.
+P_{12}|i,j\rangle=|j,i\rangle,\qquad P_{12}^2=I,\qquad
+P_{12}^\dagger=P_{12}.
 $$
 
-Thus its eigenvalues are $+1$ and $-1$. Since both particles see the same
-$h$, $[P,H_{\mathrm{lab}}]=0$. Evolution preserves either exchange sector.
+Swapping twice restores the original state. If $P_{12}\Psi=\eta\Psi$, then
+$P_{12}^2\Psi=\eta^2\Psi=\Psi$, so $\eta=+1$ or $-1$. Thus
+
+$$
+\Psi_B(x_2,x_1)=+\Psi_B(x_1,x_2),\qquad
+\Psi_F(x_2,x_1)=-\Psi_F(x_1,x_2).
+$$
+
+The first state is symmetric under exchange. The second is antisymmetric.
+The minus sign leaves the density unchanged, but it changes interference
+between amplitudes. It cannot be discarded independently in each term of
+an antisymmetric superposition.
+
+### 3.3 What makes a particle a boson or fermion
+
+Bosons have integer spin; fermions have half-integer spin. Electrons are
+fermions. Photons are bosons. Under the usual assumptions of relativistic
+quantum theory in three spatial dimensions, the spin-statistics theorem
+connects these classes to symmetric and antisymmetric total states.
+The lattice is a restricted model of such particles. Its Schrödinger equation
+does not derive the spin-statistics theorem.
+
+In this nonrelativistic calculation, we specify the particle type and impose
+the corresponding state-space restriction. The equation $P_{12}^2=I$ explains
+the two exchange eigenvalues. It does not decide which eigenvalue a physical
+particle species must use.
 
 Identical bosons require a symmetric total state. Identical fermions require
 an antisymmetric total state. Here internal states are fixed and identical,
@@ -75,6 +125,8 @@ so the spatial state carries that symmetry. For fermions with different spin
 states, antisymmetry applies to space and spin together. Such fermions can
 occupy one spatial site in different spin orbitals. They are outside this model.
 See [MIT's identical-particle notes](https://ocw.mit.edu/courses/8-06-quantum-physics-iii-spring-2018/fb48dd49e8649557f1715f0415de4f4d_MIT8_06S18ch8.pdf).
+
+### 3.4 Constructing allowed states and Pauli exclusion
 
 For $i<j$, normalized spatial basis states are
 
@@ -87,6 +139,33 @@ For two bosons on one site, use $|i,i\rangle_+=|i,i\rangle$. Do not divide
 this state by $\sqrt2$. The antisymmetric combination with $i=j$ vanishes.
 This gives Pauli exclusion for the single spin orbital at each site.
 
+More generally, two identical fermions cannot occupy the same complete
+one-particle state $|u\rangle$, since
+
+$$
+|u\rangle\otimes|u\rangle-|u\rangle\otimes|u\rangle=0.
+$$
+
+Zero is not a normalized physical state. Two bosons can occupy $|u\rangle$;
+their normalized product is $|u\rangle\otimes|u\rangle$. Exclusion is a
+restriction on states, not a repulsive potential added to H. Similarly,
+boson bunching does not require attraction.
+
+For electrons, a spatial orbital plus spin identifies a complete
+one-particle state. Opposite spins can occupy the same spatial orbital.
+For example, the allowed two-electron state
+
+$$
+\Psi(x_1,s_1;x_2,s_2)=\phi(x_1)\phi(x_2)
+\frac{\uparrow(s_1)\downarrow(s_2)-\downarrow(s_1)\uparrow(s_2)}{\sqrt2}
+$$
+
+has symmetric space and antisymmetric spin. Its total exchange sign is minus.
+For a factorized space-and-spin state, multiply their exchange signs to get
+the total sign. A spin triplet has sign plus, so two electrons in a triplet
+need antisymmetric space. Our fixed-spin lattice model keeps this latter
+spatial restriction; it does not include the opposite-spin example above.
+
 | Statistics | Basis pairs | Dimension |
 | --- | --- | --- |
 | Distinguishable | All ordered $(i,j)$ | $L^2$ |
@@ -94,6 +173,65 @@ This gives Pauli exclusion for the single spin orbital at each site.
 | Fermion | $i<j$ | $L(L-1)/2$ |
 
 These are complete two-particle sectors. No occupation cutoff is imposed.
+
+### 3.5 Why the Hamiltonian does not select the statistics
+
+For two identical particles in the same external potential,
+
+$$
+P_{12}(h\otimes I)P_{12}=I\otimes h,\qquad
+P_{12}(I\otimes h)P_{12}=h\otimes I.
+$$
+
+Adding these equations gives $P_{12}H_{\mathrm{lab}}P_{12}=H_{\mathrm{lab}}$,
+or $[H_{\mathrm{lab}},P_{12}]=0$. This remains true for an interaction
+$W(x_1,x_2)=W(x_2,x_1)$; noninteraction is not required for exchange symmetry.
+
+For time-independent H, $U(t)=e^{-iHt/\hbar}$ also commutes with $P_{12}$.
+If $P_{12}\Psi(0)=\eta\Psi(0)$, then
+
+$$
+P_{12}\Psi(t)=P_{12}U(t)\Psi(0)
+=U(t)P_{12}\Psi(0)=\eta\Psi(t).
+$$
+
+The Hamiltonian **preserves** the exchange sign. It does not choose it.
+The labeled space contains both signs. For distinguishable particles, both
+and their superpositions are allowed. For a fixed identical-particle species,
+we restrict the total state to the required sector before solving.
+
+For example, the lowest state of the full noninteracting labeled Hamiltonian
+puts both particles in its lowest one-particle orbital. It is allowed for
+bosons, but excluded for our fixed-spin fermions. Diagonalizing the full space
+and taking its lowest eigenvalue would therefore give the wrong fermion ground
+energy. This is why the code chooses a basis before selecting energies.
+
+Exchange symmetry also does not require an even external potential. A site
+potential can favor the left end and break spatial reflection while treating
+both particles identically. H then commutes with $P_{12}$ but need not commute
+with $\Pi$.
+
+### 3.6 Projectors and the basis used in code
+
+The operators
+
+$$
+\mathcal S=\frac{I+P_{12}}2,\qquad
+\mathcal A=\frac{I-P_{12}}2
+$$
+
+extract symmetric and antisymmetric components. Using $P_{12}^2=I$ gives
+$\mathcal S^2=\mathcal S$, $\mathcal A^2=\mathcal A$,
+$\mathcal S\mathcal A=0$, and $\mathcal S+\mathcal A=I$.
+Projection is not normalization: for $i\ne j$, $\mathcal S|i,j\rangle$
+has norm $1/\sqrt2$, so normalize it to obtain $|i,j\rangle_+$.
+Also, $\mathcal A|i,i\rangle=0$ cannot be normalized.
+
+PyTorch uses normalized columns Q spanning one sector, so
+$QQ^\dagger=\mathcal S$ for bosons and $QQ^\dagger=\mathcal A$ for fermions.
+NumPy builds the allowed occupation basis directly. Its hopping factors and
+signs already enforce the statistics. Thus exchange symmetry need not appear
+as a separate projection step in every implementation.
 
 ## 4. Projection and occupation numbers
 

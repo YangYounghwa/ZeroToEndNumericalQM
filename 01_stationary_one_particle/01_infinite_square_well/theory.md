@@ -138,6 +138,32 @@ $$
 The numerical solution should reproduce the analytical energies,
 normalization, orthogonality, and symmetry about the center of the well.
 
+## Reflection about the center
+
+The well occupies $[0,L]$, so reflection about its center sends $x$ to $L-x$.
+Define the spatial reflection operator by
+
+$$
+(\Pi_c\psi)(x)=\psi(L-x).
+$$
+
+For the sine eigenfunctions,
+
+$$
+\sin\left(\frac{n\pi(L-x)}L\right)
+=(-1)^{n+1}\sin\left(\frac{n\pi x}L\right).
+$$
+
+Thus the ground state is even about the center. The next state is odd about
+the center. Both have a symmetric probability density because squaring the
+magnitude removes the sign. Symmetric density alone does not prove that the
+wavefunction is even.
+
+With the centered coordinate $q=x-L/2$, this reflection is $q\mapsto-q$.
+The [harmonic-oscillator lesson](../02_harmonic_oscillator/theory.md) develops
+this operator as spatial parity. This is a one-particle symmetry. It does not
+classify the particle as a boson or fermion.
+
 ## Units and foundations used here
 
 A state is a column of sampled amplitudes. Matrix multiplication applies an

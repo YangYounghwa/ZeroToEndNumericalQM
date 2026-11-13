@@ -123,6 +123,45 @@ singlet (antiferromagnetic sign convention); negative `J` favors the triplet.
 Different texts can define the exchange coefficient with a different sign or
 factor, so always compare their Hamiltonians before comparing values of `J`.
 
+### Spin swap, spatial parity, and particle statistics
+
+Define the spin-swap operator $X_{12}$ by $X_{12}|a,b\rangle=|b,a\rangle$.
+In the product basis used here,
+
+$$
+X_{12}=\begin{pmatrix}
+1&0&0&0\\
+0&0&1&0\\
+0&1&0&0\\
+0&0&0&1
+\end{pmatrix}
+=\frac12\left(I+\sum_a\sigma_a\otimes\sigma_a\right).
+$$
+
+Comparing with the exchange Hamiltonian gives
+
+$$
+H_{ex}=\frac J2X_{12}-\frac J4I.
+$$
+
+The triplets are symmetric under spin swap: $X_{12}|t\rangle=|t\rangle$.
+The singlet is antisymmetric: $X_{12}|s\rangle=-|s\rangle$. This gives the
+same energies $J/4$ and $-3J/4$. Equal local fields preserve spin-swap
+symmetry. Unequal fields generally break it because swapping the spins
+changes which field acts on each spin.
+
+This swap is not the [spatial parity operator](../../01_stationary_one_particle/02_harmonic_oscillator/theory.md).
+It interchanges the two spin factors instead of reflecting a coordinate.
+Also, a symmetric spin state does not make two electrons bosons. For two
+identical fermions, the **total** space-and-spin state must be antisymmetric.
+When it factors into spatial and spin states, a singlet requires symmetric
+space, and a triplet requires antisymmetric space.
+
+Both singlet and triplet states are allowed in this effective two-site model.
+We are not choosing particle statistics by choosing an exchange energy.
+The [lattice chapter](../04_two_particles_on_lattice/theory.md) introduces
+the full particle-exchange operator and the boson/fermion restriction.
+
 ## 5. Exact exchange dynamics
 
 Start with $|+-\rangle=(|t_0\rangle+|s\rangle)/\sqrt2$. Give each energy
